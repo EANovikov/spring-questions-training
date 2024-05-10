@@ -1,13 +1,17 @@
 package com.xevgnov.beanlifecycle;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-@SpringBootApplication
-public class BeanLifeCycleApplication {
+import com.xevgnov.beanlifecycle.service.DemoService;
+
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BeanLifeCycleApplication.class, args);
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
+				ApplicationConfig.class);
+		context.registerShutdownHook();
+		DemoService demoService = context.getBean(DemoService.class);
+        demoService.demo();
 	}
 
 }

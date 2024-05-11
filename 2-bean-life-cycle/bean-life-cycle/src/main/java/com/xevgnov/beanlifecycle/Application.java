@@ -12,6 +12,6 @@ public class Application {
 		context.registerShutdownHook();
 		DemoService demoService = context.getBean(DemoService.class);
         demoService.demo();
-	}
+	} 
 
 }

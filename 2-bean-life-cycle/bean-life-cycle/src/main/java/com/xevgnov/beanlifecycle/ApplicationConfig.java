@@ -12,12 +12,10 @@ import lombok.extern.slf4j.Slf4j;
 @ComponentScan("com.xevgnov.service")
 public class ApplicationConfig {
     
-    @Bean(initMethod = "init")
+    @Bean(initMethod = "initBean", destroyMethod = "destroyBean")
     public DemoService demoService(){
+      log.info("about to create the bean DemoService");
         return new DemoService();
-    }
-    private void init(){
-      log.info("call init method");
     }
 
 }

@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Configuration;
 
 import com.xevgnov.beanlifecycle.service.DemoBeanFactoryPostProcessor;
 import com.xevgnov.beanlifecycle.service.DemoService;
-import com.xevgnov.beanlifecycle.service.TimeService;
 
 import lombok.extern.slf4j.Slf4j;
 @Slf4j

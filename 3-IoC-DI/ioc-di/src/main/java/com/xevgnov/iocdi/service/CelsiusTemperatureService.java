@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 public class CelsiusTemperatureService implements TemperatureService {
 
     @Override
-    public long convert(double temperature) {
+    public double convert(double temperature) {
         return temperature * 1.8 + 32.0;
     }
 

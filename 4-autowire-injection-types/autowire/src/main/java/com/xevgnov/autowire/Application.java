@@ -20,13 +20,14 @@ public class Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
+
 	@Bean
-	CommandLineRunner commandLineRunner(RestaurantService restaurantService){
+	CommandLineRunner commandLineRunner(RestaurantService restaurantService) {
 		restaurantService.makeOrder(Order.builder()
-		.clientEmail("john.doe@gmail.com")
-		.deliveryAddress("Wrocław, Plac Konstytucji 3 Maja")
-		.dishes(List.of("Pizza", "Chips", "Gyros"))
-		.paymentId(UUID.randomUUID()).build());
+				.clientEmail("john.doe@gmail.com")
+				.deliveryAddress("Wroclaw, Plac Konstytucji 3 Maja")
+				.dishes(List.of("Pizza", "Chips", "Gyros"))
+				.paymentId(UUID.randomUUID()).build());
 		return args -> log.info("Done!");
 	}
 }

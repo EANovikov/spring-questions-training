@@ -1,4 +1,5 @@
 package com.xevgnov.autowire.service;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 public class RestaurantService {
-    
+
     @Autowired
     private FoodService foodService;
 
@@ -20,11 +21,11 @@ public class RestaurantService {
     private ClientService clientService;
 
     @Autowired
-    public RestaurantService(PaymentService paymentService){
+    public RestaurantService(PaymentService paymentService) {
         this.paymentService = paymentService;
     }
 
-    public void makeOrder(Order order){
+    public void makeOrder(Order order) {
         log.info("Starting to handle the order [{}]", order.getId());
         clientService.sendEmail(order);
         paymentService.processPayment(order);
@@ -40,7 +41,7 @@ public class RestaurantService {
     }
 
     @Autowired
-    public void initClientService(ClientService clientService){
+    public void initClientService(ClientService clientService) {
         this.clientService = clientService;
     }
 

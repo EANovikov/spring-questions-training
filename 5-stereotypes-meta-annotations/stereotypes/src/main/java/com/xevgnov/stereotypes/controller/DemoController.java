@@ -6,12 +6,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
 
 @Controller
-@RequestMapping("/demo")
+@RequestMapping("/gui")
 public class DemoController {
 
-    @GetMapping
+  private static int counter;
+
+    @GetMapping("/demo")
     public String demo(Model model){
-      model.addAttribute("name", this.getClass().getName());
+      model.addAttribute("count", counter++);
       return "demo";
     }
 }

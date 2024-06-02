@@ -1,15 +1,13 @@
-package com.xevgnov.unique;
+package com.xevgnov.collection;
 
-import java.util.List;
-import java.util.UUID;
+import java.util.Set;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.annotation.Order;
 
-import com.xevgnov.unique.service.ReportService;
+import com.xevgnov.collection.service.ReportService;
 
 @SpringBootApplication
 public class Application {
@@ -19,7 +17,7 @@ public class Application {
 	}
 
 	@Bean
-	CommandLineRunner commandLineRunner(ReportService reportService) {
-		return args -> reportService.printReport("test");
+	CommandLineRunner commandLineRunner(Set<ReportService> reportServices) {
+		return args -> reportServices.forEach(rs->rs.printReport("test"));
 	}
 }

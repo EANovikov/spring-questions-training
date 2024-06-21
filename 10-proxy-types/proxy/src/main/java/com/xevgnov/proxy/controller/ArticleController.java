@@ -1,6 +1,7 @@
 package com.xevgnov.proxy.controller;
 
 import java.net.URI;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.xevgnov.proxy.dto.ArticleDto;
+import com.xevgnov.proxy.entity.Article;
 import com.xevgnov.proxy.service.ArticleService;
 
 import jakarta.validation.Valid;
@@ -37,8 +39,7 @@ public class ArticleController {
 
     @GetMapping("/{id}")
     public ArticleDto getOrder(@PathVariable UUID id) {
-
-        return null;
+       return articleService.get(id);
     }
 
     @GetMapping

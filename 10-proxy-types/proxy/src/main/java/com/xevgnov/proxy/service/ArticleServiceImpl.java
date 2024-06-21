@@ -30,13 +30,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public ArticleDto get(UUID id) {
-        Optional<Article> article = articleRepository.findById(id);
-        log.info("Found article {}", article);
-        if(article.isEmpty()){
-            throw new ArticleNotFoundException(
-                String.format("Article %s does not exist", id));
-        }
-        return mapFromArticle(article.get());
+        return mapToArticleDto(getIfExists(id));
     }
    
 
@@ -44,9 +38,25 @@ public class ArticleServiceImpl implements ArticleService {
     public List<ArticleDto> getAll() {
         return articleRepository
         .findAll(Sort.by(Sort.Direction.DESC, "created"))
-        .stream().map(article -> mapFromArticle(article))
+        .stream().map(article -> mapToArticleDto(article))
         .toList();
     }
+
+    @Override
+    public void delete(UUID id) {
+        articleRepository.delete(getIfExists(id));
+    }
+
+    @Override
+    public void update(ArticleDto articleDto, UUID id) {
+        Article article = getIfExists(id);
+        article.setTitle(articleDto.getTitle());
+        article.setText(articleDto.getText());
+        article.setUpdated(Instant.now());
+        articleRepository.save(article);
+    }
+
+
 
     @Override
     public ArticleDto create(ArticleDto articleDto) {
@@ -57,10 +67,20 @@ public class ArticleServiceImpl implements ArticleService {
                 .build();
         Article createdArticle = articleRepository.save(article);
         log.info("Created article {}", article);
-        return mapFromArticle(createdArticle);
+        return mapToArticleDto(createdArticle);
     }
 
-    private ArticleDto mapFromArticle(Article article){
+    private Article getIfExists(UUID id){
+        Optional<Article> article = articleRepository.findById(id);
+        log.info("Found article {}", article);
+        if(article.isEmpty()){
+            throw new ArticleNotFoundException(
+                String.format("Article %s does not exist", id));
+        }
+        return article.get();
+    }
+
+    private ArticleDto mapToArticleDto(Article article){
       return ArticleDto.builder()
         .id(article.getId())
         .title(article.getTitle())

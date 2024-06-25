@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xevgnov.proxy.dto.ArticleDto;
 import com.xevgnov.proxy.entity.Article;
@@ -34,7 +35,9 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public ArticleDto get(UUID id) {
-        return mapToArticleDto(getIfExists(id));
+        Article article = getIfExists(id);
+        log.info("Got article {}", articleAsJson(article));
+        return mapToArticleDto(article);
     }
    
 
@@ -50,7 +53,7 @@ public class ArticleServiceImpl implements ArticleService {
     public void delete(UUID id) {
         Article article = getIfExists(id);
         articleRepository.delete(article);
-        log.info("Updated article {}", article);
+        log.info("Deleted article {}", articleAsJson(article));
     }
 
     @Override
@@ -61,7 +64,7 @@ public class ArticleServiceImpl implements ArticleService {
         article.setText(articleDto.getText());
         article.setUpdated(Instant.now());
         articleRepository.save(article);
-        log.info("Updated article {}", article);
+        log.info("Updated article {}", articleAsJson(article));
     }
 
 
@@ -74,7 +77,7 @@ public class ArticleServiceImpl implements ArticleService {
                 .created(Instant.now())
                 .build();
         Article createdArticle = articleRepository.save(article);
-        log.info("Created article {}", article);
+        log.info("Created article {}", articleAsJson(article));
         return mapToArticleDto(createdArticle);
     }
 
@@ -94,5 +97,14 @@ public class ArticleServiceImpl implements ArticleService {
         .title(article.getTitle())
         .text(article.getText())
         .build();
+    }
+
+    private String articleAsJson(Article article){
+        try{
+        return objectMapper.writeValueAsString(article);
+        } catch (JsonProcessingException e){
+            log.warn("Cannot convert article {} to JSON", article);
+            return article.toString();
+        }
     }
 }

@@ -8,7 +8,9 @@ import java.util.UUID;
 import org.hibernate.query.SortDirection;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xevgnov.proxy.dto.ArticleDto;
 import com.xevgnov.proxy.entity.Article;
 import com.xevgnov.proxy.exception.ArticleNotFoundException;
@@ -21,9 +23,11 @@ import lombok.extern.slf4j.Slf4j;
 public class ArticleServiceImpl implements ArticleService {
 
     private ArticleRepository articleRepository;
+    private ObjectMapper objectMapper;
 
-    public ArticleServiceImpl(ArticleRepository articleRepository) {
+    public ArticleServiceImpl(ArticleRepository articleRepository, ObjectMapper objectMapper) {
         this.articleRepository = articleRepository;
+        this.objectMapper = objectMapper;
     }
 
     
@@ -44,16 +48,20 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public void delete(UUID id) {
-        articleRepository.delete(getIfExists(id));
+        Article article = getIfExists(id);
+        articleRepository.delete(article);
+        log.info("Updated article {}", article);
     }
 
     @Override
+    @Transactional
     public void update(ArticleDto articleDto, UUID id) {
         Article article = getIfExists(id);
         article.setTitle(articleDto.getTitle());
         article.setText(articleDto.getText());
         article.setUpdated(Instant.now());
         articleRepository.save(article);
+        log.info("Updated article {}", article);
     }
 
 

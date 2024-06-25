@@ -101,7 +101,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     private String articleAsJson(Article article){
         try{
-        return configuration.objectMapper().writeValueAsString(article);
+        return configuration.getObjectMapper().writeValueAsString(article);
         } catch (JsonProcessingException e){
             log.warn("Cannot convert article {} to JSON", article);
             return article.toString();

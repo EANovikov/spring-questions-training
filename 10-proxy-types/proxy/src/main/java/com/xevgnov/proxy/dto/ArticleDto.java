@@ -3,11 +3,19 @@ package com.xevgnov.proxy.dto;
 import java.util.UUID;
 
 import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Value;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-@Value
+@Getter
+@Setter
+@ToString
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ArticleDto {
     
     private UUID id;

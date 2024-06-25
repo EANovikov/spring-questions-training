@@ -24,11 +24,11 @@ import lombok.extern.slf4j.Slf4j;
 public class ArticleServiceImpl implements ArticleService {
 
     private ArticleRepository articleRepository;
-    private ObjectMapper objectMapper;
+    private ApplicationConfiguration configuration;
 
-    public ArticleServiceImpl(ArticleRepository articleRepository, ObjectMapper objectMapper) {
+    public ArticleServiceImpl(ArticleRepository articleRepository, ApplicationConfiguration configuration) {
         this.articleRepository = articleRepository;
-        this.objectMapper = objectMapper;
+        this.configuration = configuration;
     }
 
     
@@ -101,7 +101,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     private String articleAsJson(Article article){
         try{
-        return objectMapper.writeValueAsString(article);
+        return configuration.objectMapper().writeValueAsString(article);
         } catch (JsonProcessingException e){
             log.warn("Cannot convert article {} to JSON", article);
             return article.toString();

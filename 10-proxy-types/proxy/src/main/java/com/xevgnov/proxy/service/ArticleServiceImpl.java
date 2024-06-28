@@ -5,13 +5,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import org.hibernate.query.SortDirection;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.xevgnov.proxy.config.ApplicationConfig;
 import com.xevgnov.proxy.dto.ArticleDto;
 import com.xevgnov.proxy.entity.Article;
 import com.xevgnov.proxy.exception.ArticleNotFoundException;
@@ -24,9 +22,9 @@ import lombok.extern.slf4j.Slf4j;
 public class ArticleServiceImpl implements ArticleService {
 
     private ArticleRepository articleRepository;
-    private ApplicationConfiguration configuration;
+    private ApplicationConfig configuration;
 
-    public ArticleServiceImpl(ArticleRepository articleRepository, ApplicationConfiguration configuration) {
+    public ArticleServiceImpl(ArticleRepository articleRepository, ApplicationConfig configuration) {
         this.articleRepository = articleRepository;
         this.configuration = configuration;
     }
@@ -36,7 +34,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public ArticleDto get(UUID id) {
         Article article = getIfExists(id);
-        log.info("Got article {}", articleAsJson(article));
+        log.info("Got article {}", configuration.asJson(article));
         return mapToArticleDto(article);
     }
    
@@ -53,7 +51,7 @@ public class ArticleServiceImpl implements ArticleService {
     public void delete(UUID id) {
         Article article = getIfExists(id);
         articleRepository.delete(article);
-        log.info("Deleted article {}", articleAsJson(article));
+        log.info("Deleted article {}", configuration.asJson(article));
     }
 
     @Override
@@ -64,7 +62,7 @@ public class ArticleServiceImpl implements ArticleService {
         article.setText(articleDto.getText());
         article.setUpdated(Instant.now());
         articleRepository.save(article);
-        log.info("Updated article {}", articleAsJson(article));
+        log.info("Updated article {}", configuration.asJson(article));
     }
 
 
@@ -77,7 +75,7 @@ public class ArticleServiceImpl implements ArticleService {
                 .created(Instant.now())
                 .build();
         Article createdArticle = articleRepository.save(article);
-        log.info("Created article {}", articleAsJson(article));
+        log.info("Created article {}", configuration.asJson(article));
         return mapToArticleDto(createdArticle);
     }
 
@@ -99,12 +97,4 @@ public class ArticleServiceImpl implements ArticleService {
         .build();
     }
 
-    private String articleAsJson(Article article){
-        try{
-        return configuration.getObjectMapper().writeValueAsString(article);
-        } catch (JsonProcessingException e){
-            log.warn("Cannot convert article {} to JSON", article);
-            return article.toString();
-        }
-    }
 }

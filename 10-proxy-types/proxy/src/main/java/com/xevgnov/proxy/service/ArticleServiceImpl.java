@@ -7,7 +7,6 @@ import java.util.UUID;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.xevgnov.proxy.config.ApplicationConfig;
 import com.xevgnov.proxy.dto.ArticleDto;
@@ -55,14 +54,13 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    @Transactional
     public void update(ArticleDto articleDto, UUID id) {
         Article article = getIfExists(id);
         article.setTitle(articleDto.getTitle());
         article.setText(articleDto.getText());
         article.setUpdated(Instant.now());
-        articleRepository.save(article);
-        log.info("Updated article {}", configuration.asJson(article));
+        Article updatedArticle = articleRepository.save(article);
+        log.info("Updated article {}", configuration.asJson(updatedArticle));
     }
 
 
@@ -75,13 +73,13 @@ public class ArticleServiceImpl implements ArticleService {
                 .created(Instant.now())
                 .build();
         Article createdArticle = articleRepository.save(article);
-        log.info("Created article {}", configuration.asJson(article));
+        log.info("Created article {}", configuration.asJson(createdArticle));
         return mapToArticleDto(createdArticle);
     }
 
     private Article getIfExists(UUID id){
         Optional<Article> article = articleRepository.findById(id);
-        log.info("Found article {}", article);
+        log.info("Found article {}", configuration.asJson(article));
         if(article.isEmpty()){
             throw new ArticleNotFoundException(
                 String.format("Article %s does not exist", id));

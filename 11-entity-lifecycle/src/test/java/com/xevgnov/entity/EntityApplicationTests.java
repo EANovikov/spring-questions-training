@@ -1,10 +1,10 @@
-package com.xevgnov.beanlifecycle;
+package com.xevgnov.entity;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BeanLifeCycleApplicationTests {
+class EntityApplicationTests {
 
 	@Test
 	void contextLoads() {

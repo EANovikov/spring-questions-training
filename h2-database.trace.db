@@ -1,0 +1,58 @@
+2024-06-29 14:06:37.277320+02:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ARTICLE" not found (this database is empty); SQL statement:
+select * from article [42104-224]
+2024-06-29 14:06:52.950567+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ARTICLE" not found (this database is empty); SQL statement:
+insert into article (created,text,title,updated,id) values (?,?,?,?,?) [42104-224]
+2024-06-29 14:26:58.122694+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "create table ARTICLE (ID uuid [*]identity primary key, TITLE text not null, TEXT text not null, CREATED timestamp, UPDATED timestamp)"; ожидалось "ARRAY, INVISIBLE, VISIBLE, NOT NULL, DEFAULT, GENERATED, ON UPDATE, NOT NULL, DEFAULT ON NULL, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"
+Syntax error in SQL statement "create table ARTICLE (ID uuid [*]identity primary key, TITLE text not null, TEXT text not null, CREATED timestamp, UPDATED timestamp)"; expected "ARRAY, INVISIBLE, VISIBLE, NOT NULL, DEFAULT, GENERATED, ON UPDATE, NOT NULL, DEFAULT ON NULL, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+create table ARTICLE (ID uuid identity primary key, TITLE text not null, TEXT text not null, CREATED timestamp, UPDATED timestamp) [42001-224]
+2024-06-29 14:31:13.544883+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "create table ARTICLE ( `ID` uuid primary key not null [*]default random_uuid(), `TITLE` text not null, `TEXT` text not null, `CREATED` timestamp, `UPDATED` timestamp)"; ожидалось "CONSTRAINT, COMMENT, UNIQUE, CHECK, REFERENCES, ,, )"
+Syntax error in SQL statement "create table ARTICLE ( `ID` uuid primary key not null [*]default random_uuid(), `TITLE` text not null, `TEXT` text not null, `CREATED` timestamp, `UPDATED` timestamp)"; expected "CONSTRAINT, COMMENT, UNIQUE, CHECK, REFERENCES, ,, )"; SQL statement:
+create table ARTICLE ( `ID` uuid primary key not null default random_uuid(), `TITLE` text not null, `TEXT` text not null, `CREATED` timestamp, `UPDATED` timestamp) [42001-224]
+2024-06-29 14:35:22.467073+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "create table ARTICLE ( `ID` UUID primary key not null [*]default random_uuid(), `TITLE` TEXT not null, `TEXT` TEXT not null, `CREATED` TIMESTAMP WITH TIME ZONE, `UPDATED` TIMESTAMP WITH TIME ZONE)"; ожидалось "CONSTRAINT, COMMENT, UNIQUE, CHECK, REFERENCES, ,, )"
+Syntax error in SQL statement "create table ARTICLE ( `ID` UUID primary key not null [*]default random_uuid(), `TITLE` TEXT not null, `TEXT` TEXT not null, `CREATED` TIMESTAMP WITH TIME ZONE, `UPDATED` TIMESTAMP WITH TIME ZONE)"; expected "CONSTRAINT, COMMENT, UNIQUE, CHECK, REFERENCES, ,, )"; SQL statement:
+create table ARTICLE ( `ID` UUID primary key not null default random_uuid(), `TITLE` TEXT not null, `TEXT` TEXT not null, `CREATED` TIMESTAMP WITH TIME ZONE, `UPDATED` TIMESTAMP WITH TIME ZONE) [42001-224]
+2024-06-29 14:52:01.186521+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "create table ARTICLE ( `ID` UUID primary key not null [*]default random_uuid(), `TITLE` TEXT not null, `TEXT` TEXT not null, `CREATED` TIMESTAMP WITH TIME ZONE, `UPDATED` TIMESTAMP WITH TIME ZONE)"; ожидалось "CONSTRAINT, COMMENT, UNIQUE, CHECK, REFERENCES, ,, )"
+Syntax error in SQL statement "create table ARTICLE ( `ID` UUID primary key not null [*]default random_uuid(), `TITLE` TEXT not null, `TEXT` TEXT not null, `CREATED` TIMESTAMP WITH TIME ZONE, `UPDATED` TIMESTAMP WITH TIME ZONE)"; expected "CONSTRAINT, COMMENT, UNIQUE, CHECK, REFERENCES, ,, )"; SQL statement:
+create table ARTICLE ( `ID` UUID primary key not null default random_uuid(), `TITLE` TEXT not null, `TEXT` TEXT not null, `CREATED` TIMESTAMP WITH TIME ZONE, `UPDATED` TIMESTAMP WITH TIME ZONE) [42001-224]
+2024-06-29 14:57:06.079918+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "create table ARTICLE ( ID UUID primary key [*]default uuid_generate_v4(), TITLE TEXT not null, TEXT TEXT not null, CREATED TIMESTAMP WITH TIMEZONE, UPDATED TIMESTAMP WITH TIMEZONE)"; ожидалось "HASH, CONSTRAINT, COMMENT, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"
+Syntax error in SQL statement "create table ARTICLE ( ID UUID primary key [*]default uuid_generate_v4(), TITLE TEXT not null, TEXT TEXT not null, CREATED TIMESTAMP WITH TIMEZONE, UPDATED TIMESTAMP WITH TIMEZONE)"; expected "HASH, CONSTRAINT, COMMENT, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+create table ARTICLE ( ID UUID primary key default uuid_generate_v4(), TITLE TEXT not null, TEXT TEXT not null, CREATED TIMESTAMP WITH TIMEZONE, UPDATED TIMESTAMP WITH TIMEZONE) [42001-224]
+2024-06-29 14:57:41.274067+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "create table ARTICLE ( ID UUID primary key, TITLE TEXT not null, TEXT TEXT not null, CREATED TIMESTAMP [*]WITH TIMEZONE, UPDATED TIMESTAMP WITH TIMEZONE)"; ожидалось "(, WITH TIME ZONE, WITHOUT TIME ZONE, ARRAY, INVISIBLE, VISIBLE, NOT NULL, DEFAULT, GENERATED, ON UPDATE, NOT NULL, DEFAULT ON NULL, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"
+Syntax error in SQL statement "create table ARTICLE ( ID UUID primary key, TITLE TEXT not null, TEXT TEXT not null, CREATED TIMESTAMP [*]WITH TIMEZONE, UPDATED TIMESTAMP WITH TIMEZONE)"; expected "(, WITH TIME ZONE, WITHOUT TIME ZONE, ARRAY, INVISIBLE, VISIBLE, NOT NULL, DEFAULT, GENERATED, ON UPDATE, NOT NULL, DEFAULT ON NULL, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+create table ARTICLE ( ID UUID primary key, TITLE TEXT not null, TEXT TEXT not null, CREATED TIMESTAMP WITH TIMEZONE, UPDATED TIMESTAMP WITH TIMEZONE) [42001-224]
+2024-06-29 15:00:43.600439+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "create table T_ACCOUNT (ID integer [*]identity primary key, NUMBER varchar(9), NAME varchar(50) not null, unique(NUMBER))"; ожидалось "ARRAY, INVISIBLE, VISIBLE, NOT NULL, DEFAULT, GENERATED, ON UPDATE, NOT NULL, DEFAULT ON NULL, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"
+Syntax error in SQL statement "create table T_ACCOUNT (ID integer [*]identity primary key, NUMBER varchar(9), NAME varchar(50) not null, unique(NUMBER))"; expected "ARRAY, INVISIBLE, VISIBLE, NOT NULL, DEFAULT, GENERATED, ON UPDATE, NOT NULL, DEFAULT ON NULL, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+create table T_ACCOUNT (ID integer identity primary key, NUMBER varchar(9), NAME varchar(50) not null, unique(NUMBER)) [42001-224]
+2024-06-29 15:01:40.890454+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "create table T_ACCOUNT (ID integer [*]identity primary key)"; ожидалось "ARRAY, INVISIBLE, VISIBLE, NOT NULL, DEFAULT, GENERATED, ON UPDATE, NOT NULL, DEFAULT ON NULL, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"
+Syntax error in SQL statement "create table T_ACCOUNT (ID integer [*]identity primary key)"; expected "ARRAY, INVISIBLE, VISIBLE, NOT NULL, DEFAULT, GENERATED, ON UPDATE, NOT NULL, DEFAULT ON NULL, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+create table T_ACCOUNT (ID integer identity primary key) [42001-224]
+2024-06-29 15:02:55.434995+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "create table T_ACCOUNT (ID integer [*]identity PRIMARY KEY)"; ожидалось "ARRAY, INVISIBLE, VISIBLE, NOT NULL, DEFAULT, GENERATED, ON UPDATE, NOT NULL, DEFAULT ON NULL, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"
+Syntax error in SQL statement "create table T_ACCOUNT (ID integer [*]identity PRIMARY KEY)"; expected "ARRAY, INVISIBLE, VISIBLE, NOT NULL, DEFAULT, GENERATED, ON UPDATE, NOT NULL, DEFAULT ON NULL, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+create table T_ACCOUNT (ID integer identity PRIMARY KEY) [42001-224]
+2024-06-29 15:03:59.196930+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "T_ACCOUNT" уже существует
+Table "T_ACCOUNT" already exists; SQL statement:
+create table T_ACCOUNT (ID UUID PRIMARY KEY) [42101-224]
+2024-06-29 15:08:27.186103+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "create table ARTICLE ( ID UUID PRIMARY KEY [*]DEFAULT random_uuid(), TITLE TEXT NOT NULL, TEXT TEXT NOT NULL, CREATED TIMESTAMP WITH TIME ZONE, UPDATED TIMESTAMP WITH TIME ZONE )"; ожидалось "HASH, CONSTRAINT, COMMENT, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"
+Syntax error in SQL statement "create table ARTICLE ( ID UUID PRIMARY KEY [*]DEFAULT random_uuid(), TITLE TEXT NOT NULL, TEXT TEXT NOT NULL, CREATED TIMESTAMP WITH TIME ZONE, UPDATED TIMESTAMP WITH TIME ZONE )"; expected "HASH, CONSTRAINT, COMMENT, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+create table ARTICLE ( ID UUID PRIMARY KEY DEFAULT random_uuid(), TITLE TEXT NOT NULL, TEXT TEXT NOT NULL, CREATED TIMESTAMP WITH TIME ZONE, UPDATED TIMESTAMP WITH TIME ZONE ) [42001-224]
+2024-06-29 15:09:19.715196+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "create table ARTICLE ( ID UUID PRIMARY KEY [*]DEFAULT RANDOM_UUID(), TITLE TEXT NOT NULL, TEXT TEXT NOT NULL, CREATED TIMESTAMP WITH TIME ZONE, UPDATED TIMESTAMP WITH TIME ZONE )"; ожидалось "HASH, CONSTRAINT, COMMENT, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"
+Syntax error in SQL statement "create table ARTICLE ( ID UUID PRIMARY KEY [*]DEFAULT RANDOM_UUID(), TITLE TEXT NOT NULL, TEXT TEXT NOT NULL, CREATED TIMESTAMP WITH TIME ZONE, UPDATED TIMESTAMP WITH TIME ZONE )"; expected "HASH, CONSTRAINT, COMMENT, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+create table ARTICLE ( ID UUID PRIMARY KEY DEFAULT RANDOM_UUID(), TITLE TEXT NOT NULL, TEXT TEXT NOT NULL, CREATED TIMESTAMP WITH TIME ZONE, UPDATED TIMESTAMP WITH TIME ZONE ) [42001-224]
+2024-06-29 15:12:41.426428+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "select * [*]article"
+Syntax error in SQL statement "select * [*]article"; SQL statement:
+select * article [42000-224]

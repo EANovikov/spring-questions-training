@@ -1,6 +1,5 @@
 package com.xevgnov.qualifier.service;
 import org.springframework.stereotype.Service;
-import com.xevgnov.unique.service.ReportService;
 
 @Service
 public class HtmlReportService implements ReportService {

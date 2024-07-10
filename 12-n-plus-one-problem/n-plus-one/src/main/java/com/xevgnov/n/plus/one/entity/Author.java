@@ -12,11 +12,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.Value;
 
 @Entity
 @Table(name = "AUTHOR")
-@Value
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -24,9 +29,6 @@ public class Author {
     private String name;
     private String surname;
 
-    @OneToMany(fetch = FetchType.LAZY,
-        //mappedBy = "AUTHOR",
-    cascade = CascadeType.ALL)
-   // @JoinColumn(name = "book_id")
-    private Set<Article> books;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Article> articles;
 }

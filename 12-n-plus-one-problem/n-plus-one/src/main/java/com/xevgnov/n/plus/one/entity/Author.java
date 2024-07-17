@@ -1,5 +1,7 @@
 package com.xevgnov.n.plus.one.entity;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -15,6 +17,7 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.Value;
 
 @Entity
@@ -29,6 +32,6 @@ public class Author {
     private String name;
     private String surname;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Article> articles;
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    private List<Article> articles;
 }

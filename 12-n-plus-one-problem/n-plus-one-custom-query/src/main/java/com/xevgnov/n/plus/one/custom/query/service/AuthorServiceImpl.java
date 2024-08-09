@@ -1,17 +1,15 @@
-package com.xevgnov.n.plus.one.service;
+package com.xevgnov.n.plus.one.custom.query.service;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
-import com.xevgnov.n.plus.one.dto.ArticleDto;
-import com.xevgnov.n.plus.one.dto.AuthorDto;
-import com.xevgnov.n.plus.one.entity.Article;
-import com.xevgnov.n.plus.one.entity.Author;
-import com.xevgnov.n.plus.one.repository.AuthorRepository;
+import com.xevgnov.n.plus.one.custom.query.dto.ArticleDto;
+import com.xevgnov.n.plus.one.custom.query.dto.AuthorDto;
+import com.xevgnov.n.plus.one.custom.query.entity.Article;
+import com.xevgnov.n.plus.one.custom.query.entity.Author;
+import com.xevgnov.n.plus.one.custom.query.repository.AuthorRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -36,7 +34,7 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public List<AuthorDto> getAuthors() {
-        return authorRepository.findAll()
+        return authorRepository.findAllAuthors()
         .stream()
         .map(author-> mapAutor(author))
         .toList();

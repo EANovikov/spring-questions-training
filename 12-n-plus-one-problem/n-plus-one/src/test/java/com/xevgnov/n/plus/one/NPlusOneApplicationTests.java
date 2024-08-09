@@ -1,4 +1,4 @@
-package com.xevgnov.n_plus_one;
+package com.xevgnov.n.plus.one;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

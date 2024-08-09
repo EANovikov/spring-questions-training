@@ -1,32 +1,37 @@
-package com.xevgnov.n.plus.one.entity;
+package com.xevgnov.n.plus.one.custom.query.entity;
 
-import java.util.List;
+import java.time.Instant;
 import java.util.UUID;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+import lombok.Value;
 
 @Entity
-@Table(name = "AUTHOR")
+@Table(name = "ARTICLE")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Author {
+public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    private String name;
-    private String surname;
+    private String title;
+    private String text;
+    private Instant created;
+    private Instant updated;
 
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Article> articles;
+     @ManyToOne(fetch=FetchType.EAGER)
+     @JoinColumn(name = "AUTHOR_ID")
+    private Author author;
 }

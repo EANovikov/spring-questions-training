@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.xevgnov.unit.testing.dto.ExchangeStatistics;
 import com.xevgnov.unit.testing.service.CurrencyService;
+import com.xevgnov.unit.testing.service.StatisticsService;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -15,16 +16,16 @@ import jakarta.validation.constraints.Min;
 @RestController
 public class ExchangeController {
     
-    private final CurrencyService currencyService;
+    private final StatisticsService statisticsService;
 
-    public ExchangeController(CurrencyService currencyService) {
-        this.currencyService = currencyService;
+    public ExchangeController(StatisticsService statisticsService) {
+        this.statisticsService = statisticsService;
     }
 
     @GetMapping("/{currencySell}/to/{currencyBuy}")
     public ExchangeStatistics getAdvice(
         @PathVariable String currencySell, 
         @PathVariable String currencyBuy){
-        return currencyService.getStatistics(currencySell, currencyBuy);
+        return statisticsService.getStatistics(currencySell, currencyBuy);
     }
 }

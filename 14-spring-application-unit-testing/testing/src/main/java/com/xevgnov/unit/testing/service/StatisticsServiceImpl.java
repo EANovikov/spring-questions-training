@@ -13,13 +13,13 @@ import com.xevgnov.unit.testing.dto.ExchangeStatistics;
 import com.xevgnov.unit.testing.dto.FxRatesResponse;
 
 @Service
-public class StatisticsServiceImp implements StatisticsService {
+public class StatisticsServiceImpl implements StatisticsService {
 
     private final DateTimeFormatter datePattern = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     private final CurrencyService currencyService;
 
-    public StatisticsServiceImp(CurrencyService currencyService) {
+    public StatisticsServiceImpl(CurrencyService currencyService) {
         this.currencyService = currencyService;
     }
 

@@ -14,6 +14,6 @@ public class ExchangeStatistics {
     private String date;
     private Double middlePrice;
     private Double currentPrice;
-    private Map<String, String> priceHistory;
+    private Map<String, Double> priceHistory;
 
 }

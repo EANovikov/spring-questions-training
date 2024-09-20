@@ -36,11 +36,11 @@ public class StatisticsServiceImpl implements StatisticsService {
                 .build();
     }
 
-    private Map<String, String> getPriceHistory(List<FxRatesResponse> responses, String currency) {
-        Map<String, String> priceHistory = new LinkedHashMap<>();
+    private Map<String, Double> getPriceHistory(List<FxRatesResponse> responses, String currency) {
+        Map<String, Double> priceHistory = new LinkedHashMap<>();
         for (FxRatesResponse response : responses) {
             String date = response.getDate().format(datePattern);
-            String rate = String.valueOf(response.getRates().get(currency));
+            Double rate = response.getRates().get(currency);
             priceHistory.put(date, rate);
         }
         return priceHistory;
@@ -48,7 +48,7 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     private Double getMiddlePrice(List<FxRatesResponse> responses, String currency) {
         return responses.stream()
-                .mapToDouble(response -> response.getRates().get(currency))
+                .mapToDouble(response -> response.getRates().get(currency).doubleValue())
                 .average()
                 .orElse(0);
     }

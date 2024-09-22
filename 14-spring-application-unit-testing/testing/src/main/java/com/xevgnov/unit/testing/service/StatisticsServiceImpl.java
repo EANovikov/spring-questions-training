@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import com.xevgnov.unit.testing.dto.ExchangeStatistics;
 import com.xevgnov.unit.testing.dto.FxRatesResponse;
 
+import lombok.NonNull;
+
 @Service
 public class StatisticsServiceImpl implements StatisticsService {
 
@@ -24,7 +26,7 @@ public class StatisticsServiceImpl implements StatisticsService {
     }
 
     @Override
-    public ExchangeStatistics getStatistics(String currencySell, String currencyBuy) {
+    public ExchangeStatistics getStatistics(@NonNull String currencySell, @NonNull String currencyBuy) {
         List<FxRatesResponse> responses = fetchFxRatesPerWeek(currencySell, currencyBuy);
         return ExchangeStatistics.builder()
                 .buyCurrency(currencyBuy)

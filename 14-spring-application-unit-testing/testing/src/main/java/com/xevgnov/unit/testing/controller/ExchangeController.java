@@ -11,6 +11,7 @@ import com.xevgnov.unit.testing.service.StatisticsService;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Pattern;
 
 @Validated
 @RestController
@@ -23,9 +24,13 @@ public class ExchangeController {
     }
 
     @GetMapping("/{currencySell}/to/{currencyBuy}")
-    public ExchangeStatistics getAdvice(
-        @PathVariable String currencySell, 
-        @PathVariable String currencyBuy){
+    public ExchangeStatistics getStatistics(
+        //todo global exception handle
+        //jakarta.validation.ConstraintViolationException
+        @PathVariable @Pattern(regexp = "[A-Z]{3}", 
+           message = "Currency code must contain 3 upper-cased caracters") String currencySell, 
+        @PathVariable @Pattern(regexp = "[A-Z]{3}", 
+           message = "Currency code must contain 3 upper-cased caracters") String currencyBuy){
         return statisticsService.getStatistics(currencySell, currencyBuy);
     }
 }

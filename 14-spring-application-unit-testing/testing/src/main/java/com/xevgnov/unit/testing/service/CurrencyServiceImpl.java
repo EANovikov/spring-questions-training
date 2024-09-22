@@ -9,6 +9,7 @@ import com.xevgnov.unit.testing.client.FxRatesApiClient;
 import com.xevgnov.unit.testing.dto.FxRatesResponse;
 import com.xevgnov.unit.testing.entity.EcxcangeRecord;
 import com.xevgnov.unit.testing.entity.ExchangeRecordId;
+import com.xevgnov.unit.testing.exception.CurrencyServiceException;
 import com.xevgnov.unit.testing.repository.ExchangeRecordsRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -31,12 +32,18 @@ public class CurrencyServiceImpl implements CurrencyService {
 
     @Override
     public FxRatesResponse getFxRateForDate(String date, String currencyBuy, String currencySell) {
-        ExchangeRecordId recordId = new ExchangeRecordId(date, currencySell, currencyBuy);
-        Optional<FxRatesResponse> databaseResponse = getFxRatesFromDatabase(recordId);
-        if (databaseResponse.isPresent()) {
-            return databaseResponse.get();
+        try {
+            ExchangeRecordId recordId = new ExchangeRecordId(date, currencySell, currencyBuy);
+            Optional<FxRatesResponse> databaseResponse = getFxRatesFromDatabase(recordId);
+            if (databaseResponse.isPresent()) {
+                return databaseResponse.get();
+            }
+            return getFxRatesFromApi(recordId);
+        } catch (Throwable e) {
+            throw new CurrencyServiceException(
+                String.format("Failed to get %s / %s currency pair data for the date %s due to [%s]", currencySell, currencyBuy, date, e.getMessage()), e);
         }
-        return getFxRatesFromApi(recordId);
+
     }
 
     private Optional<FxRatesResponse> getFxRatesFromDatabase(ExchangeRecordId recordId) {

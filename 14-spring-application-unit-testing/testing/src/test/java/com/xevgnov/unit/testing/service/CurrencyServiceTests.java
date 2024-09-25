@@ -91,12 +91,43 @@ public class CurrencyServiceTests {
     }
 
     @Test
-    public void shouldGetFxRateFromApiIfDateDoeNotExistInRepositoryAndSaveItToRepository() {
-        // Given
-
-        // When
-        currencyService.getFxRateForDate("", "", "");
-        // Then
+    public void shouldGetFxRateFromApiIfDateDoeNotExistInRepositoryAndSaveItToRepository() throws JsonProcessingException {
+          // Given
+          String date = ZonedDateTime.now().format(datePattern);
+          ExchangeRecordId exchangeRecordId = new ExchangeRecordId(date, "EUR", "USD");
+          FxRatesResponse fxRatesResponse = FxRatesResponse.builder()
+                  .base("EUR")
+                  .privacy("privacy")
+                  .terms("terms")
+                  .success(true)
+                  .timestamp(Instant.now())
+                  .date(ZonedDateTime.now())
+                  .rates(Map.of("USD", 1.1D))
+                  .build();
+          String fxRatesInDb = objectMapper.writeValueAsString(fxRatesResponse);   
+          EcxcangeRecord ecxcangeRecord = EcxcangeRecord.builder()
+                  .id(exchangeRecordId)
+                  .fxRatesResponse(fxRatesInDb)
+                  .build();
+          when(exchangeRecordsRepository.findById(exchangeRecordId))
+                  .thenReturn(Optional.empty());
+          when(fxRatesApiClient.getConvertationRate(date, "USD", "EUR")).thenReturn(fxRatesResponse);
+          // When
+          FxRatesResponse actualFxRatesResponse = currencyService.getFxRateForDate(date, "USD", "EUR");
+          // Then
+          assertThat(actualFxRatesResponse).isNotNull();
+          assertThat(actualFxRatesResponse.getBase()).isEqualTo("EUR");
+          assertThat(actualFxRatesResponse.getDate()).isEqualTo(fxRatesResponse.getDate());
+          assertThat(actualFxRatesResponse.getSuccess()).isTrue();
+          assertThat(actualFxRatesResponse.getTimestamp()).isEqualTo(fxRatesResponse.getTimestamp());
+          assertThat(actualFxRatesResponse.getPrivacy()).isEqualTo(fxRatesResponse.getPrivacy());
+          assertThat(actualFxRatesResponse.getTerms()).isEqualTo(fxRatesResponse.getTerms());
+          assertThat(actualFxRatesResponse.getRates()).isEqualTo(fxRatesResponse.getRates());
+          verify(exchangeRecordsRepository).findById(exchangeRecordId);
+          verify(exchangeRecordsRepository).save(ecxcangeRecord);
+          verify(objectMapper).writeValueAsString(fxRatesResponse);
+          verifyNoMoreInteractions(exchangeRecordsRepository);
+          verify(fxRatesApiClient).getConvertationRate(date, "USD", "EUR");;
     }
 
     @Test

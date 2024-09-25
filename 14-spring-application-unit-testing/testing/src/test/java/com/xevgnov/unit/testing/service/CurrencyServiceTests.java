@@ -1,10 +1,15 @@
 package com.xevgnov.unit.testing.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoInteractions;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
-
+import static org.mockito.ArgumentMatchers.any;
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.Optional;
 
@@ -13,6 +18,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -32,11 +38,13 @@ public class CurrencyServiceTests {
     private FxRatesApiClient fxRatesApiClient;
     @Mock
     private ExchangeRecordsRepository exchangeRecordsRepository;
-    @Mock
+    @Spy
     private ObjectMapper objectMapper = new ObjectMapper();
 
     @InjectMocks
     private CurrencyServiceImpl currencyService;
+
+    private final DateTimeFormatter datePattern = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     @BeforeEach
     public void setUp() {
@@ -46,70 +54,76 @@ public class CurrencyServiceTests {
 
     @Test
     public void shouldGetFxRateFromRepositoryForExistingDate() throws JsonProcessingException {
-        //Given
-        ExchangeRecordId exchangeRecordId = new ExchangeRecordId("2024-09-22", "EUR", "USD");
+        // Given
+        String date = ZonedDateTime.now().format(datePattern);
+        ExchangeRecordId exchangeRecordId = new ExchangeRecordId(date, "EUR", "USD");
         FxRatesResponse fxRatesResponse = FxRatesResponse.builder()
-                    .base("EUR")
-                    .privacy("privacy")
-                    .terms("terms")
-                    .success(true)
-                    .timestamp(Instant.now())
-                    .date(ZonedDateTime.now())
-                    .rates(Map.of("USD", 1.1D))
-                    .build();
-       /*           Optional<EcxcangeRecord> responseFromDb = exchangeRecordsRepository.findById(recordId);
-            if (responseFromDb.isPresent()) {
-                return Optional.of(objectMapper.readValue(
-                        responseFromDb.get().getFxRatesResponse(),
-                        FxRatesResponse.class));
-            */  
-            EcxcangeRecord ecxcangeRecord = EcxcangeRecord.builder()
-               .id(exchangeRecordId)
-               .fxRatesResponse(objectMapper.writeValueAsString(fxRatesResponse))
-               .build();
-        when(exchangeRecordsRepository.findById(exchangeRecordId)).thenReturn(null)
-             .thenReturn(Optional.of(ecxcangeRecord));  
-        //When
-        FxRatesResponse actualFxRatesResponse = currencyService.getFxRateForDate("2024-09-22", "USD", "EUR");
-        //Then
+                .base("EUR")
+                .privacy("privacy")
+                .terms("terms")
+                .success(true)
+                .timestamp(Instant.now())
+                .date(ZonedDateTime.now())
+                .rates(Map.of("USD", 1.1D))
+                .build();
+        String fxRatesInDb = objectMapper.writeValueAsString(fxRatesResponse);   
+        EcxcangeRecord ecxcangeRecord = EcxcangeRecord.builder()
+                .id(exchangeRecordId)
+                .fxRatesResponse(fxRatesInDb)
+                .build();
+        when(exchangeRecordsRepository.findById(exchangeRecordId))
+                .thenReturn(Optional.of(ecxcangeRecord));
+        // When
+        FxRatesResponse actualFxRatesResponse = currencyService.getFxRateForDate(date, "USD", "EUR");
+        // Then
         assertThat(actualFxRatesResponse).isNotNull();
+        assertThat(actualFxRatesResponse.getBase()).isEqualTo("EUR");
+        assertThat(actualFxRatesResponse.getDate()).isEqualTo(fxRatesResponse.getDate());
+        assertThat(actualFxRatesResponse.getSuccess()).isTrue();
+        assertThat(actualFxRatesResponse.getTimestamp()).isEqualTo(fxRatesResponse.getTimestamp());
+        assertThat(actualFxRatesResponse.getPrivacy()).isEqualTo(fxRatesResponse.getPrivacy());
+        assertThat(actualFxRatesResponse.getTerms()).isEqualTo(fxRatesResponse.getTerms());
+        assertThat(actualFxRatesResponse.getRates()).isEqualTo(fxRatesResponse.getRates());
+        verify(exchangeRecordsRepository).findById(exchangeRecordId);
+        verify(objectMapper).readValue(fxRatesInDb, FxRatesResponse.class);
+        verifyNoMoreInteractions(exchangeRecordsRepository);
+        verifyNoInteractions(fxRatesApiClient);
     }
 
     @Test
     public void shouldGetFxRateFromApiIfDateDoeNotExistInRepositoryAndSaveItToRepository() {
-        //Given
+        // Given
 
-        //When
+        // When
         currencyService.getFxRateForDate("", "", "");
-        //Then
+        // Then
     }
 
     @Test
     public void shouldGetFxRateFromApiSuccessfullyIfFailedToSaveRecordToRepository() {
-        //Given
+        // Given
 
-        //When
+        // When
         currencyService.getFxRateForDate("", "", "");
-        //Then
+        // Then
     }
 
     @Test
     public void shouldGetFxRateFromApiSuccessfullyIfFailedGetRecordFromRepository() {
-        //Given
+        // Given
 
-        //When
+        // When
         currencyService.getFxRateForDate("", "", "");
-        //Then
+        // Then
     }
 
     @Test
     public void shouldThowCurrencyServiceExceptionIfFailedToGetDataFromRepositoryAndApi() {
-        //Given
+        // Given
 
-        //When
+        // When
         currencyService.getFxRateForDate("", "", "");
-        //Then
+        // Then
     }
-
 
 }

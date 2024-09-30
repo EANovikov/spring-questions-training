@@ -1,0 +1,72 @@
+package com.xevgnov.unit.testing.service;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.stereotype.Service;
+
+import com.xevgnov.unit.testing.dto.ExchangeStatistics;
+import com.xevgnov.unit.testing.dto.FxRatesResponse;
+
+import lombok.NonNull;
+
+@Service
+public class StatisticsServiceImpl implements StatisticsService {
+
+    private final DateTimeFormatter datePattern = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+    private final CurrencyService currencyService;
+
+    public StatisticsServiceImpl(CurrencyService currencyService) {
+        this.currencyService = currencyService;
+    }
+
+    @Override
+    public ExchangeStatistics getStatistics(@NonNull String currencySell, @NonNull String currencyBuy) {
+        List<FxRatesResponse> responses = fetchFxRatesPerWeek(currencySell, currencyBuy);
+        return ExchangeStatistics.builder()
+                .buyCurrency(currencyBuy)
+                .sellCurrency(currencySell)
+                .date(responses.get(0).getDate().format(datePattern))
+                .currentPrice(responses.get(0).getRates().get(currencyBuy))
+                .middlePrice(getMiddlePrice(responses, currencyBuy))
+                .priceHistory(getPriceHistory(responses, currencyBuy))
+                .build();
+    }
+
+    private Map<String, Double> getPriceHistory(List<FxRatesResponse> responses, String currency) {
+        Map<String, Double> priceHistory = new LinkedHashMap<>();
+        for (FxRatesResponse response : responses) {
+            String date = response.getDate().format(datePattern);
+            Double rate = response.getRates().get(currency);
+            priceHistory.put(date, rate);
+        }
+        return priceHistory;
+    }
+
+    private Double getMiddlePrice(List<FxRatesResponse> responses, String currency) {
+        return responses.stream()
+                .mapToDouble(response -> response.getRates().get(currency).doubleValue())
+                .average()
+                .orElse(0);
+    }
+
+    private List<FxRatesResponse> fetchFxRatesPerWeek(String currencySell, String currencyBuy) {
+        List<FxRatesResponse> responses = new ArrayList<>();
+        LocalDate today = LocalDate.now();
+
+        for (int i = 0; i < 7; i++) {
+            LocalDate currentDate = today.minusDays(i);
+            String formattedDate = currentDate.format(datePattern);
+
+            FxRatesResponse result = currencyService.getFxRateForDate(formattedDate, currencyBuy, currencySell);
+            responses.add(result);
+        }
+        return responses;
+    }
+
+}

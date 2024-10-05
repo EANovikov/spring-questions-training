@@ -2,15 +2,15 @@ package com.xevgnov.unit.testing.service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
 import com.xevgnov.unit.testing.dto.ExchangeStatistics;
 import com.xevgnov.unit.testing.dto.FxRatesResponse;
+import com.xevgnov.unit.testing.exception.StatisticsServiceException;
 
 import lombok.NonNull;
 
@@ -27,44 +27,46 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     @Override
     public ExchangeStatistics getStatistics(@NonNull String currencySell, @NonNull String currencyBuy) {
-        List<FxRatesResponse> responses = fetchFxRatesPerWeek(currencySell, currencyBuy);
-        return ExchangeStatistics.builder()
-                .buyCurrency(currencyBuy)
-                .sellCurrency(currencySell)
-                .date(responses.get(0).getDate().format(datePattern))
-                .currentPrice(responses.get(0).getRates().get(currencyBuy))
-                .middlePrice(getMiddlePrice(responses, currencyBuy))
-                .priceHistory(getPriceHistory(responses, currencyBuy))
-                .build();
+        try {
+            Map<String, FxRatesResponse> responses = fetchFxRatesPerWeek(currencySell, currencyBuy);
+            var currentDateResponse = responses.entrySet().stream().findFirst().orElseGet(null);
+            return ExchangeStatistics.builder()
+                    .buyCurrency(currencyBuy)
+                    .sellCurrency(currencySell)
+                    .date(currentDateResponse.getKey())
+                    .currentPrice(currentDateResponse.getValue().getRates().get(currencyBuy))
+                    .middlePrice(getMiddlePrice(responses.values(), currencyBuy))
+                    .priceHistory(getPriceHistory(responses, currencyBuy))
+                    .build();
+        } catch (Throwable e) {
+            throw new StatisticsServiceException(String.format(
+                    "Failed to collect statistics for the pair: %s/%s due to: %s",
+                    currencySell, currencyBuy, e.getMessage()), e);
+        }
     }
 
-    private Map<String, Double> getPriceHistory(List<FxRatesResponse> responses, String currency) {
+    private Map<String, Double> getPriceHistory(Map<String, FxRatesResponse> responses, String currency) {
         Map<String, Double> priceHistory = new LinkedHashMap<>();
-        for (FxRatesResponse response : responses) {
-            String date = response.getDate().format(datePattern);
-            Double rate = response.getRates().get(currency);
-            priceHistory.put(date, rate);
-        }
+        responses.entrySet()
+                .forEach(entry -> priceHistory.put(entry.getKey(), entry.getValue().getRates().get(currency)));
         return priceHistory;
     }
 
-    private Double getMiddlePrice(List<FxRatesResponse> responses, String currency) {
+    private Double getMiddlePrice(Collection<FxRatesResponse> responses, String currency) {
         return responses.stream()
                 .mapToDouble(response -> response.getRates().get(currency).doubleValue())
                 .average()
                 .orElse(0);
     }
 
-    private List<FxRatesResponse> fetchFxRatesPerWeek(String currencySell, String currencyBuy) {
-        List<FxRatesResponse> responses = new ArrayList<>();
-        LocalDate today = LocalDate.now();
-
-        for (int i = 0; i < 7; i++) {
-            LocalDate currentDate = today.minusDays(i);
+    private Map<String, FxRatesResponse> fetchFxRatesPerWeek(String currencySell, String currencyBuy) {
+        LocalDate currentDate = LocalDate.now();
+        Map<String, FxRatesResponse> responses = new LinkedHashMap<>();
+        while (responses.size() < 7) {
             String formattedDate = currentDate.format(datePattern);
-
             FxRatesResponse result = currencyService.getFxRateForDate(formattedDate, currencyBuy, currencySell);
-            responses.add(result);
+            responses.putIfAbsent(formattedDate, result);
+            currentDate = currentDate.minusDays(1);
         }
         return responses;
     }

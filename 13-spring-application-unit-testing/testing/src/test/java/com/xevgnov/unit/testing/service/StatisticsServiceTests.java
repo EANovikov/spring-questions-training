@@ -1,6 +1,8 @@
 package com.xevgnov.unit.testing.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doReturn;
 
 import java.time.Instant;
@@ -20,6 +22,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.xevgnov.unit.testing.dto.ExchangeStatistics;
 import com.xevgnov.unit.testing.dto.FxRatesResponse;
+import com.xevgnov.unit.testing.exception.StatisticsServiceException;
 
 @ExtendWith(MockitoExtension.class)
 public class StatisticsServiceTests {
@@ -68,6 +71,19 @@ public class StatisticsServiceTests {
         assertThat(statisticsResult.getCurrentPrice()).isEqualTo(1.1);
         assertThat(statisticsResult.getPriceHistory()).isNotEmpty();
         assertThat(statisticsResult.getPriceHistory()).isEqualTo(expectedPriceHistory);
+    }
+
+    @Test
+    public void testStatisticServiceRetrievesDataThrowsStatisticsServiceExceptionOnMissingCurrencyData() {
+               // Given
+               doReturn(null)
+                       .when(currencyService).getFxRateForDate(anyString(), anyString(), anyString());
+              
+               // When Then
+               assertThatThrownBy(()->
+               statisticsService.getStatistics("EUR", "USD"))
+               .isInstanceOf(StatisticsServiceException.class)
+               .hasMessageContaining("Failed to collect statistics for the pair: EUR/USD due to: ");
     }
 
     private Map<String, Double> preparePriceHistory() {

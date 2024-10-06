@@ -1,4 +1,4 @@
-package com.xevgnov.unit.testing.dto;
+package com.xevgnov.spring.testing.dto;
 
 import java.util.Map;
 

@@ -1,4 +1,4 @@
-package com.xevgnov.unit.testing.service;
+package com.xevgnov.spring.testing.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -20,9 +20,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.xevgnov.unit.testing.dto.ExchangeStatistics;
-import com.xevgnov.unit.testing.dto.FxRatesResponse;
-import com.xevgnov.unit.testing.exception.StatisticsServiceException;
+import com.xevgnov.spring.testing.dto.ExchangeStatistics;
+import com.xevgnov.spring.testing.dto.FxRatesResponse;
+import com.xevgnov.spring.testing.exception.StatisticsServiceException;
 
 @ExtendWith(MockitoExtension.class)
 public class StatisticsServiceTests {
@@ -114,4 +114,5 @@ public class StatisticsServiceTests {
         }
         return results;
     }
+
 }

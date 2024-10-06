@@ -1,4 +1,4 @@
-package com.xevgnov.unit.testing.service;
+package com.xevgnov.spring.testing.service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -8,9 +8,9 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.xevgnov.unit.testing.dto.ExchangeStatistics;
-import com.xevgnov.unit.testing.dto.FxRatesResponse;
-import com.xevgnov.unit.testing.exception.StatisticsServiceException;
+import com.xevgnov.spring.testing.dto.ExchangeStatistics;
+import com.xevgnov.spring.testing.dto.FxRatesResponse;
+import com.xevgnov.spring.testing.exception.StatisticsServiceException;
 
 import lombok.NonNull;
 

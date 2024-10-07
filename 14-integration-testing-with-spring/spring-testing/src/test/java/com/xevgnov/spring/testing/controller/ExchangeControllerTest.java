@@ -1,5 +1,6 @@
 package com.xevgnov.spring.testing.controller;
 
+import static org.hamcrest.Matchers.contains;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -12,6 +13,7 @@ import java.util.Map;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
+import org.hamcrest.core.StringContains;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -37,7 +39,7 @@ public class ExchangeControllerTest {
 
     @Test
     void testGetStatisticsReturn200Status() throws Exception {
-        //Given
+        // Given
         String sellCurrency = "USD";
         String buyCurrency = "EUR";
         String date = LocalDate.now().format(datePattern);
@@ -45,40 +47,56 @@ public class ExchangeControllerTest {
         Double currentPrice = 0.91;
         Map<String, Double> priceHistory = getPriceHistory();
         ExchangeStatistics exchangeStatistics = ExchangeStatistics.builder()
-        .sellCurrency(sellCurrency)
-        .buyCurrency(buyCurrency)
-        .date(date)
-        .averagePrice(averagePrice)
-        .currentPrice(currentPrice)
-        .priceHistory(priceHistory)
-        .build();
+                .sellCurrency(sellCurrency)
+                .buyCurrency(buyCurrency)
+                .date(date)
+                .averagePrice(averagePrice)
+                .currentPrice(currentPrice)
+                .priceHistory(priceHistory)
+                .build();
 
         when(statisticsService.getStatistics(sellCurrency, buyCurrency)).thenReturn(exchangeStatistics);
-        //When Then
+        // When Then
         mockMvc.perform(get("/{sellCurrency}/to/{buyCurrency}", sellCurrency, buyCurrency))
-        .andExpect(status().isOk())
-        .andExpect(jsonPath("$.sellCurrency").value(sellCurrency))
-        .andExpect(jsonPath("$.buyCurrency").value(buyCurrency))
-        .andExpect(jsonPath("$.date").value(date))
-        .andExpect(jsonPath("$.averagePrice").value(averagePrice))
-        .andExpect(jsonPath("$.currentPrice").value(currentPrice))
-        .andExpect(jsonPath("$.priceHistory").value(priceHistory));
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.sellCurrency").value(sellCurrency))
+                .andExpect(jsonPath("$.buyCurrency").value(buyCurrency))
+                .andExpect(jsonPath("$.date").value(date))
+                .andExpect(jsonPath("$.averagePrice").value(averagePrice))
+                .andExpect(jsonPath("$.currentPrice").value(currentPrice))
+                .andExpect(jsonPath("$.priceHistory").value(priceHistory));
     }
-
 
     @ParameterizedTest
-    @ValueSource(strings = {"LONG", "SH", "", "123", "@#$"})
-    void testGetStatisticsReturn400ExceptionResponseIfSellCurrencyIsNot3UpperCasedCharacters(String sellCurrency) throws Exception {
-        //When Then
+    @ValueSource(strings = { "LONG", "SH", " ", "123", "@#$" })
+    void testGetStatisticsReturn400ExceptionResponseIfSellCurrencyIsNot3UpperCasedCharacters(String sellCurrency)
+            throws Exception {
+        // Given
+        String expectedMessage = "Currency code must contain 3 upper-cased caracters";
+        String expectedException = "jakarta.validation.ConstraintViolationException";
+        // When Then
         mockMvc.perform(get("/{sellCurrency}/to/{buyCurrency}", sellCurrency, "USD"))
-        .andExpect(status().is4xxClientError())
-        //TODO validae exception respone: ExceptionResponse
-        .andExpect(jsonPath("$.sellCurrency").value(sellCurrency));
+                .andExpect(status().is4xxClientError())
+                .andExpect(jsonPath("$.message")
+                        .value(StringContains.containsString(expectedMessage)))
+                .andExpect(jsonPath("$.details")
+                        .value(StringContains.containsString(expectedException)));
     }
 
-    @Test
-    void testGetStatisticsReturn400ExceptionResponseIfBuyCurrencyIsNot3UpperCasedCharacters() throws Exception {
-        
+    @ParameterizedTest
+    @ValueSource(strings = { "LONG", "SH", " ", "123", "@#$" })
+    void testGetStatisticsReturn400ExceptionResponseIfBuyCurrencyIsNot3UpperCasedCharacters(String buyCurrency) throws Exception {
+
+        // Given
+        String expectedMessage = "Currency code must contain 3 upper-cased caracters";
+        String expectedException = "jakarta.validation.ConstraintViolationException";
+        // When Then
+        mockMvc.perform(get("/{sellCurrency}/to/{buyCurrency}", "USD", buyCurrency))
+                .andExpect(status().is4xxClientError())
+                .andExpect(jsonPath("$.message")
+                        .value(StringContains.containsString(expectedMessage)))
+                .andExpect(jsonPath("$.details")
+                        .value(StringContains.containsString(expectedException)));
     }
 
     private Map<String, Double> getPriceHistory() {

@@ -54,7 +54,7 @@ public class ExchangeControllerRestTemplateTest {
                 ExchangeStatistics.class, sellCurrency, buyCurrency);
         // Then
         assertThat(response).isNotNull();
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK.value());
+        assertThat(response.getStatusCode().is2xxSuccessful()).isTrue();
         assertThat(response.getBody()).isNotNull();
         assertThat(response.getBody()).isEqualTo(exchangeStatistics);
     }

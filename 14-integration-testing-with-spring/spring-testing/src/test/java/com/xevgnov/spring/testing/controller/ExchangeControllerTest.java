@@ -1,5 +1,7 @@
 package com.xevgnov.spring.testing.controller;
 
+import static com.xevgnov.spring.testing.util.TestDataUtility.DATE_PATTERN;
+import static com.xevgnov.spring.testing.util.TestDataUtility.getPriceHistory;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -7,7 +9,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.hamcrest.core.StringContains;
@@ -39,7 +40,7 @@ public class ExchangeControllerTest {
         // Given
         String sellCurrency = "USD";
         String buyCurrency = "EUR";
-        String date = LocalDate.now().format(datePattern);
+        String date = LocalDate.now().format(DATE_PATTERN);
         Double averagePrice = 0.91;
         Double currentPrice = 0.91;
         Map<String, Double> priceHistory = getPriceHistory();
@@ -113,12 +114,4 @@ public class ExchangeControllerTest {
                         .value(StringContains.containsString(exception.toString())));
     }
 
-    private Map<String, Double> getPriceHistory() {
-        Map<String, Double> priceHistory = new LinkedHashMap<>();
-        for (int i = 0; i < 7; i++) {
-            double value = i % 2 == 0 ? 0.91 : 0.90;
-            priceHistory.put(LocalDate.now().minusDays(i).format(datePattern), value);
-        }
-        return priceHistory;
-    }
 }

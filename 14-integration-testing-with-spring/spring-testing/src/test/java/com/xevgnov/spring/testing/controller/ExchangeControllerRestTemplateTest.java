@@ -106,7 +106,7 @@ public class ExchangeControllerRestTemplateTest {
         when(statisticsService.getStatistics(sellCurrency, buyCurrency)).thenThrow(exception);
         // When Then
         ResponseEntity<ExceptionResponse> response = testRestTemplate.getForEntity("/{sellCurrency}/to/{buyCurrency}",
-                ExceptionResponse.class, "USD", buyCurrency);
+                ExceptionResponse.class, sellCurrency, buyCurrency);
         assertThat(response).isNotNull();
         assertThat(response.getStatusCode().is5xxServerError()).isTrue();
         assertThat(response.getBody()).isNotNull();

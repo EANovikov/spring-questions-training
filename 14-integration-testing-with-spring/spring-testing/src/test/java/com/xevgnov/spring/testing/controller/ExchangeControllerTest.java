@@ -33,8 +33,6 @@ public class ExchangeControllerTest {
     @MockBean
     private StatisticsService statisticsService;
 
-    private final DateTimeFormatter datePattern = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
     @Test
     void testGetStatisticsReturns200Status() throws Exception {
         // Given

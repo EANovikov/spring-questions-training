@@ -10,10 +10,9 @@ import com.xevgnov.service.TimeServiceImpl;
 @Configuration
 @ComponentScan("com.xevgnov.service")
 public class ApplicationConfig {
-    
+
     @Bean
-    public TimeService timeService(){
+    public TimeService timeService() {
         return new TimeServiceImpl();
     }
 }
-

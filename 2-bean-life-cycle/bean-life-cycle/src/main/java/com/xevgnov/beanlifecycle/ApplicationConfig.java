@@ -14,7 +14,7 @@ import com.xevgnov.beanlifecycle.service.InnerDemoService;
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Configuration
-@ComponentScan("com.xevgnov.service")
+@ComponentScan("com.xevgnov.beanlifecycle.service")
 public class ApplicationConfig {
  
     // Changes bean's lifesycle
@@ -25,15 +25,15 @@ public class ApplicationConfig {
         return new DemoService(innerDemoService);
     }
 
-    @Bean
-    public InnerDemoService innerDemoService(){
-      log.info("about to create the bean InnerDemoService");
-      return new InnerDemoService();
-    }
+    // @Bean
+    // public InnerDemoService innerDemoService(){
+    //   log.info("about to create the bean InnerDemoService");
+    //   return new InnerDemoService();
+    // }
     
-    @Bean
-    public static BeanFactoryPostProcessor processBeanDefinitions() {
-      return new DemoBeanFactoryPostProcessor();
-    }
+    // @Bean
+    // public static BeanFactoryPostProcessor processBeanDefinitions() {
+    //   return new DemoBeanFactoryPostProcessor();
+    // }
 
 }

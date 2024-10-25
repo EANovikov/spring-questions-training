@@ -13,23 +13,23 @@ public class DemoService implements InitializingBean, DisposableBean {
     private InnerDemoService innerDemoService;
 
     public DemoService(InnerDemoService innerDemoService) {
-        log.info("call constructor");
+        log.info("DemoService: call constructor");
         this.innerDemoService = innerDemoService;
     }
 
     public void demo() {
         innerDemoService.demo();
-        log.info("Bean usage phase");
+        log.info("DemoService: Bean usage phase");
     }
 
     @PostConstruct
     public void setUp() {
-        log.info("call PostConstruct annotated method");
+        log.info("DemoService: call PostConstruct annotated method");
     }
 
     @PreDestroy
     public void tearDown() {
-        log.info("call PreDestroy annotated method");
+        log.info("DemoService: call PreDestroy annotated method");
     }
 
     public void initBean() {

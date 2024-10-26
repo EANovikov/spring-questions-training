@@ -33,21 +33,21 @@ public class DemoService implements InitializingBean, DisposableBean {
     }
 
     public void initBean() {
-        log.info("call init method");
+        log.info("DemoService: call init method");
     }
 
     public void destroyBean() {
-        log.info("call destroy method");
+        log.info("DemoService: call destroy method");
     }
 
     @Override
     public void afterPropertiesSet() {
-        log.info("call InitializingBean.afterPropertiesSet");
+        log.info("DemoService: call InitializingBean.afterPropertiesSet");
     }
 
     @Override
     public void destroy() throws Exception {
-        log.info("call DisposableBean.destroy");
+        log.info("DemoService: call DisposableBean.destroy");
     }
 
 }

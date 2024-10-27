@@ -21,13 +21,13 @@ public class Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
+
 	@Bean
-	CommandLineRunner commandLineRunner(TaskExecutor taskExecutor, ApplicationContext context) {
+	CommandLineRunner commandLineRunner(TaskExecutor taskExecutor, RateCalculatorService rateCalculatorService) {
 		// for (int i = 0; i < 1; i++) { // no issue for single run
 		
 		for (int i = 0; i < 10; i++) {
 			taskExecutor.execute(() -> {
-				RateCalculatorService rateCalculatorService = context.getBean(RateCalculatorService.class);
 				rateCalculatorService.addToRate(10);
 				rateCalculatorService.addToRate(9);
 				rateCalculatorService.addToRate(8);

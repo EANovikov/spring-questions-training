@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.xevgnov.proxy.config.ApplicationConfig;
 import com.xevgnov.proxy.dto.ArticleDto;
@@ -54,6 +55,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    @Transactional
     public void update(ArticleDto articleDto, UUID id) {
         Article article = getIfExists(id);
         article.setTitle(articleDto.getTitle());

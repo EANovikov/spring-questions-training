@@ -25,6 +25,10 @@ public class RestaurantService {
         this.paymentService = paymentService;
     }
 
+    @Autowired
+    public RestaurantService() {
+    }
+
     public void makeOrder(Order order) {
         log.info("Starting to handle the order [{}]", order.getId());
         clientService.sendEmail(order);

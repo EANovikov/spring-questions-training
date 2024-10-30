@@ -21,8 +21,8 @@ public class RequestController {
     }
 
     @GetMapping
-    public String getDate(){
-       return counter + " -> " + randomDateService.getDate();
+    public String getDate() {
+        return counter + " -> " + randomDateService.getDate();
     }
 
 }

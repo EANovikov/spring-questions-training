@@ -1,4 +1,5 @@
 package com.xevgnov.scopes.controller;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,8 +21,8 @@ public class ApplicationController {
     }
 
     @GetMapping
-    public String getDate(){
-       return counter + " -> " +randomDateService.getDate();
+    public String getDate() {
+        return counter + " -> " + randomDateService.getDate();
     }
 
 }

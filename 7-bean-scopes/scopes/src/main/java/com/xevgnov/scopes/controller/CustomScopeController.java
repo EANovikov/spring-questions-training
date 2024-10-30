@@ -11,7 +11,7 @@ import com.xevgnov.scopes.service.RandomDateService;
 @RestController
 @RequestMapping(path = "/custom")
 public class CustomScopeController {
-    
+
     private static int counter;
     private RandomDateService randomDateService;
 
@@ -21,8 +21,8 @@ public class CustomScopeController {
     }
 
     @GetMapping
-    public String getDate(){
-       return counter + " -> " +randomDateService.getDate();
+    public String getDate() {
+        return counter + " -> " + randomDateService.getDate();
     }
 
 }

@@ -7,6 +7,8 @@ import org.springframework.web.context.annotation.RequestScope;
 
 import com.xevgnov.scopes.service.RandomDateService;
 
+//to see the difference between Request scope and Prototype scope switch RandomDateService to SCOPE_SINGLETON 
+// RandomDateService will keep a single istance while RequestController will keep creating its new instances
 @RequestScope
 @RestController
 @RequestMapping(path = "/request")

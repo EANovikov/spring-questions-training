@@ -1,21 +1,21 @@
-package com.xevgnov.scopes.controller;
+package com.xevgnov.scopes.external;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.annotation.ApplicationScope;
 
 import com.xevgnov.scopes.service.RandomDateService;
 
-@Scope("cache")
+@ApplicationScope
 @RestController
-@RequestMapping(path = "/custom")
-public class CustomScopeController {
+@RequestMapping(path = "/application-v2")
+public class ApplicationControllerV2 {
 
     private static int counter;
     private RandomDateService randomDateService;
 
-    public CustomScopeController(RandomDateService randomDateService) {
+    public ApplicationControllerV2(RandomDateService randomDateService) {
         this.randomDateService = randomDateService;
         counter++;
     }

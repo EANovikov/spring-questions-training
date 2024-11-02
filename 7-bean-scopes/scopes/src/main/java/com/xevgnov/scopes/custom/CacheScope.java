@@ -11,7 +11,6 @@ public class CacheScope implements Scope {
     private Map<String, Object> beans = new ConcurrentHashMap<>();
     private Map<String, Runnable> destructionCallbacks = new ConcurrentHashMap<>();
 
-    // to do caching
     @Override
     public Object get(String name, ObjectFactory<?> objectFactory) {
         if (!beans.containsKey(name)) {

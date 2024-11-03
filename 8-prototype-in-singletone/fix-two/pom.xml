@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.xevgnov</groupId>
-	<artifactId>prototype-in-singletone</artifactId>
+	<artifactId>prototype-in-singletone-fix-two</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>prototype-in-singletone</name>
+	<name>prototype-in-singletone-fix-two</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>21</java.version>

@@ -1,10 +1,12 @@
 package com.xevgnov.beanlifecycle;
 
+import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
+import com.xevgnov.beanlifecycle.service.DemoBeanFactoryPostProcessor;
 import com.xevgnov.beanlifecycle.service.DemoService;
 import com.xevgnov.beanlifecycle.service.InnerDemoService;
 
@@ -22,6 +24,11 @@ public class ApplicationConfig {
   public DemoService demoService(InnerDemoService innerDemoService) {
     log.info("about to create the bean DemoService");
     return new DemoService(innerDemoService);
+  }
+
+  @Bean
+  public static BeanFactoryPostProcessor beanFactoryPostProcessor() {
+    return new DemoBeanFactoryPostProcessor();
   }
 
 }

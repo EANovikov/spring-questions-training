@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.ScopedProxyMode;
 
 @Scope(value = BeanDefinition.SCOPE_PROTOTYPE,
        proxyMode = ScopedProxyMode.TARGET_CLASS)

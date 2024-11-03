@@ -13,20 +13,14 @@ import com.xevgnov.prototype.fix.three.service.RandomDateService;
 @RequestMapping(path = "/singleton")
 public class SingletonController {
 
-    private RandomDateService randomDateService;
-
-    public SingletonController(RandomDateService randomDateService) {
-        this.randomDateService = randomDateService;
-    }
-
     @GetMapping
     public String getDate() {
-        return randomDateService.getDate();
+        return getRandomDateService().getDate();
     }
 
     @Lookup
     public RandomDateService getRandomDateService(){
-       return randomDateService;
+       return null;
     }
 
 }

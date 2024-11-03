@@ -1,4 +1,4 @@
-package com.xevgnov.prototype.fix.one.service;
+package com.xevgnov.prototype.fix.two.service;
 
 public interface RandomDateService {
    String getDate();

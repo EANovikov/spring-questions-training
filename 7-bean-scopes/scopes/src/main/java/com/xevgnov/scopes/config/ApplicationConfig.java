@@ -9,11 +9,6 @@ import org.springframework.context.annotation.Configuration;
 
 import com.xevgnov.scopes.custom.CacheBeanFactoryPostProcessor;
 
-
-import jakarta.annotation.PostConstruct;
-import lombok.extern.slf4j.Slf4j;
-
-import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -23,7 +18,8 @@ import lombok.extern.slf4j.Slf4j;
 public class ApplicationConfig {
 
     @Bean
-    public static BeanFactoryPostProcessor beanFactoryPostProcessor(@Value("${scope.cache.duration.seconds:10}") long durationInSec) {
+    public static BeanFactoryPostProcessor beanFactoryPostProcessor(
+            @Value("${scope.cache.duration.seconds:10}") long durationInSec) {
         log.info("Custom scope cach duration is {} seconds", durationInSec);
         return new CacheBeanFactoryPostProcessor(durationInSec);
     }

@@ -1,15 +1,12 @@
 package com.xevgnov.prototype.controller;
 
+import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.beans.factory.config.BeanDefinition;
-import com.xevgnov.prototype.service.RandomDateService;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.xevgnov.prototype.service.RandomDateService;
 
 @Scope(BeanDefinition.SCOPE_SINGLETON)
 @RestController
@@ -23,8 +20,8 @@ public class SingletonController {
     }
 
     @GetMapping
-    public String getDate(){
-       return randomDateService.getDate();
+    public String getDate() {
+        return randomDateService.getDate();
     }
 
 }

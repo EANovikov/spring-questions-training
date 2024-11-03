@@ -1,4 +1,4 @@
-package com.xevgnov.scopes;
+package com.xevgnov.prototype;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

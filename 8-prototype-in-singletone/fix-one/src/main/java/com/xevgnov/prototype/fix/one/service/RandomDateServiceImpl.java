@@ -1,4 +1,4 @@
-package com.xevgnov.prototype.service;
+package com.xevgnov.prototype.fix.one.service;
 
 import java.time.LocalDateTime;
 

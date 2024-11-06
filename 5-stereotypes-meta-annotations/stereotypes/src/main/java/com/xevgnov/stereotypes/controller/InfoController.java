@@ -1,10 +1,9 @@
 package com.xevgnov.stereotypes.controller;
 
-import com.xevgnov.stereotypes.annotaton.InfoRestController;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import com.xevgnov.stereotypes.annotaton.InfoRestController;
 
 @InfoRestController
 public class InfoController {

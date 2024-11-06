@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.MediaType;
 
 @RestController
-@RequestMapping(path="/info", produces = MediaType.TEXT_PLAIN_VALUE)
+@RequestMapping(path="/app-info", produces = MediaType.TEXT_PLAIN_VALUE)
 public @interface InfoRestController {
     
 }

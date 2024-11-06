@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import com.xevgnov.stereotypes.domain.Task;
 
 @Repository
-public interface TaskRepository extends JpaRepository<Task, Long>{
+public interface TaskRepository extends JpaRepository<Task, Long> {
     List<Task> findByOrderByPriorityDesc();
 }

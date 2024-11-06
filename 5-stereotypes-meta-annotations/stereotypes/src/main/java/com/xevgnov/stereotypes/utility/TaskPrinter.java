@@ -1,11 +1,9 @@
 package com.xevgnov.stereotypes.utility;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.xevgnov.stereotypes.config.ApplicationConfiguration;
 import com.xevgnov.stereotypes.domain.Task;
 
 import lombok.extern.slf4j.Slf4j;

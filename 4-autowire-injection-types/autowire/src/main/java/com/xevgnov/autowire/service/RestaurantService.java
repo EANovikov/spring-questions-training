@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class RestaurantService {
 
+    //field injection
     @Autowired
     private FoodService foodService;
 
@@ -20,12 +21,16 @@ public class RestaurantService {
 
     private ClientService clientService;
 
+    //constructor injection
     @Autowired
     public RestaurantService(PaymentService paymentService) {
         this.paymentService = paymentService;
     }
 
-    @Autowired
+    //only one constructor can be used for constructor injection
+    //uncomment to see
+    //org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'restaurantService': Invalid autowire-marked constructor: public com.xevgnov.autowire.service.RestaurantService(com.xevgnov.autowire.service.PaymentService). Found constructor with 'required' Autowired annotation already: public com.xevgnov.autowire.service.RestaurantService()
+    //@Autowired
     public RestaurantService() {
     }
 
@@ -39,13 +44,15 @@ public class RestaurantService {
         log.info("Finishing to handle the order [{}]", order.getId());
     }
 
+    //typical setter injection
     @Autowired
     public void setDeliveryService(DeliveryService deliveryService) {
         this.deliveryService = deliveryService;
     }
 
+    //any method can be used for injection, even private one
     @Autowired
-    public void initClientService(ClientService clientService) {
+    private void initClientService(ClientService clientService) {
         this.clientService = clientService;
     }
 

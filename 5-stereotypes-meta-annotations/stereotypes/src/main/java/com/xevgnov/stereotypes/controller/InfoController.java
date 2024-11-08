@@ -8,19 +8,16 @@ import com.xevgnov.stereotypes.annotaton.InfoRestController;
 @InfoRestController
 public class InfoController {
 
-    @Value("${application.name}")
+    @Value("${spring.application.name}")
     private String applicationName;
 
-    @Value("${build.version}")
+    @Value("${spring.application.version}")
     private String buildVersion;
-
-    @Value("${build.timestamp}")
-    private String buildTimestamp;
 
     @GetMapping
     public String getAppInfo() {
-        return String.format("Application name: %s\nBuild Version: %s\nBuild Timestamp: %s", 
-        applicationName, buildVersion, buildTimestamp);
+        return String.format("Application name: %s\nBuild Version: %s", 
+        applicationName, buildVersion);
     }
 
 }

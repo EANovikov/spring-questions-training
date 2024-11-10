@@ -22,6 +22,7 @@ public class OrderServiceImpl implements OrderService {
 
    private static Map<UUID, Order> orders = new ConcurrentHashMap<>();
    private ProcessingService processingService;
+   private DeliveryService deliveryService;
 
    static {
       Order testOrder = Order.builder()
@@ -29,13 +30,16 @@ public class OrderServiceImpl implements OrderService {
             .clientEmail("john.doe@gmail.com")
             .deliveryAddress("Wroclaw, Plac Konstytucji 3 Maja")
             .dishes(List.of("Pizza", "Chips", "Gyros"))
-            .paymentId(UUID.randomUUID()).build();
+            .paymentId(UUID.randomUUID())
+            .status(Status.DELIVERED)
+            .build();
       log.info("test order: " + testOrder);
       orders.put(testOrder.getId(), testOrder);
    }
 
-   public OrderServiceImpl(ProcessingService processingService) {
+   public OrderServiceImpl(ProcessingService processingService, DeliveryService deliveryService) {
       this.processingService = processingService;
+      this.deliveryService = deliveryService;
    }
 
    @Override
@@ -43,6 +47,7 @@ public class OrderServiceImpl implements OrderService {
       log.info("Order {} is accepted", order.getId());
       try {
          order.setStatus(Status.NEW);
+         order.setEstimatedTime(deliveryService.getEstimatedDeliveryTime());
          orders.put(order.getId(), order);
          processingService.procces(order);
          return order.getId();

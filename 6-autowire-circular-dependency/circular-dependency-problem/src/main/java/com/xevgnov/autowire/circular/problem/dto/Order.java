@@ -5,9 +5,12 @@ import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.annotation.Nonnull;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,8 +34,10 @@ public class Order {
   @NotEmpty(message = "Your order should include at least on dish")  
   private List<String> dishes;
 
-  @org.hibernate.validator.constraints.UUID(message = "Not a valid payment ID")
+  @NotNull(message = "Paymet ID is required")  
   private UUID paymentId;
+
+  private String estimatedTime;
 
   private Status status;
   

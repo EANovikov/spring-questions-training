@@ -1,9 +1,12 @@
 package com.xevgnov.autowire.circular.problem.service;
 
+import java.time.Duration;
+import java.time.LocalTime;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.ThreadPoolExecutor;
 
 import org.springframework.stereotype.Service;
 
@@ -17,7 +20,10 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class DeliveryServiceImpl implements DeliveryService {
 
-    private ExecutorService couriers = Executors.newFixedThreadPool(4);
+    public static long MAX_DELIVERY_DELAY = 180000L;
+    public static long MIN_DELIVERY_DELAY = 60000L;
+
+    private static ExecutorService couriers = Executors.newFixedThreadPool(4);
 
     private OrderService orderService;
 
@@ -26,14 +32,26 @@ public class DeliveryServiceImpl implements DeliveryService {
     }
 
     @Override
-    public void deliveryOrder(UUID id) {
-        couriers.submit(() -> doDelivery(id));
+    public String getEstimatedDeliveryTime() {
+        LocalTime current = LocalTime.now();
+        ThreadPoolExecutor threadPool = (ThreadPoolExecutor) couriers;
+        int queueSize = threadPool.getQueue().size();
+        long minDelaySec = Duration.ofMillis(queueSize * MIN_DELIVERY_DELAY).getSeconds();
+        long maxDelaySec = Duration.ofMillis(queueSize * MAX_DELIVERY_DELAY).getSeconds();
+        Duration minWait = Duration.between(current, current.plusSeconds(minDelaySec));
+        Duration maxWait = Duration.between(current, current.plusSeconds(maxDelaySec));
+        String outputFormat = "%d min - %d min";
+        return String.format(outputFormat, minWait.toMinutes(), maxWait.toMinutes());
     }
 
-    private void doDelivery(UUID id) {
-        Order order = orderService.getOrder(id);
+    @Override
+    public void deliveryOrder(Order order) {
+        couriers.submit(() -> doDelivery(order));
+    }
+
+    private void doDelivery(Order order) {
         try {
-            long orderDeliveryTime = ThreadLocalRandom.current().nextLong(100, 2000);
+            long orderDeliveryTime = ThreadLocalRandom.current().nextLong(MIN_DELIVERY_DELAY, MAX_DELIVERY_DELAY);
             Thread.sleep(orderDeliveryTime);
         } catch (InterruptedException e) {
             log.error("Order delivery issue. Order details: {}", order, e);

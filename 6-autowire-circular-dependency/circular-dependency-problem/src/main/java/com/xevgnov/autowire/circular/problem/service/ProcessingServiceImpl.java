@@ -6,6 +6,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import com.xevgnov.autowire.circular.problem.dto.Order;
@@ -24,11 +25,12 @@ public class ProcessingServiceImpl implements ProcessingService {
         this.deliveryService = deliveryService;
     }
 
+    @Async
     @Override
     public void procces(Order order) {
         try {
             order.setStatus(Status.PROCESSING);
-            long orderProcessingTime = ThreadLocalRandom.current().nextLong(100, 2000);
+            long orderProcessingTime = ThreadLocalRandom.current().nextLong(30000L, 120000L);
             Thread.sleep(orderProcessingTime);
             order.setStatus(Status.READY);
             log.info("Order {} processed successfully", order.getId());

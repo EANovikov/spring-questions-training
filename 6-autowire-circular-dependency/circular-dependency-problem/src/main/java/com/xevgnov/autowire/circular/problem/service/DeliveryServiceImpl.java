@@ -45,11 +45,12 @@ public class DeliveryServiceImpl implements DeliveryService {
     }
 
     @Override
-    public void deliveryOrder(Order order) {
-        couriers.submit(() -> doDelivery(order));
+    public void deliveryOrder(UUID id) {
+        couriers.submit(() -> doDelivery(id));
     }
 
-    private void doDelivery(Order order) {
+    private void doDelivery(UUID id) {
+        Order order = orderService.getOrder(id);
         try {
             long orderDeliveryTime = ThreadLocalRandom.current().nextLong(MIN_DELIVERY_DELAY, MAX_DELIVERY_DELAY);
             Thread.sleep(orderDeliveryTime);

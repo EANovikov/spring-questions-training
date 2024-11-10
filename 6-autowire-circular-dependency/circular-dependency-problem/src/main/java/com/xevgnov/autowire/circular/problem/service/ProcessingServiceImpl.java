@@ -34,7 +34,7 @@ public class ProcessingServiceImpl implements ProcessingService {
             Thread.sleep(orderProcessingTime);
             order.setStatus(Status.READY);
             log.info("Order {} processed successfully", order.getId());
-            deliveryService.deliveryOrder(order);
+            deliveryService.deliveryOrder(order.getId());
         } catch (InterruptedException e) {
             log.error("Order proccessing issue. Order details: {}", order, e);
         }

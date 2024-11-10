@@ -6,7 +6,7 @@ import com.xevgnov.autowire.circular.problem.dto.Order;
 
 public interface DeliveryService {
     
-    void deliveryOrder(Order order);
+    void deliveryOrder(UUID id);
     String getEstimatedDeliveryTime();
 
 }

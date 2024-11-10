@@ -1,4 +1,4 @@
-package com.xevgnov.autowire.circular.problem.service;
+package com.xevgnov.autowire.circular.solution.one.service;
 
 import java.util.List;
 import java.util.Map;
@@ -9,10 +9,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.xevgnov.autowire.circular.problem.dto.Order;
-import com.xevgnov.autowire.circular.problem.dto.Status;
-import com.xevgnov.autowire.circular.problem.exception.OrderNotFoundException;
-import com.xevgnov.autowire.circular.problem.exception.OrderServiceException;
+import com.xevgnov.autowire.circular.solution.one.dto.Order;
+import com.xevgnov.autowire.circular.solution.one.dto.Status;
+import com.xevgnov.autowire.circular.solution.one.exception.OrderNotFoundException;
+import com.xevgnov.autowire.circular.solution.one.exception.OrderServiceException;
 
 import lombok.extern.slf4j.Slf4j;
 

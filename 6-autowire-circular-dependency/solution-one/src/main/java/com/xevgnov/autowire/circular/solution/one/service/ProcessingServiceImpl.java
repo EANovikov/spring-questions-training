@@ -1,6 +1,5 @@
-package com.xevgnov.autowire.circular.problem.service;
+package com.xevgnov.autowire.circular.solution.one.service;
 
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -9,8 +8,8 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import com.xevgnov.autowire.circular.problem.dto.Order;
-import com.xevgnov.autowire.circular.problem.dto.Status;
+import com.xevgnov.autowire.circular.solution.one.dto.Order;
+import com.xevgnov.autowire.circular.solution.one.dto.Status;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,7 +33,7 @@ public class ProcessingServiceImpl implements ProcessingService {
             Thread.sleep(orderProcessingTime);
             order.setStatus(Status.READY);
             log.info("Order {} processed successfully", order.getId());
-            deliveryService.deliveryOrder(order.getId());
+            deliveryService.deliveryOrder(order);
             order.setEstimatedTime(deliveryService.getEstimatedDeliveryTime());
         } catch (InterruptedException e) {
             log.error("Order proccessing issue. Order details: {}", order, e);

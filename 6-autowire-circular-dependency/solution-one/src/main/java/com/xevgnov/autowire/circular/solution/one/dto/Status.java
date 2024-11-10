@@ -1,4 +1,4 @@
-package com.xevgnov.autowire.circular.problem.dto;
+package com.xevgnov.autowire.circular.solution.one.dto;
 
 public enum Status {
     

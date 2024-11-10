@@ -1,4 +1,4 @@
-package com.xevgnov.autowire.circular.problem.service;
+package com.xevgnov.autowire.circular.solution.one.service;
 
 import java.time.Duration;
 import java.time.LocalTime;
@@ -10,8 +10,8 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 import org.springframework.stereotype.Service;
 
-import com.xevgnov.autowire.circular.problem.dto.Order;
-import com.xevgnov.autowire.circular.problem.dto.Status;
+import com.xevgnov.autowire.circular.solution.one.dto.Order;
+import com.xevgnov.autowire.circular.solution.one.dto.Status;
 
 import jakarta.annotation.PreDestroy;
 import lombok.extern.slf4j.Slf4j;
@@ -24,12 +24,6 @@ public class DeliveryServiceImpl implements DeliveryService {
     public static long MIN_DELIVERY_DELAY = 60000L;
 
     private static ExecutorService couriers = Executors.newFixedThreadPool(3);
-
-    private OrderService orderService;
-
-    public DeliveryServiceImpl(OrderService orderService) {
-        this.orderService = orderService;
-    }
 
     @Override
     public String getEstimatedDeliveryTime() {
@@ -45,12 +39,11 @@ public class DeliveryServiceImpl implements DeliveryService {
     }
 
     @Override
-    public void deliveryOrder(UUID id) {
-        couriers.submit(() -> doDelivery(id));
+    public void deliveryOrder(Order order) {
+        couriers.submit(() -> doDelivery(order));
     }
 
-    private void doDelivery(UUID id) {
-        Order order = orderService.getOrder(id);
+    private void doDelivery(Order order) {
         order.setStatus(Status.IN_DELIVERY);
         try {
             long orderDeliveryTime = ThreadLocalRandom.current().nextLong(MIN_DELIVERY_DELAY, MAX_DELIVERY_DELAY);

@@ -8,5 +8,5 @@ public interface OrderService {
 
    UUID placeOrder(Order order);
    Order getOrder(UUID id);
-
+   void setDeliveryService(DeliveryService deliveryService);
 }

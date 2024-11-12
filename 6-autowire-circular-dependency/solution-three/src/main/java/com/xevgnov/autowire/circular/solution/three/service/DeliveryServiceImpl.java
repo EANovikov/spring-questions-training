@@ -8,14 +8,11 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.ThreadPoolExecutor;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import com.xevgnov.autowire.circular.solution.three.dto.Order;
 import com.xevgnov.autowire.circular.solution.three.dto.Status;
 
-import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,19 +26,10 @@ public class DeliveryServiceImpl implements DeliveryService {
     private static ExecutorService couriers = Executors.newFixedThreadPool(3);
 
     private OrderService orderService;
-   
-    // public DeliveryServiceImpl(OrderService orderService) {
-    //     this.orderService = orderService;
-    // }
 
-    @Autowired
-    public void setOrderService(OrderService orderService) {
+    public DeliveryServiceImpl(OrderService orderService) {
         this.orderService = orderService;
-    }
-
-    @PostConstruct
-    private void postConstruct(){
-        this.setOrderService(orderService);
+        this.orderService.setDeliveryService(this);
     }
 
     @Override

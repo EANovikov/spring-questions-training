@@ -37,10 +37,16 @@ public class OrderServiceImpl implements OrderService {
       orders.put(testOrder.getId(), testOrder);
    }
 
-   public OrderServiceImpl(ProcessingService processingService, DeliveryService deliveryService) {
+   public OrderServiceImpl(ProcessingService processingService) {
       this.processingService = processingService;
+   }
+
+   @Override
+   public void setDeliveryService(DeliveryService deliveryService) {
       this.deliveryService = deliveryService;
    }
+
+
 
    @Override
    public UUID placeOrder(Order order) {

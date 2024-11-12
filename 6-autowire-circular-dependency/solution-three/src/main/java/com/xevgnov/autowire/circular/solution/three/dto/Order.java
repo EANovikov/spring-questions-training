@@ -1,4 +1,4 @@
-package com.xevgnov.autowire.circular.problem.dto;
+package com.xevgnov.autowire.circular.solution.three.dto;
 
 import java.util.List;
 import java.util.UUID;

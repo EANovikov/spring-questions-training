@@ -1,4 +1,4 @@
-package com.xevgnov.qualifier;
+package com.xevgnov.by.name;
 
 import java.util.List;
 import java.util.UUID;
@@ -10,8 +10,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.annotation.Order;
 
-import com.xevgnov.qualifier.service.HtmlReportService;
-import com.xevgnov.qualifier.service.ReportService;
+import com.xevgnov.by.name.service.HtmlReportService;
+import com.xevgnov.by.name.service.ReportService;
 
 @SpringBootApplication
 public class Application {
@@ -20,19 +20,13 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
+	// 3 inject bean by name
+	// better alternative to explicitly providing the type
+	// HtmlReportService htmlReportService
+	// which creates more coupling between the classes
 	@Bean
 	CommandLineRunner commandLineRunner(
-		//1 qualifier usage 
-		@Qualifier("htmlReportService") ReportService reportService) {
-		return args -> reportService.printReport("test");
+		ReportService htmlReportService) {
+		return args -> htmlReportService.printReport("test");
 	}
-
-	// @Bean
-	// CommandLineRunner commandLineRunner(
-	// 	//2 qualifier usage
-	// 	// use @Qalifier in injection point and on the component you need to inject
-	// 	@Qualifier("html") ReportService reportService) {
-	// 	return args -> reportService.printReport("test");
-	// }
-
 }

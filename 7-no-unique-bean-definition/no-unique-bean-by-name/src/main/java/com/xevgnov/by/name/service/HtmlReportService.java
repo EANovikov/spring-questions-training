@@ -1,9 +1,8 @@
-package com.xevgnov.qualifier.service;
+package com.xevgnov.by.name.service;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
-@Qualifier("html")
 public class HtmlReportService implements ReportService {
 
     @Override

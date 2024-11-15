@@ -1,6 +1,6 @@
 package com.xevgnov.collection.service;
+
 import org.springframework.stereotype.Service;
-import com.xevgnov.collection.service.ReportService;
 
 @Service
 public class XmlReportService implements ReportService {

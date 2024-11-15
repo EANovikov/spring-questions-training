@@ -1,7 +1,7 @@
 package com.xevgnov.primary.service;
+
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
-import com.xevgnov.primary.service.ReportService;
 
 @Primary
 @Service

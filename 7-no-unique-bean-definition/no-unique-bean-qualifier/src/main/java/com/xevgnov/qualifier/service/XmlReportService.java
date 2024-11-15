@@ -1,4 +1,5 @@
 package com.xevgnov.qualifier.service;
+
 import org.springframework.stereotype.Service;
 
 @Service

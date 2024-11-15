@@ -1,5 +1,6 @@
 package com.xevgnov.collection;
 
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.boot.CommandLineRunner;
@@ -18,6 +19,18 @@ public class Application {
 
 	@Bean
 	CommandLineRunner commandLineRunner(Set<ReportService> reportServices) {
-		return args -> reportServices.forEach(rs->rs.printReport("test"));
+	return args -> reportServices.forEach(rs->rs.printReport("test"));
 	}
+
+	// Injecting Map<String, ReportService> can be even more handy
+	// Spring is able to assume, that Map key is a spring name
+	// and the keys will contains bean names: htmlReportService, textReportService, xmlReportService
+	// @Bean
+	// CommandLineRunner commandLineRunner(Map<String, ReportService> reportServices) {
+	// 	return args -> reportServices.entrySet()
+	// 			.forEach(entry -> {
+	// 				System.out.println(entry.getKey());
+	// 				entry.getValue().printReport("test");
+	// 			});
+	// }
 }

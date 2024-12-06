@@ -9,7 +9,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-
 import com.xevgnov.autowire.optional.domain.Order;
 import com.xevgnov.autowire.optional.service.AnalyticServis;
 import com.xevgnov.autowire.optional.service.RestaurantService;
@@ -53,7 +52,7 @@ public class Application {
 	// @Bean
 	// CommandLineRunner commandLineRunner(@Autowired RestaurantService
 	// restaurantService,
-	// @Autowired(required = false) AnalyticServis analyticServis) {
+	//  @Autowired(required = false) AnalyticServis analyticServis) {
 	// restaurantService.makeOrder(Order.builder()
 	// .clientEmail("john.doe@gmail.com")
 	// .deliveryAddress("Wroclaw, Plac Konstytucji 3 Maja")

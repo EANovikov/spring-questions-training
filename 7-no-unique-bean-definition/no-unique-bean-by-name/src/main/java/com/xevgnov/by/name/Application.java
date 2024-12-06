@@ -24,7 +24,6 @@ public class Application {
 		return args -> htmlReportService.printReport("test");
 	}
 
-
 	// if the bean was renamed, you need to use exactly the same argument here
 	// @Service("text") means that we cannot use the default name textReportService any more
 	// however Spring is able to identify, 

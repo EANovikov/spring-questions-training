@@ -1,6 +1,8 @@
-package com.xevgnov.scopes.controller;
+package com.xevgnov.scopes.external;
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,17 +10,19 @@ import org.springframework.web.context.annotation.ApplicationScope;
 
 import com.xevgnov.scopes.service.RandomDateService;
 
-// To see the difference between Application and Singletone swithch RandomDateService to Singltone
-// Use both ApplicationController and ApplicationControllerV2 which refer to different contexts
-//@ApplicationScope
+import jakarta.annotation.PostConstruct;
+
+//to see the difference between application and singleton
+// /v2/application vs /v1/application
+@Scope(BeanDefinition.SCOPE_SINGLETON)
 @RestController
-@RequestMapping(path = "/v1/application")
-public class ApplicationController {
+@RequestMapping(path = "/singleton")
+public class SingletonControllerV2 {
 
     private static int counter;
     private RandomDateService randomDateService;
 
-    public ApplicationController(@Qualifier("applicationRandomDateService") RandomDateService randomDateService) {
+    public SingletonControllerV2(@Qualifier("singletonRandomDateService") RandomDateService randomDateService) {
         this.randomDateService = randomDateService;
         counter++;
     }

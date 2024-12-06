@@ -3,6 +3,7 @@ package com.xevgnov.scopes.service;
 import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 // RandomDateService will keep a single istance while RequestController will keep creating its new instances
 
 //@Scope(BeanDefinition.SCOPE_SINGLETON)
+@Primary
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
 @Service
 public class RandomDateServiceImpl implements RandomDateService {

@@ -17,7 +17,7 @@ public class CacheBeanFactoryPostProcessor implements BeanFactoryPostProcessor{
 
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-        beanFactory.registerScope("cache", new CacheScope(Duration.ofSeconds(durationSec)));
+        beanFactory.registerScope(CacheScope.CACHE_SCOPE, new CacheScope(Duration.ofSeconds(durationSec)));
         }
     
 }

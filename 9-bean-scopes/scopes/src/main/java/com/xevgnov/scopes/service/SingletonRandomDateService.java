@@ -7,12 +7,11 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 
-@Scope(value = BeanDefinition.SCOPE_SINGLETON,
-       proxyMode = ScopedProxyMode.INTERFACES)
+@Scope(value = BeanDefinition.SCOPE_SINGLETON, proxyMode = ScopedProxyMode.INTERFACES)
 @Service
-public class SingletonRandomDateService implements RandomDateService{
+public class SingletonRandomDateService implements RandomDateService {
 
-        private LocalDateTime localDateTime = LocalDateTime.now();
+    private LocalDateTime localDateTime = LocalDateTime.now();
 
     @Override
     public String getDate() {

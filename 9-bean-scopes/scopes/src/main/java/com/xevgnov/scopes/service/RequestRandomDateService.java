@@ -7,9 +7,9 @@ import org.springframework.web.context.annotation.RequestScope;
 
 @RequestScope
 @Service
-public class RequestRandomDateService implements RandomDateService{
+public class RequestRandomDateService implements RandomDateService {
 
-        private LocalDateTime localDateTime = LocalDateTime.now();
+    private LocalDateTime localDateTime = LocalDateTime.now();
 
     @Override
     public String getDate() {

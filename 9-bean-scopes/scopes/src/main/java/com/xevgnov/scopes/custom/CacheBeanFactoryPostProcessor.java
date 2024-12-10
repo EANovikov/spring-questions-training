@@ -11,13 +11,13 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
-public class CacheBeanFactoryPostProcessor implements BeanFactoryPostProcessor{
-    
+public class CacheBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
+
     private long durationSec;
 
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
         beanFactory.registerScope(CacheScope.CACHE_SCOPE, new CacheScope(Duration.ofSeconds(durationSec)));
-        }
-    
+    }
+
 }

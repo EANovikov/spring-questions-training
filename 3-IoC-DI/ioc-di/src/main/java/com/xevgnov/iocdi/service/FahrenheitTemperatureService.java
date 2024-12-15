@@ -1,6 +1,7 @@
 package com.xevgnov.iocdi.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Lookup;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
@@ -27,4 +28,17 @@ public class FahrenheitTemperatureService implements TemperatureService {
         PrintService printService = context.getBean(PrintService.class);
         printService.print(temperature, TemperatureMode.FARENHEIT);
     }
+
+    // Uncomment to see a lookup injection
+    // @Override
+    // public void print(double temperature) {
+    // // using getPrintService method annotaded with @Lookup annotation
+    //     PrintService printService = getPrintService();
+    //     printService.print(temperature, TemperatureMode.FARENHEIT);
+    // }
+
+    // @Lookup
+    // private PrintService getPrintService(){
+    //     return null;
+    // }
 }

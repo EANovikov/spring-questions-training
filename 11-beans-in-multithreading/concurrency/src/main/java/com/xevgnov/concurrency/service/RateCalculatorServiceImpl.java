@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 // Uncomment to fix race condition
-// @Scope(BeanDefinition.SCOPE_PROTOTYPE)
+//@Scope(value = BeanDefinition.SCOPE_PROTOTYPE)
 @Service
 public class RateCalculatorServiceImpl implements RateCalculatorService {
 
@@ -28,10 +28,10 @@ public class RateCalculatorServiceImpl implements RateCalculatorService {
     public double getRate() {
         Integer sum = rates.stream().reduce(0, Integer::sum);
         log.info("Summ of marks {}", sum);
-        double middleRate = (double) sum / rates.size();
-        log.info("Average rate {}", middleRate);
+        double avereageRate = (double) sum / rates.size();
+        log.info("Average rate {}", avereageRate);
         rates.clear();
-        return middleRate;
+        return avereageRate;
     }
 
 }

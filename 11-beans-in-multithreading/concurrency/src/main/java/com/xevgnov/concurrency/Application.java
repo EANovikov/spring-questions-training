@@ -1,12 +1,8 @@
 package com.xevgnov.concurrency;
 
-import java.util.List;
-import java.util.UUID;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.task.TaskExecutor;
 
@@ -25,7 +21,7 @@ public class Application {
 	@Bean
 	CommandLineRunner commandLineRunner(TaskExecutor taskExecutor, RateCalculatorService rateCalculatorService) {
 		// for (int i = 0; i < 1; i++) { // no issue for single run
-		
+
 		for (int i = 0; i < 10; i++) {
 			taskExecutor.execute(() -> {
 				rateCalculatorService.addToRate(10);

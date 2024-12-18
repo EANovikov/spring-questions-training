@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +21,11 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
+// The bean can be proxied with JDK Dynamic proxy or CGLIB proxy, uncomment to explore different options
+// JDK Dynamic proxy
+// @Scope(proxyMode = ScopedProxyMode.INTERFACES)
+// CGLIB proxy
+// @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class ArticleServiceImpl implements ArticleService {
 
     private ArticleRepository articleRepository;
@@ -28,7 +35,6 @@ public class ArticleServiceImpl implements ArticleService {
         this.articleRepository = articleRepository;
         this.configuration = configuration;
     }
-
     
 
     @Override
@@ -38,7 +44,6 @@ public class ArticleServiceImpl implements ArticleService {
         return mapToArticleDto(article);
     }
    
-
     @Override
     public List<ArticleDto> getAll() {
         return articleRepository

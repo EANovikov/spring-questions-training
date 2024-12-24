@@ -12,7 +12,7 @@ public class TemperatureServiceToCelsiusProxy implements TemperatureService {
 
   //TemperatureServiceToCelsiusProxy does not only implements TemperatureService interface
   // It also injects and uses existing fahrenheitTemperatureService logic
-  public TemperatureServiceToCelsiusProxy(@Qualifier("temperatureServiceImpl") TemperatureService temperatureService) {
+  public TemperatureServiceToCelsiusProxy(TemperatureService temperatureService) {
     this.temperatureService = temperatureService;
   }
 

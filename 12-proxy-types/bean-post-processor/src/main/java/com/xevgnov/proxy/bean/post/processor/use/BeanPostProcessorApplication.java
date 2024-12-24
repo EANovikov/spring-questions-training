@@ -2,10 +2,16 @@ package com.xevgnov.proxy.bean.post.processor.use;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
 
-import com.xevgnov.simple.proxy.demo.dto.Temperature;
-import com.xevgnov.simple.proxy.demo.service.TemperatureService;
 
+import com.xevgnov.proxy.bean.post.processor.use.dto.Temperature;
+import com.xevgnov.proxy.bean.post.processor.use.service.TemperatureService;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @SpringBootApplication
 public class BeanPostProcessorApplication {
 

@@ -8,8 +8,7 @@ import org.springframework.stereotype.Service;
 import com.xevgnov.proxy.bean.post.processor.use.dto.Temperature;
 import com.xevgnov.proxy.bean.post.processor.use.dto.TemperatureMode;
 
-@Primary
-@Service("fahrenheitTemperatureService")
+@Service
 public class TemperatureServiceImpl implements TemperatureService {
 
   // gets a temperature in Fahrenheits

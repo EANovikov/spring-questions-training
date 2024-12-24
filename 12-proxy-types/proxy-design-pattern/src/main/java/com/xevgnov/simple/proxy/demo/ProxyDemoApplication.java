@@ -15,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 @SpringBootApplication
 public class ProxyDemoApplication {
 
+	//Proxy design pattern is used to provide a surrogate or placeholder object, which references an underlying object.
 	public static void main(String[] args) {
 		SpringApplication.run(ProxyDemoApplication.class, args);
 	}

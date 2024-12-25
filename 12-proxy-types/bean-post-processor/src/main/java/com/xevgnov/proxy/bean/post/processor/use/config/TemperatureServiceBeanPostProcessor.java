@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 public class TemperatureServiceBeanPostProcessor implements BeanPostProcessor {
 
     @Override
-    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException { //some logic here
         if (bean instanceof TemperatureService) {
             log.info("postProcessBeforeInitialization call for {}", beanName);
             // returning Proxy class instead of an original one
@@ -24,7 +24,7 @@ public class TemperatureServiceBeanPostProcessor implements BeanPostProcessor {
     }
 
     @Override
-    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException { //some logic here
         if (bean instanceof TemperatureService) {
             log.info("postProcessAfterInitialization call for {}", beanName);
          }

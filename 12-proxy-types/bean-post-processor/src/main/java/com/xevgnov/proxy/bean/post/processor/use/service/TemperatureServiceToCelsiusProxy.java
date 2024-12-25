@@ -1,8 +1,5 @@
 package com.xevgnov.proxy.bean.post.processor.use.service;
 
-import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Service;
-
 import com.xevgnov.proxy.bean.post.processor.use.dto.Temperature;
 import com.xevgnov.proxy.bean.post.processor.use.dto.TemperatureMode;
 
@@ -10,7 +7,7 @@ public class TemperatureServiceToCelsiusProxy implements TemperatureService {
 
   private TemperatureService temperatureService;
 
-  //TemperatureServiceToCelsiusProxy does not only implements TemperatureService interface
+  // TemperatureServiceToCelsiusProxy does not only implements TemperatureService interface
   // It also injects and uses existing fahrenheitTemperatureService logic
   public TemperatureServiceToCelsiusProxy(TemperatureService temperatureService) {
     this.temperatureService = temperatureService;

@@ -2,7 +2,6 @@ package com.xevgnov.proxy.bean.post.processor.use.service;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import com.xevgnov.proxy.bean.post.processor.use.dto.Temperature;

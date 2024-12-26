@@ -34,17 +34,17 @@ public class ArticleController {
     }
 
     @GetMapping("/{id}")
-    public ArticleDto getOrder(@PathVariable UUID id) {
+    public ArticleDto get(@PathVariable UUID id) {
         return articleService.get(id);
     }
 
     @GetMapping
-    public List<ArticleDto> getOrders() {
+    public List<ArticleDto> getAll() {
         return articleService.getAll();
     }
 
     @PostMapping
-    public ResponseEntity<Void> placeOrder(@RequestBody @Valid ArticleDto order) {
+    public ResponseEntity<Void> create(@RequestBody @Valid ArticleDto order) {
         ArticleDto article = articleService.create(order);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequestUri().path("/{id}").buildAndExpand(article.getId())
@@ -54,13 +54,13 @@ public class ArticleController {
 
     @PutMapping("/{id}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void updateOrder(@RequestBody ArticleDto order, @PathVariable UUID id) {
+    public void update(@RequestBody ArticleDto order, @PathVariable UUID id) {
         articleService.update(order, id);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void deleteOrder(@PathVariable UUID id) {
+    public void delete(@PathVariable UUID id) {
         articleService.delete(id);
     }
 

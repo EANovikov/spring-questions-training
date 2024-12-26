@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -20,7 +19,9 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-@Primary
+// ArticleServiceImpl uses ArticleRepository which is JPA repository
+// EntityManager here is used only to check if the instance is a managed entity instance belonging to the current persistence context
+// @Primary
 public class ArticleServiceImpl implements ArticleService {
 
     private ArticleRepository articleRepository;
@@ -31,7 +32,6 @@ public class ArticleServiceImpl implements ArticleService {
         this.entityManager = entityManager;
     }
     
-
     @Override
     public ArticleDto get(UUID id) {
         //state [Managed (Persistent)]
@@ -41,7 +41,6 @@ public class ArticleServiceImpl implements ArticleService {
         return mapToArticleDto(article);
     }
    
-
     @Override
     public List<ArticleDto> getAll() {
         //state [Managed (Persistent)]

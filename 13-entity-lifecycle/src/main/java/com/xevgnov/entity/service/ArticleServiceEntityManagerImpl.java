@@ -18,6 +18,8 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
+// comment ArticleServiceImpl @Primary and use ArticleServiceEntityManagerImpl to see the EntityManager implementation
+// shows detach call in article update which is not covered in ArticleServiceImpl
 // @Primary
 public class ArticleServiceEntityManagerImpl implements ArticleService {
 
@@ -27,20 +29,18 @@ public class ArticleServiceEntityManagerImpl implements ArticleService {
         this.entityManager = entityManager;
     }
     
-
     @Override
     public ArticleDto get(UUID id) {
         //state [Managed (Persistent)]
         Article article = getIfExists(id);
         log.info("Got article {}", article);
-        log.info("Article ID {} present in JPA's Persistence Context: {}", article.getId(), entityManager.contains(article));
+        log.info("Article ID {} present in Persistence Context: {}", article.getId(), entityManager.contains(article));
         //state [Managed (Persistent)] -> [Detached]
-        entityManager.detach(article);
-        //state [ [Detached]
-        log.info("Article ID {} present in JPA's Persistence Context: {}", article.getId(), entityManager.contains(article));
+        // entityManager.detach(article);
+        // //state [ [Detached]
+        // log.info("Article ID {} present in Persistence Context: {}", article.getId(), entityManager.contains(article));
         return mapToArticleDto(article);
     }
-   
 
     @Override
     public List<ArticleDto> getAll() {
@@ -57,10 +57,10 @@ public class ArticleServiceEntityManagerImpl implements ArticleService {
     public void delete(UUID id) {
         //state [Managed (Persistent)]
         Article article = getIfExists(id);
-        log.info("Article ID {} present in JPA's Persistence Context: {}", article.getId(), entityManager.contains(article));
+        log.info("Article ID {} present in Persistence Context: {}", article.getId(), entityManager.contains(article));
         //state [Managed (Persistent)] -> [Removed]
         entityManager.remove(article);
-        log.info("Article ID {} present in JPA's Persistence Context: {}", article.getId(), entityManager.contains(article));
+        log.info("Article ID {} present in Persistence Context: {}", article.getId(), entityManager.contains(article));
         //state [Removed]
         log.info("Deleted article {}", article);
     }
@@ -70,14 +70,19 @@ public class ArticleServiceEntityManagerImpl implements ArticleService {
     public void update(ArticleDto articleDto, UUID id) {
         //state [Managed (Persistent)]
         Article article = getIfExists(id);
-        log.info("Article ID {} present in JPA's Persistence Context: {}", article.getId(), entityManager.contains(article));
+        log.info("Article ID {} present in Persistence Context: {}", article.getId(), entityManager.contains(article));
+        log.info("Starting to update article {}", article);
+        //state [Managed (Persistent)] -> [Detached]
+        entityManager.detach(article);
+        //state [ [Detached]
+        log.info("Article ID {} present in Persistence Context: {}", article.getId(), entityManager.contains(article));
         article.setTitle(articleDto.getTitle());
         article.setText(articleDto.getText());
         article.setUpdated(Instant.now());
         //state [Managed (Persistent)]
-        entityManager.merge(article);
+        article = entityManager.merge(article);
         log.info("Updated article {}", article);
-        log.info("Article ID {} present in JPA's Persistence Context: {}", article.getId(), entityManager.contains(article));
+        log.info("Article ID {} present in Persistence Context: {}", article.getId(), entityManager.contains(article));
     }
 
     @Override
@@ -89,13 +94,13 @@ public class ArticleServiceEntityManagerImpl implements ArticleService {
                 .text(articleDto.getText())
                 .created(Instant.now())
                 .build();
-        log.info("Article ID {} present in JPA's Persistence Context: {}", article.getId(), entityManager.contains(article));
+        log.info("Article ID {} present in Persistence Context: {}", article.getId(), entityManager.contains(article));
         //state [New (Transient)] -> [Managed (Persistent)]  
         entityManager.persist(article);
         log.info("Created article {}", article);
         //state [Managed (Persistent)]     
         entityManager.flush();
-        log.info("Article ID {} present in JPA's Persistence Context: {}", article.getId(), entityManager.contains(article));
+        log.info("Article ID {} present in Persistence Context: {}", article.getId(), entityManager.contains(article));
         return mapToArticleDto(article);
     }
 

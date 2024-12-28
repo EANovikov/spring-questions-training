@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import com.xevgnov.entity.entity.Article;
 
 @Repository
-public interface ArticleRepository  extends JpaRepository<Article,UUID> {
+public interface ArticleRepository extends JpaRepository<Article, UUID>, PersistenceContextInfoRepository {
 
 }

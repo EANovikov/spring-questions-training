@@ -14,8 +14,6 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
-import lombok.Value;
 
 @Entity
 @Table(name = "ARTICLE")
@@ -31,7 +29,7 @@ public class Article {
     private Instant created;
     private Instant updated;
 
-    @ManyToOne(fetch=FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "AUTHOR_ID")
     private Author author;
 }

@@ -8,6 +8,7 @@ import com.xevgnov.n.plus.one.custom.query.dto.AuthorDto;
 public interface AuthorService {
 
     AuthorDto getAuthor(UUID id);
+
     List<AuthorDto> getAuthors();
-  
+
 }

@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.xevgnov.n.plus.one.e.garph.entity.Article;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,10 +15,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AuthorDto {
-   private UUID id;
+    private UUID id;
     private String name;
     private String surname;
-    @JsonIgnoreProperties({"author"})
-   // @JsonManagedReference
+    @JsonIgnoreProperties({ "author" })
     private List<ArticleDto> articles;
 }

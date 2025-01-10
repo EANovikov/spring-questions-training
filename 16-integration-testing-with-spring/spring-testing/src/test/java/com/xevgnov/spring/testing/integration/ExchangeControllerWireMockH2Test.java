@@ -3,13 +3,20 @@ package com.xevgnov.spring.testing.integration;
 @SpringBootTest
 @EnableWireMock
 public class ExchangeControllerWireMockH2Test {
-    
+    @Value("${wiremock.server.baseUrl}")
+    private String wireMockUrl;
+
     @Autowired
     private TestRestTemplate testRestTemplate;
+
+    @Autowired
+    FxRatesApiClient fxRatesApiClient;
 
     @Test
     void testGetStatisticsReturns200Status() {
         // Given
+        fxRatesApiClient.setBaseUrl(wireMockUrl);
+        
         String sellCurrency = "EUR";
         String buyCurrency = "USD";
         String date = LocalDate.now().format(DATE_PATTERN);
@@ -23,7 +30,7 @@ public class ExchangeControllerWireMockH2Test {
                     .rates(Map.of(buyCurrency, rate))
                     .build();
         stubFor(
-            get("https://api.fxratesapi.com/historical?date={date}2&currencies={buyCurrency}&base={sellCurrency}", date, buyCurrency, sellCurrency)
+            get("/historical?date={date}2&currencies={buyCurrency}&base={sellCurrency}", date, buyCurrency, sellCurrency)
             .willReturn(fxRatesResponse));
 
 

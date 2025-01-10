@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.xevgnov.spring.testing.dto.FxRatesResponse;
 
-@FeignClient(value = "fxratesapi", url = "https://api.fxratesapi.com/")
+@FeignClient(value = "fxratesapi", url = "${spring.cloud.openfeign.client.config.fxratesapi.url}")
 public interface FxRatesApiClient {
 
     /**

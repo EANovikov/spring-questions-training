@@ -198,7 +198,6 @@ public class CurrencyServiceTests {
         verify(objectMapper, times(1)).writeValueAsString(fxRatesResponse);
         verifyNoMoreInteractions(exchangeRecordsRepository);
         verify(fxRatesApiClient).getConvertationRate(date, "USD", "EUR");
-        ;
         verifyNoMoreInteractions(fxRatesApiClient);
     }
 

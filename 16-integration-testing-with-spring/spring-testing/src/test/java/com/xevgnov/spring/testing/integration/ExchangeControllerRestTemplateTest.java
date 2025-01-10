@@ -1,4 +1,4 @@
-package com.xevgnov.spring.testing.controller;
+package com.xevgnov.spring.testing.integration;
 
 import static com.xevgnov.spring.testing.util.TestDataUtility.DATE_PATTERN;
 import static com.xevgnov.spring.testing.util.TestDataUtility.getPriceHistory;

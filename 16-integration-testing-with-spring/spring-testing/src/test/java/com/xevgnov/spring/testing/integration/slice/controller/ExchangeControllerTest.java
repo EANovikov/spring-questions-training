@@ -1,4 +1,4 @@
-package com.xevgnov.spring.testing.controller;
+package com.xevgnov.spring.testing.integration.slice.controller;
 
 import static com.xevgnov.spring.testing.util.TestDataUtility.DATE_PATTERN;
 import static com.xevgnov.spring.testing.util.TestDataUtility.getPriceHistory;
@@ -8,7 +8,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 import org.hamcrest.core.StringContains;
@@ -20,6 +19,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+import com.xevgnov.spring.testing.controller.ExchangeController;
 import com.xevgnov.spring.testing.dto.ExchangeStatistics;
 import com.xevgnov.spring.testing.exception.StatisticsServiceException;
 import com.xevgnov.spring.testing.service.StatisticsService;

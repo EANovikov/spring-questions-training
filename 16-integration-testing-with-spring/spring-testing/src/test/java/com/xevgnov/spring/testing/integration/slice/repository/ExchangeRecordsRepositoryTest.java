@@ -1,4 +1,4 @@
-package com.xevgnov.spring.testing.repository;
+package com.xevgnov.spring.testing.integration.slice.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -11,6 +11,7 @@ import org.springframework.orm.jpa.JpaSystemException;
 
 import com.xevgnov.spring.testing.entity.EcxcangeRecord;
 import com.xevgnov.spring.testing.entity.ExchangeRecordId;
+import com.xevgnov.spring.testing.repository.ExchangeRecordsRepository;
 
 @DataJpaTest(properties={"spring.jpa.hibernate.ddl-auto=create-drop"})
 public class ExchangeRecordsRepositoryTest {

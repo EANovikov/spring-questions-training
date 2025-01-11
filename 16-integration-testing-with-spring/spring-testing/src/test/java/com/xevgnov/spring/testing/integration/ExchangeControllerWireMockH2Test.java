@@ -1,7 +1,7 @@
 package com.xevgnov.spring.testing.integration;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
-import static com.github.tomakehurst.wiremock.client.WireMock.stubFor
+import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
 import static com.xevgnov.spring.testing.util.TestDataUtility.DATE_PATTERN;
 import static org.assertj.core.api.Assertions.assertThat;
 

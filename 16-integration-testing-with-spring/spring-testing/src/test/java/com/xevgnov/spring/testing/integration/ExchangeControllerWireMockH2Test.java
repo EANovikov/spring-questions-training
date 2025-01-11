@@ -7,6 +7,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Map;
 
@@ -14,25 +16,27 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.wiremock.spring.EnableWireMock;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.tomakehurst.wiremock.client.WireMock;
 import com.xevgnov.spring.testing.client.FxRatesApiClient;
 import com.xevgnov.spring.testing.dto.ExchangeStatistics;
 import com.xevgnov.spring.testing.dto.FxRatesResponse;
 
-import feign.Feign;
-import feign.Logger;
-import feign.gson.GsonDecoder;
-import feign.gson.GsonEncoder;
-import feign.okhttp.OkHttpClient;
-import feign.slf4j.Slf4jLogger;
+// import feign.Feign;
+// import feign.Logger;
+// import feign.gson.GsonDecoder;
+// import feign.gson.GsonEncoder;
+// import feign.okhttp.OkHttpClient;
+// import feign.slf4j.Slf4jLogger;
 
-@SpringBootTest
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @EnableWireMock
 public class ExchangeControllerWireMockH2Test {
     @Value("${wiremock.server.baseUrl}")
@@ -41,30 +45,35 @@ public class ExchangeControllerWireMockH2Test {
     @Autowired
     private TestRestTemplate testRestTemplate;
 
-    private FxRatesApiClient fxRatesApiClient = Feign.builder()
-            .client(new OkHttpClient())
-            .encoder(new GsonEncoder())
-            .decoder(new GsonDecoder())
-            .logger(new Slf4jLogger(FxRatesApiClient.class))
-            .logLevel(Logger.Level.FULL)
-            .target(FxRatesApiClient.class, wireMockUrl);
+    // @Autowired
+    // private FxRatesApiClient fxRatesApiClient;
+    // private FxRatesApiClient fxRatesApiClient = Feign.builder()
+    //         .client(new OkHttpClient())
+    //         .encoder(new GsonEncoder())
+    //         .decoder(new GsonDecoder())
+    //         .logger(new Slf4jLogger(FxRatesApiClient.class))
+    //         .logLevel(Logger.Level.FULL)
+    //         .target(FxRatesApiClient.class, wireMockUrl);
 
     @Autowired
     private ObjectMapper objectMapper;
 
     @Test
-    void testGetStatisticsReturns200Status() {
+    void testGetStatisticsReturns200Status() throws JsonProcessingException {
         // Given
         String sellCurrency = "EUR";
         String buyCurrency = "USD";
-        String date = LocalDate.of(2025, 1, 12).format(DATE_PATTERN);
+        ZonedDateTime zonedDatetime = ZonedDateTime.now();
+        // ZonedDateTime zonedDatetime = ZonedDateTime.of(
+        //     LocalDate.of(2025, 1, 12), LocalTime.of(12, 0, 0), ZoneId.of("UTC"));
+        String date = zonedDatetime.format(DATE_PATTERN);
         FxRatesResponse fxRatesResponse = FxRatesResponse.builder()
                 .base(sellCurrency)
                 .privacy("privacy")
                 .terms("terms")
                 .success(true)
-                .timestamp(Instant.now())
-                .date(ZonedDateTime.now())
+                .timestamp(zonedDatetime.toInstant())
+                .date(zonedDatetime)
                 .rates(Map.of(buyCurrency, 1.0271234))
                 .build();
         var mockedResponse = WireMock.aResponse()

@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.junit.jupiter.api.Test;
@@ -20,22 +21,17 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.jdbc.Sql;
 import org.wiremock.spring.EnableWireMock;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.tomakehurst.wiremock.client.WireMock;
-import com.xevgnov.spring.testing.client.FxRatesApiClient;
 import com.xevgnov.spring.testing.dto.ExchangeStatistics;
 import com.xevgnov.spring.testing.dto.FxRatesResponse;
 
-// import feign.Feign;
-// import feign.Logger;
-// import feign.gson.GsonDecoder;
-// import feign.gson.GsonEncoder;
-// import feign.okhttp.OkHttpClient;
-// import feign.slf4j.Slf4jLogger;
-
+@ActiveProfiles("test")
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @EnableWireMock
 public class ExchangeControllerWireMockH2Test {
@@ -45,27 +41,45 @@ public class ExchangeControllerWireMockH2Test {
     @Autowired
     private TestRestTemplate testRestTemplate;
 
-    // @Autowired
-    // private FxRatesApiClient fxRatesApiClient;
-    // private FxRatesApiClient fxRatesApiClient = Feign.builder()
-    //         .client(new OkHttpClient())
-    //         .encoder(new GsonEncoder())
-    //         .decoder(new GsonDecoder())
-    //         .logger(new Slf4jLogger(FxRatesApiClient.class))
-    //         .logLevel(Logger.Level.FULL)
-    //         .target(FxRatesApiClient.class, wireMockUrl);
-
     @Autowired
     private ObjectMapper objectMapper;
 
     @Test
-    void testGetStatisticsReturns200Status() throws JsonProcessingException {
+    @Sql("file:src/test/resources/test-data.sql")
+    void testGetStatisticsRetrievesCurrencyDataFromDatabaseAndReturns200Status() throws JsonProcessingException {
+        // Given
+        String sellCurrency = "EUR";
+        String buyCurrency = "USD";
+
+        // When
+        ResponseEntity<ExchangeStatistics> response = testRestTemplate.getForEntity("/{sellCurrency}/to/{buyCurrency}",
+                ExchangeStatistics.class, sellCurrency, buyCurrency);
+        // Then
+        assertThat(response).isNotNull();
+        assertThat(response.getStatusCode().is2xxSuccessful()).isTrue();
+        assertThat(response.getBody()).isNotNull();
+        assertThat(response.getBody().getDate()).isEqualTo(LocalDate.now().format(DATE_PATTERN));
+        assertThat(response.getBody().getSellCurrency()).isEqualTo(sellCurrency);
+        assertThat(response.getBody().getBuyCurrency()).isEqualTo(buyCurrency);
+        assertThat(response.getBody().getCurrentPrice()).isEqualTo(1.025083665);
+        assertThat(response.getBody().getAveragePrice()).isEqualTo(1.031602123);
+        Map<String, Double> expectedPriceHistory = new LinkedHashMap();
+        expectedPriceHistory.put(ZonedDateTime.now().format(DATE_PATTERN), 1.025083665);
+        expectedPriceHistory.put(ZonedDateTime.now().minusDays(1).format(DATE_PATTERN),1.030003905);
+        expectedPriceHistory.put(ZonedDateTime.now().minusDays(2).format(DATE_PATTERN),1.031672155);
+        expectedPriceHistory.put(ZonedDateTime.now().minusDays(3).format(DATE_PATTERN),1.034350654);
+        expectedPriceHistory.put(ZonedDateTime.now().minusDays(4).format(DATE_PATTERN),1.038248979);
+        expectedPriceHistory.put(ZonedDateTime.now().minusDays(5).format(DATE_PATTERN),1.030651418);
+        expectedPriceHistory.put(ZonedDateTime.now().minusDays(6).format(DATE_PATTERN),1.031204085);
+        assertThat(response.getBody().getPriceHistory()).isEqualTo(expectedPriceHistory);
+    }
+    
+    @Test
+    void testGetStatisticsRetrievesDataFromFxRatesApiClientAndNoDataFromDatabaseAndReturns200Status() throws JsonProcessingException {
         // Given
         String sellCurrency = "EUR";
         String buyCurrency = "USD";
         ZonedDateTime zonedDatetime = ZonedDateTime.now();
-        // ZonedDateTime zonedDatetime = ZonedDateTime.of(
-        //     LocalDate.of(2025, 1, 12), LocalTime.of(12, 0, 0), ZoneId.of("UTC"));
         String date = zonedDatetime.format(DATE_PATTERN);
         FxRatesResponse fxRatesResponse = FxRatesResponse.builder()
                 .base(sellCurrency)

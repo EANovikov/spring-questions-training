@@ -74,8 +74,7 @@ public class ExchangeControllerWireMockH2Test {
         }
 
         @Test
-        @Sql(scripts = "file:src/test/resources/cleanup-test-data.sql",
-                executionPhase = ExecutionPhase.AFTER_TEST_METHOD)
+        @Sql(scripts = "file:src/test/resources/cleanup-test-data.sql", executionPhase = ExecutionPhase.AFTER_TEST_METHOD)
         void testGetStatisticsRetrievesDataFromFxRatesApiClientAndNoDataFromDatabaseAndReturns200Status()
                         throws JsonProcessingException {
                 // Given
@@ -122,7 +121,6 @@ public class ExchangeControllerWireMockH2Test {
                                         .date(zonedDatetime)
                                         .rates(Map.of(buyCurrency, rate))
                                         .build();
-                        rate += 0.0001;
                         var mockedResponse = WireMock.aResponse()
                                         .withBody(objectMapper.writeValueAsString(fxRatesResponse))
                                         .withStatus(HttpStatus.OK.value())
@@ -132,6 +130,7 @@ public class ExchangeControllerWireMockH2Test {
                                                         String.format("/historical?date=%s&currencies=%s&base=%s",
                                                                         date, buyCurrency, sellCurrency))
                                                         .willReturn(mockedResponse));
+                        rate = Double.sum(rate, 0.0001);
                 }
         }
 

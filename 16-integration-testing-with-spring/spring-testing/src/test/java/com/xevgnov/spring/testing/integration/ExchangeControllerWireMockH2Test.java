@@ -94,23 +94,31 @@ public class ExchangeControllerWireMockH2Test {
                 assertThat(response.getBody().getDate()).isEqualTo(LocalDate.now().format(DATE_PATTERN));
                 assertThat(response.getBody().getSellCurrency()).isEqualTo(sellCurrency);
                 assertThat(response.getBody().getBuyCurrency()).isEqualTo(buyCurrency);
-                assertThat(response.getBody().getCurrentPrice()).isEqualTo(1.0271);
-                assertThat(response.getBody().getAveragePrice()).isCloseTo(1.0273999, Percentage.withPercentage(99.9));
+                assertThat(response.getBody().getCurrentPrice()).isEqualTo(1.027);
+                assertThat(response.getBody().getAveragePrice()).isCloseTo(1.0275, Percentage.withPercentage(99.9));
                 Map<String, Double> expectedPriceHistory = new LinkedHashMap();
-                expectedPriceHistory.put(ZonedDateTime.now().format(DATE_PATTERN), 1.0271);
-                expectedPriceHistory.put(ZonedDateTime.now().minusDays(1).format(DATE_PATTERN), 1.0272);
-                expectedPriceHistory.put(ZonedDateTime.now().minusDays(2).format(DATE_PATTERN), 1.0273);
-                expectedPriceHistory.put(ZonedDateTime.now().minusDays(3).format(DATE_PATTERN), 1.0274);
-                expectedPriceHistory.put(ZonedDateTime.now().minusDays(4).format(DATE_PATTERN), 1.0275);
-                expectedPriceHistory.put(ZonedDateTime.now().minusDays(5).format(DATE_PATTERN), 1.0276);
-                expectedPriceHistory.put(ZonedDateTime.now().minusDays(6).format(DATE_PATTERN), 1.0277);
+                expectedPriceHistory.put(ZonedDateTime.now().format(DATE_PATTERN), 1.027);
+                expectedPriceHistory.put(ZonedDateTime.now().minusDays(1).format(DATE_PATTERN), 1.028);
+                expectedPriceHistory.put(ZonedDateTime.now().minusDays(2).format(DATE_PATTERN), 1.027);
+                expectedPriceHistory.put(ZonedDateTime.now().minusDays(3).format(DATE_PATTERN), 1.028);
+                expectedPriceHistory.put(ZonedDateTime.now().minusDays(4).format(DATE_PATTERN), 1.027);
+                expectedPriceHistory.put(ZonedDateTime.now().minusDays(5).format(DATE_PATTERN), 1.028);
+                expectedPriceHistory.put(ZonedDateTime.now().minusDays(6).format(DATE_PATTERN), 1.027);
                 assertThat(response.getBody().getPriceHistory()).isEqualTo(expectedPriceHistory);
         }
 
         private void stubFxRatesCallsForLastWeek(ZonedDateTime zonedDatetime, String sellCurrency, String buyCurrency)
                         throws JsonProcessingException {
-                double rate = 1.0271;
+                double rate;
+
                 for (int i = 0; i < 7; i++) {
+
+                        if (i % 2 == 0) {
+                                rate = 1.027;
+                        } else {
+                                rate = 1.028;
+                        }
+
                         String date = zonedDatetime.minusDays(i).format(DATE_PATTERN);
                         FxRatesResponse fxRatesResponse = FxRatesResponse.builder()
                                         .base(sellCurrency)
@@ -130,7 +138,6 @@ public class ExchangeControllerWireMockH2Test {
                                                         String.format("/historical?date=%s&currencies=%s&base=%s",
                                                                         date, buyCurrency, sellCurrency))
                                                         .willReturn(mockedResponse));
-                        rate = Double.sum(rate, 0.0001);
                 }
         }
 

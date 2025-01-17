@@ -35,7 +35,7 @@ public class StatisticsServiceImpl implements StatisticsService {
                     .sellCurrency(currencySell)
                     .date(currentDateResponse.getKey())
                     .currentPrice(currentDateResponse.getValue().getRates().get(currencyBuy))
-                    .averagePrice(getMiddlePrice(responses.values(), currencyBuy))
+                    .averagePrice(getAveragePrice(responses.values(), currencyBuy))
                     .priceHistory(getPriceHistory(responses, currencyBuy))
                     .build();
         } catch (Throwable e) {
@@ -52,7 +52,7 @@ public class StatisticsServiceImpl implements StatisticsService {
         return priceHistory;
     }
 
-    private Double getMiddlePrice(Collection<FxRatesResponse> responses, String currency) {
+    private Double getAveragePrice(Collection<FxRatesResponse> responses, String currency) {
         return responses.stream()
                 .mapToDouble(response -> response.getRates().get(currency).doubleValue())
                 .average()

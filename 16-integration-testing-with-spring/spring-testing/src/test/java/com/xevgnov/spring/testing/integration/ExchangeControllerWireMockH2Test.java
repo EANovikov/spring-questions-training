@@ -96,7 +96,7 @@ public class ExchangeControllerWireMockH2Test {
                 assertThat(response.getBody().getBuyCurrency()).isEqualTo(buyCurrency);
                 assertThat(response.getBody().getCurrentPrice()).isEqualTo(1.027);
                 assertThat(response.getBody().getAveragePrice()).isCloseTo(1.0275, Percentage.withPercentage(99.9));
-                Map<String, Double> expectedPriceHistory = new LinkedHashMap();
+                Map<String, Double> expectedPriceHistory = new LinkedHashMap<>();
                 expectedPriceHistory.put(ZonedDateTime.now().format(DATE_PATTERN), 1.027);
                 expectedPriceHistory.put(ZonedDateTime.now().minusDays(1).format(DATE_PATTERN), 1.028);
                 expectedPriceHistory.put(ZonedDateTime.now().minusDays(2).format(DATE_PATTERN), 1.027);

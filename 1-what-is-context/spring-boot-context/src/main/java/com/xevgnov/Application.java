@@ -13,7 +13,7 @@ import com.xevgnov.service.DateTimeServiceImpl;
 @SpringBootApplication
 public class Application {
 
-    // call SpringApplication.run to cconfigure and create the context
+    // call SpringApplication.run to configure and create the context
 	// if we need to run any logic right after application start, ApplicationRunner or CommandLineRunner bean can be used
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);

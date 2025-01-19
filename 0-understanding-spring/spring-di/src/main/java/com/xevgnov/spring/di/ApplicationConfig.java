@@ -15,11 +15,6 @@ public class ApplicationConfig {
     }
 
     @Bean
-    public DateService dateService(){
-        return new DateServiceImpl();
-    }
-
-    @Bean
     public DateTimeService dateTimeService(DateService dateService, TimeService timeService){
         return new DateTimeServiceImpl(dateService, timeService);
     }

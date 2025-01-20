@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="prototype-in-singletone-fix-one" />
+        <module name="di" />
+        <module name="solution-two" />
+        <module name="circular-dependency-problem" />
+        <module name="n-plus-one-entity-graph" />
+        <module name="spring-testing" />
+        <module name="sprung-di" />
+        <module name="n-plus-one-custom-query" />
+        <module name="stereotypes (1) (com.xevgnov.stereotypes.without.spring.boot)" />
+        <module name="spring-conext" />
+        <module name="stereotypes" />
+        <module name="ioc-di" />
+        <module name="prototype-in-singletone" />
+        <module name="not-required-injection" />
+        <module name="autowire" />
+        <module name="solution-three" />
+        <module name="spring-boot-context" />
+        <module name="prototype-in-singletone-fix-two" />
+        <module name="testing" />
+        <module name="profiles" />
+        <module name="prototype-in-singletone-fix-three" />
+        <module name="collection" />
+        <module name="solution-one" />
+        <module name="bean-life-cycle" />
+        <module name="concurrency" />
+        <module name="proxy" />
+        <module name="qualifier" />
+        <module name="by-bean-name" />
+        <module name="scopes" />
+        <module name="no-unique-bean" />
+        <module name="entity" />
+        <module name="n-plus-one" />
+        <module name="primary" />
+      </profile>
+      <profile name="Annotation profile for proxy-demo" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
+        </processorPath>
+        <module name="bean-post-processor" />
+        <module name="proxy-demo" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="autowire" options="-parameters" />
+      <module name="bean-post-processor" options="-parameters" />
+      <module name="by-bean-name" options="-parameters" />
+      <module name="circular-dependency-problem" options="-parameters" />
+      <module name="collection" options="-parameters" />
+      <module name="concurrency" options="-parameters" />
+      <module name="entity" options="-parameters" />
+      <module name="ioc-di" options="-parameters" />
+      <module name="n-plus-one" options="-parameters" />
+      <module name="n-plus-one-custom-query" options="-parameters" />
+      <module name="n-plus-one-entity-graph" options="-parameters" />
+      <module name="no-unique-bean" options="-parameters" />
+      <module name="not-required-injection" options="-parameters" />
+      <module name="primary" options="-parameters" />
+      <module name="profiles" options="-parameters" />
+      <module name="prototype-in-singletone" options="-parameters" />
+      <module name="prototype-in-singletone-fix-one" options="-parameters" />
+      <module name="prototype-in-singletone-fix-three" options="-parameters" />
+      <module name="prototype-in-singletone-fix-two" options="-parameters" />
+      <module name="proxy" options="-parameters" />
+      <module name="proxy-demo" options="-parameters" />
+      <module name="qualifier" options="-parameters" />
+      <module name="scopes" options="-parameters" />
+      <module name="solution-one" options="-parameters" />
+      <module name="solution-three" options="-parameters" />
+      <module name="solution-two" options="-parameters" />
+      <module name="spring-boot-context" options="-parameters" />
+      <module name="spring-testing" options="-parameters" />
+      <module name="stereotypes" options="-parameters" />
+      <module name="testing" options="-parameters" />
+    </option>
+  </component>
+</project>

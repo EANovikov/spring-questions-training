@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/3-IoC-DI/ioc-di/pom.xml" />
+        <option value="$PROJECT_DIR$/9-bean-scopes/scopes/pom.xml" />
+        <option value="$PROJECT_DIR$/12-proxy-types/proxy-examples/pom.xml" />
+        <option value="$PROJECT_DIR$/12-proxy-types/bean-post-processor/pom.xml" />
+        <option value="$PROJECT_DIR$/12-proxy-types/proxy-design-pattern/pom.xml" />
+        <option value="$PROJECT_DIR$/1-what-is-context/spring-conext/pom.xml" />
+        <option value="$PROJECT_DIR$/1-what-is-context/spring-boot-context/pom.xml" />
+        <option value="$PROJECT_DIR$/2-bean-life-cycle/bean-life-cycle/pom.xml" />
+        <option value="$PROJECT_DIR$/13-entity-lifecycle/pom.xml" />
+        <option value="$PROJECT_DIR$/14-n-plus-one-problem/n-plus-one/pom.xml" />
+        <option value="$PROJECT_DIR$/14-n-plus-one-problem/n-plus-one-custom-query/pom.xml" />
+        <option value="$PROJECT_DIR$/14-n-plus-one-problem/n-plus-one-entity-graph/pom.xml" />
+        <option value="$PROJECT_DIR$/0-understanding-spring/di/pom.xml" />
+        <option value="$PROJECT_DIR$/0-understanding-spring/spring-di/pom.xml" />
+        <option value="$PROJECT_DIR$/5-autowire-not-required/not-required-injection/pom.xml" />
+        <option value="$PROJECT_DIR$/10-prototype-in-singletone/default/pom.xml" />
+        <option value="$PROJECT_DIR$/10-prototype-in-singletone/fix-one/pom.xml" />
+        <option value="$PROJECT_DIR$/10-prototype-in-singletone/fix-two/pom.xml" />
+        <option value="$PROJECT_DIR$/10-prototype-in-singletone/fix-three/pom.xml" />
+        <option value="$PROJECT_DIR$/11-beans-in-multithreading/concurrency/pom.xml" />
+        <option value="$PROJECT_DIR$/4-autowire-injection-types/autowire/pom.xml" />
+        <option value="$PROJECT_DIR$/7-no-unique-bean-definition/no-unique-bean/pom.xml" />
+        <option value="$PROJECT_DIR$/7-no-unique-bean-definition/no-unique-bean-by-name/pom.xml" />
+        <option value="$PROJECT_DIR$/7-no-unique-bean-definition/no-unique-bean-primary/pom.xml" />
+        <option value="$PROJECT_DIR$/7-no-unique-bean-definition/no-unique-bean-profiles/pom.xml" />
+        <option value="$PROJECT_DIR$/7-no-unique-bean-definition/no-unique-bean-qualifier/pom.xml" />
+        <option value="$PROJECT_DIR$/7-no-unique-bean-definition/no-unique-bean-inject-collection/pom.xml" />
+        <option value="$PROJECT_DIR$/6-autowire-circular-dependency/solution-one/pom.xml" />
+        <option value="$PROJECT_DIR$/6-autowire-circular-dependency/solution-two/pom.xml" />
+        <option value="$PROJECT_DIR$/6-autowire-circular-dependency/solution-three/pom.xml" />
+        <option value="$PROJECT_DIR$/6-autowire-circular-dependency/circular-dependency-problem/pom.xml" />
+        <option value="$PROJECT_DIR$/8-stereotypes-meta-annotations/stereotypes/pom.xml" />
+        <option value="$PROJECT_DIR$/8-stereotypes-meta-annotations/stereotypes-without-spring-boot/pom.xml" />
+        <option value="$PROJECT_DIR$/15-spring-application-unit-testing/testing/pom.xml" />
+        <option value="$PROJECT_DIR$/16-integration-testing-with-spring/spring-testing/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="21" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

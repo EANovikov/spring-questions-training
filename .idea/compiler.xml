@@ -15,6 +15,7 @@
         <module name="sprung-di" />
         <module name="n-plus-one-custom-query" />
         <module name="stereotypes (1) (com.xevgnov.stereotypes.without.spring.boot)" />
+        <module name="spring-conext (1)" />
         <module name="spring-conext" />
         <module name="stereotypes" />
         <module name="ioc-di" />

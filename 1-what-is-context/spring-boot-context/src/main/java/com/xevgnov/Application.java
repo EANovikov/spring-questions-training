@@ -27,12 +27,12 @@ public class Application {
 	}
 
 	// Alternative way to run any logic after application start is to access context directly 
-    /*
-	public static void main(String[] args) {
-		ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
-		DateTimeService dateTimeService = context.getBean(DateTimeServiceImpl.class);
-		dateTimeService.printDateTime();
-	}
-	*/
+
+//	public static void main(String[] args) {
+//		ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
+//		DateTimeService dateTimeService = context.getBean(DateTimeServiceImpl.class);
+//		dateTimeService.printDateTime();
+//	}
+
 
 }

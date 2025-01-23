@@ -2,6 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -10,12 +11,12 @@
         <module name="di" />
         <module name="solution-two" />
         <module name="circular-dependency-problem" />
+        <module name="spring-boot-web-context" />
         <module name="n-plus-one-entity-graph" />
         <module name="spring-testing" />
-        <module name="sprung-di" />
         <module name="n-plus-one-custom-query" />
         <module name="stereotypes (1) (com.xevgnov.stereotypes.without.spring.boot)" />
-        <module name="spring-conext (1)" />
+        <module name="spring-conext-types" />
         <module name="spring-conext" />
         <module name="stereotypes" />
         <module name="ioc-di" />
@@ -30,10 +31,12 @@
         <module name="prototype-in-singletone-fix-three" />
         <module name="collection" />
         <module name="solution-one" />
+        <module name="spring-web-conext-types" />
         <module name="bean-life-cycle" />
         <module name="concurrency" />
         <module name="proxy" />
         <module name="qualifier" />
+        <module name="spring-di" />
         <module name="by-bean-name" />
         <module name="scopes" />
         <module name="no-unique-bean" />
@@ -41,7 +44,7 @@
         <module name="n-plus-one" />
         <module name="primary" />
       </profile>
-      <profile name="Annotation profile for proxy-demo" enabled="true">
+      <profile name="Annotation profile for bean-post-processor" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -49,6 +52,15 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
         </processorPath>
         <module name="bean-post-processor" />
+      </profile>
+      <profile name="Annotation profile for proxy-demo" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
+        </processorPath>
         <module name="proxy-demo" />
       </profile>
     </annotationProcessing>
@@ -82,6 +94,7 @@
       <module name="solution-three" options="-parameters" />
       <module name="solution-two" options="-parameters" />
       <module name="spring-boot-context" options="-parameters" />
+      <module name="spring-boot-web-context" options="-parameters" />
       <module name="spring-testing" options="-parameters" />
       <module name="stereotypes" options="-parameters" />
       <module name="testing" options="-parameters" />

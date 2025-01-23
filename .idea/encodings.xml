@@ -2,6 +2,7 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/1-what-is-context/spring-boot-context/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/1-what-is-context/spring-boot-web-context/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/10-prototype-in-singletone/default/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/10-prototype-in-singletone/fix-one/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/10-prototype-in-singletone/fix-three/src/main/java" charset="UTF-8" />

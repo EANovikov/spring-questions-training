@@ -40,6 +40,8 @@
         <option value="$PROJECT_DIR$/15-spring-application-unit-testing/testing/pom.xml" />
         <option value="$PROJECT_DIR$/16-integration-testing-with-spring/spring-testing/pom.xml" />
         <option value="$PROJECT_DIR$/1-what-is-context/spring-conext-types/pom.xml" />
+        <option value="$PROJECT_DIR$/1-what-is-context/spring-web-conext-types/pom.xml" />
+        <option value="$PROJECT_DIR$/1-what-is-context/spring-boot-web-context/pom.xml" />
       </list>
     </option>
   </component>

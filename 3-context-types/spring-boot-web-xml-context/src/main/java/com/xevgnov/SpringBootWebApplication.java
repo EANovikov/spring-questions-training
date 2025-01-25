@@ -16,7 +16,7 @@ public class SpringBootWebApplication {
     // call SpringApplication.run to configure and create the context
     // if we need to run any logic right after application start, ApplicationRunner or CommandLineRunner bean can be used
 	public static void main(String[] args) {
-		SpringApplication.run(SpringBootWebXmlApplication.class, args);
+		SpringApplication.run(SpringBootWebApplication.class, args);
 	}
 
 	//to run the logic on application startup

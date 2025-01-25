@@ -15,6 +15,9 @@ public class Application {
         ConfigurableApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
         context.registerShutdownHook();
         DateTimeService dateTimeService = context.getBean(DateTimeServiceImpl.class);
+        // Alternative ways to get beans
+        // DateTimeService dateTimeService = context.getBean("dateTimeServiceImpl", DateTimeServiceImpl.class);
+        // DateTimeService dateTimeService = (DateTimeService) context.getBean("dateTimeServiceImpl");
         dateTimeService.printDateTime();
     }
 

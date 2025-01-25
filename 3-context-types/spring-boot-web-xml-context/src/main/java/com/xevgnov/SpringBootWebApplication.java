@@ -4,21 +4,19 @@ import com.xevgnov.service.DateTimeService;
 import com.xevgnov.service.DateTimeServiceImpl;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ImportResource;
 
-// @SpringBootApplication
-@EnableAutoConfiguration
+@SpringBootApplication
 @ImportResource("classpath:application-config.xml")
 public class SpringBootWebApplication {
 
     // call SpringApplication.run to configure and create the context
     // if we need to run any logic right after application start, ApplicationRunner or CommandLineRunner bean can be used
 	public static void main(String[] args) {
-		SpringApplication.run(SpringBootWebApplication.class, args);
+		SpringApplication.run(SpringBootWebXmlApplication.class, args);
 	}
 
 	//to run the logic on application startup

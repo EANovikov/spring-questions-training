@@ -42,6 +42,9 @@
         <option value="$PROJECT_DIR$/1-what-is-context/spring-conext-types/pom.xml" />
         <option value="$PROJECT_DIR$/1-what-is-context/spring-web-conext-types/pom.xml" />
         <option value="$PROJECT_DIR$/1-what-is-context/spring-boot-web-context/pom.xml" />
+        <option value="$PROJECT_DIR$/3-context-types/spring-boot-web-xml-context/pom.xml" />
+        <option value="$PROJECT_DIR$/3-context-types/spring-boot-non-web-xml-context/pom.xml" />
+        <option value="$PROJECT_DIR$/3-context-types/spring-boot-non-web-annotations-context/pom.xml" />
       </list>
     </option>
   </component>

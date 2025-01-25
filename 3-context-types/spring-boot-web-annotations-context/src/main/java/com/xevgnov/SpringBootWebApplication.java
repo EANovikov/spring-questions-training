@@ -26,7 +26,7 @@ public class SpringBootWebApplication {
 
     // Alternative way to run any logic after application start is to access context directly
 //    public static void main(String[] args) {
-//        ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
+//        ConfigurableApplicationContext context = SpringApplication.run(SpringBootWebApplication.class, args);
 //        DateTimeService dateTimeService = context.getBean(DateTimeServiceImpl.class);
 //        System.out.println("on application start: " + context.getClass());
 //        System.out.println("on application start: " + dateTimeService.getDateTime());

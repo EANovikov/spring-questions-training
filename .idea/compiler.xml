@@ -7,6 +7,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="spring-boot-non-web-xml-context" />
         <module name="prototype-in-singletone-fix-one" />
         <module name="di" />
         <module name="solution-two" />
@@ -14,6 +15,7 @@
         <module name="spring-boot-web-context" />
         <module name="n-plus-one-entity-graph" />
         <module name="spring-testing" />
+        <module name="spring-boot-non-web-annotations-context" />
         <module name="n-plus-one-custom-query" />
         <module name="stereotypes (1) (com.xevgnov.stereotypes.without.spring.boot)" />
         <module name="spring-conext-types" />
@@ -24,7 +26,6 @@
         <module name="not-required-injection" />
         <module name="autowire" />
         <module name="solution-three" />
-        <module name="spring-boot-context" />
         <module name="prototype-in-singletone-fix-two" />
         <module name="testing" />
         <module name="profiles" />
@@ -64,6 +65,11 @@
         <module name="proxy-demo" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="spring-boot-context" target="21" />
+      <module name="spring-boot-context (1)" target="21" />
+      <module name="spring-boot-context (2)" target="21" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
@@ -94,6 +100,10 @@
       <module name="solution-three" options="-parameters" />
       <module name="solution-two" options="-parameters" />
       <module name="spring-boot-context" options="-parameters" />
+      <module name="spring-boot-context (1)" options="-parameters" />
+      <module name="spring-boot-context (2)" options="-parameters" />
+      <module name="spring-boot-non-web-annotations-context" options="-parameters" />
+      <module name="spring-boot-non-web-xml-context" options="-parameters" />
       <module name="spring-boot-web-context" options="-parameters" />
       <module name="spring-testing" options="-parameters" />
       <module name="stereotypes" options="-parameters" />

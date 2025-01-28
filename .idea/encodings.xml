@@ -21,6 +21,8 @@
     <file url="file://$PROJECT_DIR$/3-context-types/spring-boot-non-web-annotations-context/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/3-context-types/spring-boot-non-web-xml-context/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/3-context-types/spring-boot-web-xml-context/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/4-IoC-DI/ioc-di-clean/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/4-IoC-DI/ioc-di/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/4-autowire-injection-types/autowire/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/5-autowire-not-required/not-required-injection/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/6-autowire-circular-dependency/circular-dependency-problem/src/main/java" charset="UTF-8" />

@@ -45,6 +45,8 @@
         <option value="$PROJECT_DIR$/3-context-types/spring-boot-web-xml-context/pom.xml" />
         <option value="$PROJECT_DIR$/3-context-types/spring-boot-non-web-xml-context/pom.xml" />
         <option value="$PROJECT_DIR$/3-context-types/spring-boot-non-web-annotations-context/pom.xml" />
+        <option value="$PROJECT_DIR$/4-IoC-DI/ioc-di/pom.xml" />
+        <option value="$PROJECT_DIR$/4-IoC-DI/ioc-di-clean/pom.xml" />
       </list>
     </option>
   </component>

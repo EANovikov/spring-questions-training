@@ -8,67 +8,50 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="spring-boot-non-web-xml-context" />
-        <module name="prototype-in-singletone-fix-one" />
         <module name="di" />
-        <module name="solution-two" />
-        <module name="circular-dependency-problem" />
         <module name="spring-boot-web-context" />
-        <module name="n-plus-one-entity-graph" />
-        <module name="spring-testing" />
         <module name="spring-boot-non-web-annotations-context" />
-        <module name="n-plus-one-custom-query" />
-        <module name="stereotypes (1) (com.xevgnov.stereotypes.without.spring.boot)" />
-        <module name="spring-conext-types" />
-        <module name="spring-conext" />
-        <module name="stereotypes" />
         <module name="ioc-di" />
-        <module name="prototype-in-singletone" />
-        <module name="not-required-injection" />
-        <module name="autowire" />
-        <module name="solution-three" />
-        <module name="prototype-in-singletone-fix-two" />
-        <module name="testing" />
-        <module name="profiles" />
-        <module name="prototype-in-singletone-fix-three" />
-        <module name="collection" />
-        <module name="solution-one" />
-        <module name="spring-web-conext-types" />
-        <module name="bean-life-cycle" />
-        <module name="concurrency" />
-        <module name="proxy" />
-        <module name="qualifier" />
         <module name="spring-di" />
-        <module name="by-bean-name" />
-        <module name="scopes" />
-        <module name="no-unique-bean" />
-        <module name="entity" />
-        <module name="n-plus-one" />
-        <module name="primary" />
-      </profile>
-      <profile name="Annotation profile for bean-post-processor" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
-        </processorPath>
-        <module name="bean-post-processor" />
-      </profile>
-      <profile name="Annotation profile for proxy-demo" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
-        </processorPath>
-        <module name="proxy-demo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="autowire" target="21" />
+      <module name="bean-life-cycle" target="21" />
+      <module name="bean-post-processor" target="21" />
+      <module name="by-bean-name" target="21" />
+      <module name="circular-dependency-problem" target="21" />
+      <module name="collection" target="21" />
+      <module name="concurrency" target="21" />
+      <module name="entity" target="21" />
+      <module name="n-plus-one" target="21" />
+      <module name="n-plus-one-custom-query" target="21" />
+      <module name="n-plus-one-entity-graph" target="21" />
+      <module name="no-unique-bean" target="21" />
+      <module name="not-required-injection" target="21" />
+      <module name="primary" target="21" />
+      <module name="profiles" target="21" />
+      <module name="prototype-in-singletone" target="21" />
+      <module name="prototype-in-singletone-fix-one" target="21" />
+      <module name="prototype-in-singletone-fix-three" target="21" />
+      <module name="prototype-in-singletone-fix-two" target="21" />
+      <module name="proxy" target="21" />
+      <module name="proxy-demo" target="21" />
+      <module name="qualifier" target="21" />
+      <module name="scopes" target="21" />
+      <module name="solution-one" target="21" />
+      <module name="solution-three" target="21" />
+      <module name="solution-two" target="21" />
       <module name="spring-boot-context" target="21" />
       <module name="spring-boot-context (1)" target="21" />
       <module name="spring-boot-context (2)" target="21" />
+      <module name="spring-conext" target="21" />
+      <module name="spring-conext-types" target="21" />
+      <module name="spring-testing" target="21" />
+      <module name="spring-web-conext-types" target="21" />
+      <module name="stereotypes" target="21" />
+      <module name="stereotypes (1) (com.xevgnov.stereotypes.without.spring.boot)" target="21" />
+      <module name="testing" target="21" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

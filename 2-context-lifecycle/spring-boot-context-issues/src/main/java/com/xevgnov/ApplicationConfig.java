@@ -1,18 +1,16 @@
 package com.xevgnov;
 
+import com.xevgnov.service.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-import com.xevgnov.service.TimeService;
-import com.xevgnov.service.TimeServiceImpl;
-
 @Configuration
-@ComponentScan("com.xevgnov.service")
 public class ApplicationConfig {
 
-    @Bean
-    public TimeService timeService() {
-        return new TimeServiceImpl();
+//    @Bean
+    @Bean("dateTimeServiceV2")
+    public DateTimeService dateTimeServiceImpl(DateService dateService, TimeService timeService) {
+        return new DateTimeServiceImpl(dateService, timeService);
     }
 }

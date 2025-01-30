@@ -51,6 +51,11 @@
         <option value="$PROJECT_DIR$/4-IoC-DI/ioc-di-examples-autowired/pom.xml" />
         <option value="$PROJECT_DIR$/4-IoC-DI/ioc-di-examples-configuration/pom.xml" />
         <option value="$PROJECT_DIR$/4-IoC-DI/ioc-di-examples-inject-context/pom.xml" />
+        <option value="$PROJECT_DIR$/1-context-and-beans/spring-boot-context/pom.xml" />
+        <option value="$PROJECT_DIR$/1-context-and-beans/spring-conext/pom.xml" />
+        <option value="$PROJECT_DIR$/2-context-lifecycle/spring-boot-context/pom.xml" />
+        <option value="$PROJECT_DIR$/2-context-lifecycle/spring-conext/pom.xml" />
+        <option value="$PROJECT_DIR$/2-context-lifecycle/spring-boot-context-issues/pom.xml" />
       </list>
     </option>
   </component>

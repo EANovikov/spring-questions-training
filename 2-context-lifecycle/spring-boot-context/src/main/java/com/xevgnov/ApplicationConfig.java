@@ -8,9 +8,12 @@ import com.xevgnov.service.TimeService;
 import com.xevgnov.service.TimeServiceImpl;
 
 @Configuration
-@ComponentScan("com.xevgnov.service")
+// Since @SpringBootApplication in @Application.java already includes @ComponentScan
+// we can omit this annotation here
+// @ComponentScan("com.xevgnov.service")
 public class ApplicationConfig {
 
+    // timeService bean will be added to IoC container
     @Bean
     public TimeService timeService() {
         return new TimeServiceImpl();

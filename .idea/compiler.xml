@@ -8,14 +8,19 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="spring-boot-non-web-xml-context" />
+        <module name="ioc-di" />
         <module name="di" />
+        <module name="spring-boot-context" />
         <module name="ioc-di-examples" />
         <module name="spring-boot-web-context" />
         <module name="spring-boot-non-web-annotations-context" />
         <module name="ioc-di-examples (2)" />
-        <module name="ioc-di" />
         <module name="ioc-di-examples (1)" />
+        <module name="spring-boot-context-lifecycle-boot" />
         <module name="spring-di" />
+        <module name="spring-conext (1)" />
+        <module name="spring-boot-context (1)" />
+        <module name="spring-conext" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -45,10 +50,7 @@
       <module name="solution-one" target="21" />
       <module name="solution-three" target="21" />
       <module name="solution-two" target="21" />
-      <module name="spring-boot-context" target="21" />
-      <module name="spring-boot-context (1)" target="21" />
       <module name="spring-boot-context (2)" target="21" />
-      <module name="spring-conext" target="21" />
       <module name="spring-conext-types" target="21" />
       <module name="spring-testing" target="21" />
       <module name="spring-web-conext-types" target="21" />
@@ -91,6 +93,7 @@
       <module name="spring-boot-context" options="-parameters" />
       <module name="spring-boot-context (1)" options="-parameters" />
       <module name="spring-boot-context (2)" options="-parameters" />
+      <module name="spring-boot-context-lifecycle-boot" options="-parameters" />
       <module name="spring-boot-non-web-annotations-context" options="-parameters" />
       <module name="spring-boot-non-web-xml-context" options="-parameters" />
       <module name="spring-boot-web-context" options="-parameters" />

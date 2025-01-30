@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.xevgnov</groupId>
-	<artifactId>spring-boot-context-lifecycle-boot</artifactId>
+	<artifactId>spring-boot-context-lifecycle-issues</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-context</name>
 	<description>Demo project for Spring Boot</description>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/1-context-and-beans/spring-boot-context/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/1-what-is-context/spring-boot-context/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/1-what-is-context/spring-boot-web-context/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/10-prototype-in-singletone/default/src/main/java" charset="UTF-8" />
@@ -17,6 +18,8 @@
     <file url="file://$PROJECT_DIR$/14-n-plus-one-problem/n-plus-one/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/15-spring-application-unit-testing/testing/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/16-integration-testing-with-spring/spring-testing/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/2-context-lifecycle/spring-boot-context-issues/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/2-context-lifecycle/spring-boot-context/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/3-IoC-DI/ioc-di/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/3-context-types/spring-boot-non-web-annotations-context/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/3-context-types/spring-boot-non-web-xml-context/src/main/java" charset="UTF-8" />

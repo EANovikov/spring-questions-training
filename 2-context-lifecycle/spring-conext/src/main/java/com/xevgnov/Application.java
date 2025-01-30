@@ -9,7 +9,7 @@ import com.xevgnov.service.DateTimeServiceImpl;
 
 public class Application {
 
-    //Context lifecycle
+    // Context lifecycle
     // ConfigurableApplicationContext - registerShutdownHook
     public static void main(String[] args) {
         ConfigurableApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfig.class);

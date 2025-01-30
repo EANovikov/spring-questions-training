@@ -22,6 +22,10 @@
     <file url="file://$PROJECT_DIR$/3-context-types/spring-boot-non-web-xml-context/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/3-context-types/spring-boot-web-xml-context/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/4-IoC-DI/ioc-di-clean/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/4-IoC-DI/ioc-di-examples-autowired/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/4-IoC-DI/ioc-di-examples-configuration/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/4-IoC-DI/ioc-di-examples-inject-context/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/4-IoC-DI/ioc-di-examples/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/4-IoC-DI/ioc-di/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/4-autowire-injection-types/autowire/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/5-autowire-not-required/not-required-injection/src/main/java" charset="UTF-8" />

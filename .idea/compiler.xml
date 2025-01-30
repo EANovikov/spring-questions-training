@@ -9,9 +9,12 @@
         <outputRelativeToContentRoot value="true" />
         <module name="spring-boot-non-web-xml-context" />
         <module name="di" />
+        <module name="ioc-di-examples" />
         <module name="spring-boot-web-context" />
         <module name="spring-boot-non-web-annotations-context" />
+        <module name="ioc-di-examples (2)" />
         <module name="ioc-di" />
+        <module name="ioc-di-examples (1)" />
         <module name="spring-di" />
       </profile>
     </annotationProcessing>
@@ -64,6 +67,9 @@
       <module name="concurrency" options="-parameters" />
       <module name="entity" options="-parameters" />
       <module name="ioc-di" options="-parameters" />
+      <module name="ioc-di-examples" options="-parameters" />
+      <module name="ioc-di-examples (1)" options="-parameters" />
+      <module name="ioc-di-examples (2)" options="-parameters" />
       <module name="n-plus-one" options="-parameters" />
       <module name="n-plus-one-custom-query" options="-parameters" />
       <module name="n-plus-one-entity-graph" options="-parameters" />

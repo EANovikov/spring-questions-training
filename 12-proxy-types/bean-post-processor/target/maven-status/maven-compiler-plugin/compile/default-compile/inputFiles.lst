@@ -1,8 +1,0 @@
-C:\Users\ENovikov\Projects\spring-questions-training\12-proxy-types\bean-post-processor\src\main\java\com\xevgnov\proxy\bean\post\processor\use\BeanPostProcessorApplication.java
-C:\Users\ENovikov\Projects\spring-questions-training\12-proxy-types\bean-post-processor\src\main\java\com\xevgnov\proxy\bean\post\processor\use\config\ApplicationConfig.java
-C:\Users\ENovikov\Projects\spring-questions-training\12-proxy-types\bean-post-processor\src\main\java\com\xevgnov\proxy\bean\post\processor\use\config\TemperatureServiceBeanPostProcessor.java
-C:\Users\ENovikov\Projects\spring-questions-training\12-proxy-types\bean-post-processor\src\main\java\com\xevgnov\proxy\bean\post\processor\use\dto\Temperature.java
-C:\Users\ENovikov\Projects\spring-questions-training\12-proxy-types\bean-post-processor\src\main\java\com\xevgnov\proxy\bean\post\processor\use\dto\TemperatureMode.java
-C:\Users\ENovikov\Projects\spring-questions-training\12-proxy-types\bean-post-processor\src\main\java\com\xevgnov\proxy\bean\post\processor\use\service\TemperatureService.java
-C:\Users\ENovikov\Projects\spring-questions-training\12-proxy-types\bean-post-processor\src\main\java\com\xevgnov\proxy\bean\post\processor\use\service\TemperatureServiceImpl.java
-C:\Users\ENovikov\Projects\spring-questions-training\12-proxy-types\bean-post-processor\src\main\java\com\xevgnov\proxy\bean\post\processor\use\service\TemperatureServiceToCelsiusProxy.java

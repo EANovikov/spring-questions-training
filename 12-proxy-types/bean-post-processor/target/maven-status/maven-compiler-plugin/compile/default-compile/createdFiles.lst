@@ -1,7 +1,0 @@
-com\xevgnov\proxy\bean\post\processor\use\config\TemperatureServiceBeanPostProcessor.class
-com\xevgnov\proxy\bean\post\processor\use\dto\Temperature.class
-com\xevgnov\proxy\bean\post\processor\use\service\TemperatureService.class
-com\xevgnov\proxy\bean\post\processor\use\service\TemperatureServiceImpl.class
-com\xevgnov\proxy\bean\post\processor\use\service\TemperatureServiceToCelsiusProxy.class
-com\xevgnov\proxy\bean\post\processor\use\BeanPostProcessorApplication.class
-com\xevgnov\proxy\bean\post\processor\use\dto\TemperatureMode.class

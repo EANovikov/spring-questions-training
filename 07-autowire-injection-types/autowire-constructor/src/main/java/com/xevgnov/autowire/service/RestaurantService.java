@@ -30,6 +30,9 @@ public class RestaurantService {
         this.clientService = clientService;
     }
 
+    // Uncomment to see BeanCreationException:
+    // Invalid autowire-marked constructor: public com.xevgnov.autowire.service.RestaurantService().
+    // Found constructor with 'required' Autowired annotation already
     // @Autowired
     public RestaurantService() { }
 

@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.xevgnov</groupId>
-	<artifactId>autowire</artifactId>
+	<artifactId>autowire-field</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>autowire</name>
+	<name>autowire-field</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>21</java.version>

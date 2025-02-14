@@ -4,6 +4,6 @@ import com.xevgnov.autowire.circular.solution.three.dto.Order;
 
 public interface ProcessingService {
     
-  void procces(Order order);
+  void process(Order order);
 
 }

@@ -1,25 +1,22 @@
 package com.xevgnov.autowire.circular.problem.service;
 
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
-
+import com.xevgnov.autowire.circular.problem.dto.Order;
+import com.xevgnov.autowire.circular.problem.dto.Status;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import com.xevgnov.autowire.circular.problem.dto.Order;
-import com.xevgnov.autowire.circular.problem.dto.Status;
-
-import lombok.extern.slf4j.Slf4j;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Slf4j
 @Service
 @Scope(value = BeanDefinition.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.INTERFACES)
 public class ProcessingServiceImpl implements ProcessingService {
 
-    private DeliveryService deliveryService;
+    private final DeliveryService deliveryService;
 
     public ProcessingServiceImpl(DeliveryService deliveryService) {
         this.deliveryService = deliveryService;
@@ -27,7 +24,7 @@ public class ProcessingServiceImpl implements ProcessingService {
 
     @Async
     @Override
-    public void procces(Order order) {
+    public void process(Order order) {
         try {
             order.setStatus(Status.PROCESSING);
             long orderProcessingTime = ThreadLocalRandom.current().nextLong(1000L, 2000L);

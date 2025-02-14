@@ -19,10 +19,10 @@ import com.xevgnov.autowire.circular.solution.two.service.OrderService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping
+@RequestMapping("/orders")
 public class OrderController {
 
-    private OrderService orderService;
+    private final OrderService orderService;
 
     public OrderController(OrderService orderService) {
         this.orderService = orderService;

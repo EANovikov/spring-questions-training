@@ -11,8 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 @SpringBootApplication
 public class Application {
 
-	// GET http://localhost:8080/55e53f23-ee18-4a1e-8b18-52aee8287b1c
-	// POST http://localhost:8080
+	// GET http://localhost:8080/orders/55e53f23-ee18-4a1e-8b18-52aee8287b1c
+	// POST http://localhost:8080/orders
 	//{
 	// 	"clientEmail": "john.doe@gmail.com",
 	// 	"deliveryAddress": "731 Lexington Ave, New York, NY 10022, United States",

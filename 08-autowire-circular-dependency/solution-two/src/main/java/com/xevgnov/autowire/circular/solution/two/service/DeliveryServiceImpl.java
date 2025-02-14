@@ -25,9 +25,9 @@ public class DeliveryServiceImpl implements DeliveryService {
     public static long MAX_DELIVERY_DELAY = 180000L;
     public static long MIN_DELIVERY_DELAY = 60000L;
 
-    private static ExecutorService couriers = Executors.newFixedThreadPool(3);
+    private static final ExecutorService couriers = Executors.newFixedThreadPool(3);
 
-    private OrderService orderService;
+    private final OrderService orderService;
    
     public DeliveryServiceImpl(@Lazy OrderService orderService) {
         this.orderService = orderService;

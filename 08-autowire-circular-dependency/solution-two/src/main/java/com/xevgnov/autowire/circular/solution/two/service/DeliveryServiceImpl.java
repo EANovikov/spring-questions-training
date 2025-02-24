@@ -37,7 +37,7 @@ public class DeliveryServiceImpl implements DeliveryService {
     public String getEstimatedDeliveryTime() {
         LocalTime current = LocalTime.now();
         ThreadPoolExecutor threadPool = (ThreadPoolExecutor) couriers;
-        int queueSize = threadPool.getQueue().size() == 0 ? 1 : threadPool.getQueue().size();
+        int queueSize = threadPool.getQueue().isEmpty() ? 1 : threadPool.getQueue().size();
         long minDelaySec = Duration.ofMillis(queueSize * MIN_DELIVERY_DELAY).getSeconds();
         long maxDelaySec = Duration.ofMillis(queueSize * MAX_DELIVERY_DELAY).getSeconds();
         Duration minWait = Duration.between(current, current.plusSeconds(minDelaySec));

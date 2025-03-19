@@ -2,7 +2,7 @@ package com.xevgnov.by.name.service;
 
 import org.springframework.stereotype.Service;
 
-@Service("text")
+@Service("textReport")
 public class TextReportService implements ReportService {
 
     @Override

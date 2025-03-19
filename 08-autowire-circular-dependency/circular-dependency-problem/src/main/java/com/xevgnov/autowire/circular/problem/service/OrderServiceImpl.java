@@ -20,9 +20,9 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class OrderServiceImpl implements OrderService {
 
-   private static Map<UUID, Order> orders = new ConcurrentHashMap<>();
-   private ProcessingService processingService;
-   private DeliveryService deliveryService;
+   private static final Map<UUID, Order> orders = new ConcurrentHashMap<>();
+   private final ProcessingService processingService;
+   private final DeliveryService deliveryService;
 
    static {
       Order testOrder = Order.builder()

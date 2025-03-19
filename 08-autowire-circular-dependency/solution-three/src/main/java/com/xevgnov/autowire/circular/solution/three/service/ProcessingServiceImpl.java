@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @Scope(value = BeanDefinition.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.INTERFACES)
 public class ProcessingServiceImpl implements ProcessingService {
 
-    private DeliveryService deliveryService;
+    private final DeliveryService deliveryService;
 
     public ProcessingServiceImpl(DeliveryService deliveryService) {
         this.deliveryService = deliveryService;
@@ -26,7 +26,7 @@ public class ProcessingServiceImpl implements ProcessingService {
 
     @Async
     @Override
-    public void procces(Order order) {
+    public void process(Order order) {
         try {
             order.setStatus(Status.PROCESSING);
             long orderProcessingTime = ThreadLocalRandom.current().nextLong(1000L, 2000L);

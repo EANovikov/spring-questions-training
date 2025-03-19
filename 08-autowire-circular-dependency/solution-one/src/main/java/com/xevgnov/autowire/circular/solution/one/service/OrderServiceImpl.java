@@ -20,9 +20,9 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class OrderServiceImpl implements OrderService {
 
-   private static Map<UUID, Order> orders = new ConcurrentHashMap<>();
-   private ProcessingService processingService;
-   private DeliveryService deliveryService;
+   private static final Map<UUID, Order> orders = new ConcurrentHashMap<>();
+   private final ProcessingService processingService;
+   private final DeliveryService deliveryService;
 
    static {
       Order testOrder = Order.builder()
@@ -48,7 +48,7 @@ public class OrderServiceImpl implements OrderService {
       try {
          order.setStatus(Status.NEW);
          orders.put(order.getId(), order);
-         processingService.procces(order);
+         processingService.process(order);
          order.setEstimatedTime(deliveryService.getEstimatedDeliveryTime());
          return order.getId();
       } catch (Exception e) {

@@ -23,9 +23,9 @@ public class DeliveryServiceImpl implements DeliveryService {
     public static long MAX_DELIVERY_DELAY = 180000L;
     public static long MIN_DELIVERY_DELAY = 60000L;
 
-    private static ExecutorService couriers = Executors.newFixedThreadPool(3);
+    private static final ExecutorService couriers = Executors.newFixedThreadPool(3);
 
-    private OrderService orderService;
+    private final OrderService orderService;
 
     public DeliveryServiceImpl(OrderService orderService) {
         this.orderService = orderService;
@@ -36,7 +36,7 @@ public class DeliveryServiceImpl implements DeliveryService {
     public String getEstimatedDeliveryTime() {
         LocalTime current = LocalTime.now();
         ThreadPoolExecutor threadPool = (ThreadPoolExecutor) couriers;
-        int queueSize = threadPool.getQueue().size() == 0 ? 1 : threadPool.getQueue().size();
+        int queueSize = threadPool.getQueue().isEmpty() ? 1 : threadPool.getQueue().size();
         long minDelaySec = Duration.ofMillis(queueSize * MIN_DELIVERY_DELAY).getSeconds();
         long maxDelaySec = Duration.ofMillis(queueSize * MAX_DELIVERY_DELAY).getSeconds();
         Duration minWait = Duration.between(current, current.plusSeconds(minDelaySec));

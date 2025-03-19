@@ -48,7 +48,7 @@ public class OrderServiceImpl implements OrderService {
       try {
          order.setStatus(Status.NEW);
          orders.put(order.getId(), order);
-         processingService.procces(order);
+         processingService.process(order);
          order.setEstimatedTime(deliveryService.getEstimatedDeliveryTime());
          return order.getId();
       } catch (Exception e) {

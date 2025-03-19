@@ -1,5 +1,11 @@
 package com.xevgnov.autowire.circular.problem.service;
 
+import com.xevgnov.autowire.circular.problem.dto.Order;
+import com.xevgnov.autowire.circular.problem.dto.Status;
+import jakarta.annotation.PreDestroy;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
 import java.time.Duration;
 import java.time.LocalTime;
 import java.util.UUID;
@@ -7,14 +13,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.ThreadPoolExecutor;
-
-import org.springframework.stereotype.Service;
-
-import com.xevgnov.autowire.circular.problem.dto.Order;
-import com.xevgnov.autowire.circular.problem.dto.Status;
-
-import jakarta.annotation.PreDestroy;
-import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
@@ -35,7 +33,7 @@ public class DeliveryServiceImpl implements DeliveryService {
     public String getEstimatedDeliveryTime() {
         LocalTime current = LocalTime.now();
         ThreadPoolExecutor threadPool = (ThreadPoolExecutor) couriers;
-        int queueSize = threadPool.getQueue().size() == 0 ? 1 : threadPool.getQueue().size();
+        int queueSize = threadPool.getQueue().isEmpty() ? 1 : threadPool.getQueue().size();
         long minDelaySec = Duration.ofMillis(queueSize * MIN_DELIVERY_DELAY).getSeconds();
         long maxDelaySec = Duration.ofMillis(queueSize * MAX_DELIVERY_DELAY).getSeconds();
         Duration minWait = Duration.between(current, current.plusSeconds(minDelaySec));

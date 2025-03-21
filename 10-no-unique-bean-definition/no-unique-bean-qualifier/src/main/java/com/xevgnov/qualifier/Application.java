@@ -3,6 +3,7 @@ package com.xevgnov.qualifier;
 import java.util.List;
 import java.util.UUID;
 
+import com.xevgnov.qualifier.service.ReportProcessorService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -21,18 +22,8 @@ public class Application {
 	}
 
 	@Bean
-	CommandLineRunner commandLineRunner(
-		//1 qualifier usage 
-		@Qualifier("htmlReportService") ReportService reportService) {
-		return args -> reportService.printReport("test");
+	CommandLineRunner commandLineRunner(ReportProcessorService reportProcessorService) {
+		return args -> reportProcessorService.process("test report data");
 	}
-
-	// @Bean
-	// CommandLineRunner commandLineRunner(
-	// 	//2 qualifier usage
-	// 	// use @Qalifier in injection point and on the component you need to inject
-	// 	@Qualifier("html") ReportService reportService) {
-	// 	return args -> reportService.printReport("test");
-	// }
 
 }

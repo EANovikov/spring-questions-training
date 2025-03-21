@@ -3,7 +3,7 @@ package com.xevgnov.profiles.service;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
-@Profile("prod")
+@Profile("html")
 @Service
 public class HtmlReportService implements ReportService {
 

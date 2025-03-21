@@ -1,5 +1,6 @@
 package com.xevgnov.profiles;
 
+import com.xevgnov.profiles.service.ReportProcessorService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,7 +16,7 @@ public class Application {
 	}
 
 	@Bean
-	CommandLineRunner commandLineRunner(ReportService reportService) {
-		return args -> reportService.printReport("test");
+	CommandLineRunner commandLineRunner(ReportProcessorService reportProcessorService) {
+		return args -> reportProcessorService.process("test report data");
 	}
 }

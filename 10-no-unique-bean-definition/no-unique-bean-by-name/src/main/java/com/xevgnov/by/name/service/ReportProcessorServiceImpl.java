@@ -30,6 +30,6 @@ public class ReportProcessorServiceImpl implements ReportProcessorService {
 
     @Override
     public void process(String data) {
-        reportService.printReport("test report data");
+        reportService.printReport(data);
     }
 }

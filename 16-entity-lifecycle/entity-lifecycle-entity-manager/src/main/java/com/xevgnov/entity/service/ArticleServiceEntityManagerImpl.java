@@ -25,28 +25,23 @@ import lombok.extern.slf4j.Slf4j;
 // @Primary
 public class ArticleServiceEntityManagerImpl implements ArticleService {
 
-    private final EntityManager entityManager;
+    private final ArticleRepository articleRepository;
 
-    public ArticleServiceEntityManagerImpl(ArticleRepository articleRepository, EntityManager entityManager) {
-        this.entityManager = entityManager;
+    public ArticleServiceEntityManagerImpl(ArticleRepository articleRepository) {
+        this.articleRepository = articleRepository;
     }
 
     @Override
     public ArticleDto get(UUID id) {
-        // state [Managed (Persistent)]
-        Article article = getIfExists(id);
-        log.info("Got article {}", article);
-        log.info("Article ID {} present in Persistence Context: {}", article.getId(), entityManager.contains(article));
+       Article article = articleRepository.get(id);
         return mapToArticleDto(article);
     }
 
     @Override
     public List<ArticleDto> getAll() {
-        String jpqlQuery = "SELECT a FROM Article a ORDER BY a.created DESC";
-        // states [Managed (Persistent)]
-        return entityManager.createQuery(jpqlQuery, Article.class)
-                .getResultStream()
-                .map(article -> mapToArticleDto(article))
+        return articleRepository.getAll()
+                .stream()
+                .map(this::mapToArticleDto)
                 .toList();
     }
 

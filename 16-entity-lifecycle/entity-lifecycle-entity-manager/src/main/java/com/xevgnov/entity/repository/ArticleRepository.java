@@ -1,13 +1,21 @@
 package com.xevgnov.entity.repository;
 
-import java.util.UUID;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
 import com.xevgnov.entity.entity.Article;
 
-@Repository
-public interface ArticleRepository extends JpaRepository<Article, UUID>, PersistenceContextInfoRepository {
+import java.util.List;
+import java.util.UUID;
 
+public interface ArticleRepository {
+
+    Article get(UUID id);
+
+    List<Article> getAll();
+
+    Article create(Article article);
+
+    Article update(Article article);
+
+    void detach(Article article);
+
+    void delete(UUID id);
 }

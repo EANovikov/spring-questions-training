@@ -28,10 +28,18 @@ public class ArticleEntityLoggingAdvice {
                 getArticleUUID(proceedingJoinPoint),
                 isInPersistenceContext(proceedingJoinPoint));
         Object result = proceedingJoinPoint.proceed();
+
+        boolean isInPersistenceContext;
+        if (result instanceof Article) {
+            isInPersistenceContext = isInPersistenceContext((Article) result);
+        } else {
+            isInPersistenceContext = isInPersistenceContext(proceedingJoinPoint);
+        }
+
         log.info("[After {} call] Article ID {} present in JPA's Persistence Context: {}",
                 proceedingJoinPoint.getSignature().getName(),
                 getArticleUUID(proceedingJoinPoint),
-                isInPersistenceContext(proceedingJoinPoint));
+                isInPersistenceContext);
         return result;
     }
 
@@ -44,9 +52,13 @@ public class ArticleEntityLoggingAdvice {
         return articleId;
     }
 
+    private boolean isInPersistenceContext(Article article) {
+        return entityManager.contains(article);
+    }
+
     private boolean isInPersistenceContext(ProceedingJoinPoint proceedingJoinPoint) {
         UUID articleId = getArticleUUID(proceedingJoinPoint.getArgs());
-        Article article = new Article();
+        Article article;
         if (articleId == null) {
             article = getArticle(proceedingJoinPoint.getArgs());
         } else {

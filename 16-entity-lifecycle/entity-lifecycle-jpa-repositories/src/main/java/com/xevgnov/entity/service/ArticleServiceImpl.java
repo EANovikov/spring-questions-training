@@ -15,9 +15,11 @@ import com.xevgnov.entity.exception.ArticleNotFoundException;
 import com.xevgnov.entity.repository.ArticleRepository;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
+@Transactional
 public class ArticleServiceImpl implements ArticleService {
 
     private final ArticleRepository articleRepository;
@@ -31,8 +33,6 @@ public class ArticleServiceImpl implements ArticleService {
         // state [Managed (Persistent)]
         Article article = getIfExists(id);
         log.info("Got article {}", article);
-//        log.info("Article ID {} present in JPA's Persistence Context: {}", article.getId(),
-//                articleRepository.isInPersistenceContext(article));
         return mapToArticleDto(article);
     }
 
@@ -49,28 +49,20 @@ public class ArticleServiceImpl implements ArticleService {
     public void delete(UUID id) {
         // state [Managed (Persistent)]
         Article article = getIfExists(id);
-//        log.info("Article ID {} present in JPA's Persistence Context: {}", article.getId(),
-//                articleRepository.isInPersistenceContext(article));
         // state [Managed (Persistent)] -> [Removed]
         articleRepository.delete(article);
         // state [Removed]
         log.info("Deleted article {}", article);
-//        log.info("Article ID {} present in JPA's Persistence Context: {}", article.getId(),
-//                articleRepository.isInPersistenceContext(article));
     }
 
     @Override
     public void update(ArticleDto articleDto, UUID id) {
         // state [Managed (Persistent)]
         Article article = getIfExists(id);
-//        log.info("Article ID {} present in JPA's Persistence Context: {}", article.getId(),
-//                articleRepository.isInPersistenceContext(article));
         article.setTitle(articleDto.getTitle());
         article.setText(articleDto.getText());
         article.setUpdated(Instant.now());
         Article updatedArticle = articleRepository.save(article);
-//        log.info("Article ID {} present in JPA's Persistence Context: {}", updatedArticle.getId(),
-//                articleRepository.isInPersistenceContext(updatedArticle));
         // state [Managed (Persistent)]
         log.info("Updated article {}", updatedArticle);
     }
@@ -83,12 +75,8 @@ public class ArticleServiceImpl implements ArticleService {
                 .text(articleDto.getText())
                 .created(Instant.now())
                 .build();
-//        log.info("Article ID {} present in JPA's Persistence Context: {}", article.getId(),
-//                articleRepository.isInPersistenceContext(article));
         // state [New (Transient)] -> [Managed (Persistent)]
         Article createdArticle = articleRepository.save(article);
-//        log.info("Article ID {} present in JPA's Persistence Context: {}", createdArticle.getId(),
-//                articleRepository.isInPersistenceContext(createdArticle));
         // state [Managed (Persistent)]
         log.info("Created article {}", createdArticle);
         return mapToArticleDto(createdArticle);

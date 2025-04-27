@@ -17,5 +17,5 @@ public interface ArticleRepository {
 
     void detach(Article article);
 
-    void delete(UUID id);
+    void delete(Article id);
 }

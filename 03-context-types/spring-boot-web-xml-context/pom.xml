@@ -5,13 +5,13 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.4.5</version>
+		<version>3.5.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.xevgnov</groupId>
-	<artifactId>spring-boot-web-context</artifactId>
+	<artifactId>spring-boot-web-xml-context</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-context</name>
+	<name>spring-boot-web-xml-context</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>21</java.version>

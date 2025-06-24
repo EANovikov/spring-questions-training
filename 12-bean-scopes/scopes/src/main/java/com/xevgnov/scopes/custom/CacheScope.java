@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 public class CacheScope implements Scope {
 
     public static final String CACHE_SCOPE = "cache";
-    private Cache<String, Object> beans;
+    private final Cache<String, Object> beans;
     private Map<String, Runnable> destructionCallbacks = new ConcurrentHashMap<>();
 
     public CacheScope(Duration duration) {

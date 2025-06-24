@@ -14,8 +14,9 @@ public class ApplicationConfig {
         return new TimeServiceImpl();
     }
 
-    @Bean
-    public DateTimeService dateTimeService(DateService dateService, TimeService timeService){
-        return new DateTimeServiceImpl(dateService, timeService);
-    }
+// This is how to declare DateTimeService in java configuration
+//    @Bean
+//    public DateTimeService dateTimeService(DateService dateService, TimeService timeService){
+//        return new DateTimeServiceImpl(dateService, timeService);
+//    }
 }

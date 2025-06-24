@@ -2,7 +2,9 @@ package com.xevgnov.spring.di.service;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class DateTimeServiceImpl implements DateTimeService {
 
     private final DateService dateService;

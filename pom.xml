@@ -31,6 +31,17 @@
         <module>03-context-types/spring-boot-web-annotations-context</module>
         <module>03-context-types/spring-boot-non-web-xml-context</module>
         <module>03-context-types/spring-boot-web-xml-context</module>
+        <module>04-configuration-types/spring-annotation-based-config</module>
+        <module>04-configuration-types/spring-java-config</module>
+        <module>04-configuration-types/spring-mixed-config</module>
+        <module>04-configuration-types/spring-xml-config</module>
+        <module></module>
+        <module></module>
+        <module></module>
+        <module></module>
+        <module></module>
+        <module></module>
+        <module></module>
     </modules>
 
     <dependencyManagement>

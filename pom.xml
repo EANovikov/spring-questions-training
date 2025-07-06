@@ -35,13 +35,12 @@
         <module>04-configuration-types/spring-java-config</module>
         <module>04-configuration-types/spring-mixed-config</module>
         <module>04-configuration-types/spring-xml-config</module>
-        <module></module>
-        <module></module>
-        <module></module>
-        <module></module>
-        <module></module>
-        <module></module>
-        <module></module>
+        <module>05-IoC-DI/ioc-di-clean</module>
+        <module>05-IoC-DI/ioc-di-examples-autowired</module>
+        <module>05-IoC-DI/ioc-di-examples-configuration</module>
+        <module>05-IoC-DI/ioc-di-examples-inject-context</module>
+        <module>05-IoC-DI/ioc-di-examples-lookup</module>
+        <module>05-IoC-DI/ioc-di-examples-omit-autowired</module>
     </modules>
 
     <dependencyManagement>

@@ -14,6 +14,7 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <spring.version>7.0.0-M6</spring.version>
+        <spring-boot-maven-plugin.version>3.5.3</spring-boot-maven-plugin.version>
         <slf4j.version>2.0.13</slf4j.version>
     </properties>
 
@@ -41,6 +42,7 @@
         <module>05-IoC-DI/ioc-di-examples-inject-context</module>
         <module>05-IoC-DI/ioc-di-examples-lookup</module>
         <module>05-IoC-DI/ioc-di-examples-omit-autowired</module>
+        <module>06-bean-life-cycle/bean-life-cycle</module>
     </modules>
 
     <dependencyManagement>
@@ -54,6 +56,11 @@
                 <groupId>jakarta.servlet</groupId>
                 <artifactId>jakarta.servlet-api</artifactId>
                 <version>6.1.0</version>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.annotation</groupId>
+                <artifactId>jakarta.annotation-api</artifactId>
+                <version>3.0.0</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
@@ -99,12 +106,15 @@
     </dependencyManagement>
 
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring-boot-maven-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 
 </project>

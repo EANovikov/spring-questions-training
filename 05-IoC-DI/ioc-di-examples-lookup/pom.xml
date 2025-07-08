@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.xevgnov</groupId>
-	<artifactId>ioc-di-examples</artifactId>
+	<artifactId>ioc-di-examples-lookup</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ioc-di</name>
 	<description>Demo project for Spring Boot</description>

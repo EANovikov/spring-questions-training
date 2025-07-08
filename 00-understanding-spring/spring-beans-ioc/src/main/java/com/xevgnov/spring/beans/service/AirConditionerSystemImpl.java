@@ -11,9 +11,8 @@ import java.util.concurrent.Future;
 @Slf4j
 @Service
 public class AirConditionerSystemImpl implements AirConditionerSystem {
-    private final ExecutorService executorService = Executors.newSingleThreadExecutor();
-    private final ThreadLocal<Future<String>> cooling = new ThreadLocal<>();
 
+    private final ExecutorService executorService = Executors.newSingleThreadExecutor();
     private final CoolingTask coolingTask;
 
     public AirConditionerSystemImpl(CoolingTask coolingTask) {

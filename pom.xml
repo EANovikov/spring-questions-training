@@ -19,6 +19,7 @@
     </properties>
 
     <modules>
+        <module>00-understanding-spring/spring-beans-ioc</module>
         <module>00-understanding-spring/di</module>
         <module>00-understanding-spring/spring-di</module>
         <module>01-context-and-beans/spring-boot-context</module>
@@ -43,6 +44,17 @@
         <module>05-IoC-DI/ioc-di-examples-lookup</module>
         <module>05-IoC-DI/ioc-di-examples-omit-autowired</module>
         <module>06-bean-life-cycle/bean-life-cycle</module>
+        <module>07-autowire-injection-types/autowire-constructor</module>
+        <module>07-autowire-injection-types/autowire-mixed</module>
+        <module>07-autowire-injection-types/autowire-field</module>
+        <module>07-autowire-injection-types/autowire-method</module>
+        <module>08-autowire-circular-dependency/circular-dependency-problem</module>
+        <module>08-autowire-circular-dependency/solution-one</module>
+        <module>08-autowire-circular-dependency/solution-two</module>
+        <module>08-autowire-circular-dependency/solution-three</module>
+        <module>09-autowire-not-required/not-required-injection-problem</module>
+        <module>09-autowire-not-required/not-required-injection-autowire-required</module>
+        <module>09-autowire-not-required/not-required-injection-autowire-optional</module>
     </modules>
 
     <dependencyManagement>

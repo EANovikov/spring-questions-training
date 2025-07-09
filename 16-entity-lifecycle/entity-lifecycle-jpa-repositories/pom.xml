@@ -10,9 +10,8 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.xevgnov</groupId>
-	<artifactId>entity-lifecycle</artifactId>
-	<version>0.0.1</version>
-	<name>entity</name>
+	<artifactId>entity-lifecycle-jpa-repositories</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>21</java.version>

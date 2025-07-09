@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.xevgnov</groupId>
 	<artifactId>spring-boot-web-xml-context</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-boot-web-xml-context</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>

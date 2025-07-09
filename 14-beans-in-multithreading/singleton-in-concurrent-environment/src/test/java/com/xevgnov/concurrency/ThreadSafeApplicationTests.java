@@ -1,10 +1,10 @@
-package com.xevgnov.no_unique_bean;
+package com.xevgnov.concurrency;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class NoUniqueBeanApplicationTests {
+@SpringBootTest(classes = Application.class)
+class ThreadSafeApplicationTests {
 
 	@Test
 	void contextLoads() {

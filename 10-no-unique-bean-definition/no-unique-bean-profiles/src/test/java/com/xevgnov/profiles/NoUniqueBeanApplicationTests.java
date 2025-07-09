@@ -1,4 +1,4 @@
-package com.xevgnov.no_unique_bean;
+package com.xevgnov.profiles;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

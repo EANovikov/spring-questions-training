@@ -10,8 +10,8 @@
 	</parent>
 	<groupId>com.xevgnov.autowire.optional</groupId>
 	<artifactId>not-required-injection-autowired-optional</artifactId>
-	<version>0.0.1</version>
-	<name>not-required-injection</name>
+	<version>0.0.1-SNAPSHOT</version>
+
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>

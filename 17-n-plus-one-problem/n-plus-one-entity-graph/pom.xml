@@ -10,8 +10,7 @@
 	</parent>
 	<groupId>com.xevgnov.n.plus.one.entity.garph</groupId>
 	<artifactId>n-plus-one-entity-graph</artifactId>
-	<version>0.0.1</version>
-	<name>n-plus-one-entity-graph</name>
+	<version>0.0.1-SNAPSHOT</version>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>

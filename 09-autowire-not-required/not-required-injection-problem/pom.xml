@@ -9,8 +9,8 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.xevgnov.autowire.optional</groupId>
-	<artifactId>not-required-injection</artifactId>
-	<version>0.0.1</version>
+	<artifactId>not-required-injection-problem</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
 	<name>not-required-injection</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>

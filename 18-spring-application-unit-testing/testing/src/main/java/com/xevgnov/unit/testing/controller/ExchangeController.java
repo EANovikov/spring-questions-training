@@ -22,8 +22,8 @@ public class ExchangeController {
 
     @GetMapping("/{currencySell}/to/{currencyBuy}")
     public ExchangeStatistics getStatistics(
-            @PathVariable @Pattern(regexp = "[A-Z]{3}", message = "Currency code must contain 3 upper-cased caracters") String currencySell,
-            @PathVariable @Pattern(regexp = "[A-Z]{3}", message = "Currency code must contain 3 upper-cased caracters") String currencyBuy) {
+            @PathVariable @Pattern(regexp = "[A-Z]{3}", message = "Currency code must contain 3 upper-cased characters") String currencySell,
+            @PathVariable @Pattern(regexp = "[A-Z]{3}", message = "Currency code must contain 3 upper-cased characters") String currencyBuy) {
         return statisticsService.getStatistics(currencySell, currencyBuy);
     }
 }

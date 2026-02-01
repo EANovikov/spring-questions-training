@@ -24,7 +24,7 @@ public class Application {
 	// }
 
     /*
-	 * Get read of autowiring in one service and delegate incection to other service
+	 * Get read of autowiring in one service and delegate injection to other service
 	 * which does injection
 	 * 1) add setDeliveryService constructor to OrderService
 	 * 2) DeliveryService injects OrderService i.e. via constructor

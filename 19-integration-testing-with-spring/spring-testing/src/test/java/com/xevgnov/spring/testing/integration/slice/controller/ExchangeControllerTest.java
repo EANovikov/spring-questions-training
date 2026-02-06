@@ -1,5 +1,21 @@
 package com.xevgnov.spring.testing.integration.slice.controller;
 
+import com.xevgnov.spring.testing.controller.ExchangeController;
+import com.xevgnov.spring.testing.dto.ExchangeStatistics;
+import com.xevgnov.spring.testing.exception.StatisticsServiceException;
+import com.xevgnov.spring.testing.service.StatisticsService;
+import org.hamcrest.core.StringContains;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.test.web.servlet.MockMvc;
+
+import java.time.LocalDate;
+import java.util.Map;
+
 import static com.xevgnov.spring.testing.util.TestDataUtility.DATE_PATTERN;
 import static com.xevgnov.spring.testing.util.TestDataUtility.getPriceHistory;
 import static org.mockito.Mockito.when;
@@ -7,30 +23,13 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.time.LocalDate;
-import java.util.Map;
-
-import org.hamcrest.core.StringContains;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.web.servlet.MockMvc;
-
-import com.xevgnov.spring.testing.controller.ExchangeController;
-import com.xevgnov.spring.testing.dto.ExchangeStatistics;
-import com.xevgnov.spring.testing.exception.StatisticsServiceException;
-import com.xevgnov.spring.testing.service.StatisticsService;
-
 @WebMvcTest(ExchangeController.class)
 public class ExchangeControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
+    @MockitoBean
     private StatisticsService statisticsService;
 
     @Test
@@ -64,7 +63,7 @@ public class ExchangeControllerTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = { "LONG", "SH", " ", "123", "@#$" })
+    @ValueSource(strings = {"LONG", "SH", " ", "123", "@#$"})
     void testGetStatisticsReturns400ExceptionResponseIfSellCurrencyIsNot3UpperCasedCharacters(String sellCurrency)
             throws Exception {
         // Given
@@ -80,7 +79,7 @@ public class ExchangeControllerTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = { "LONG", "SH", " ", "123", "@#$" })
+    @ValueSource(strings = {"LONG", "SH", " ", "123", "@#$"})
     void testGetStatisticsReturns400ExceptionResponseIfBuyCurrencyIsNot3UpperCasedCharacters(String buyCurrency)
             throws Exception {
 

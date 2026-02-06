@@ -1,32 +1,33 @@
 package com.xevgnov.spring.testing.integration;
 
+import com.xevgnov.spring.testing.dto.ExceptionResponse;
+import com.xevgnov.spring.testing.dto.ExchangeStatistics;
+import com.xevgnov.spring.testing.exception.StatisticsServiceException;
+import com.xevgnov.spring.testing.service.StatisticsService;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.resttestclient.TestRestTemplate;
+import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureTestRestTemplate;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+
+import java.time.LocalDate;
+import java.util.Map;
+
 import static com.xevgnov.spring.testing.util.TestDataUtility.DATE_PATTERN;
 import static com.xevgnov.spring.testing.util.TestDataUtility.getPriceHistory;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
-import java.time.LocalDate;
-import java.util.Map;
-
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.ResponseEntity;
-
-import com.xevgnov.spring.testing.dto.ExceptionResponse;
-import com.xevgnov.spring.testing.dto.ExchangeStatistics;
-import com.xevgnov.spring.testing.exception.StatisticsServiceException;
-import com.xevgnov.spring.testing.service.StatisticsService;
-
+@AutoConfigureTestRestTemplate
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class ExchangeControllerRestTemplateTest {
 
-    @MockBean
+    @MockitoBean
     private StatisticsService statisticsService;
 
     @Autowired
@@ -63,7 +64,7 @@ public class ExchangeControllerRestTemplateTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = { "LONG", "SH", " ", "123", "@#$" })
+    @ValueSource(strings = {"LONG", "SH", " ", "123", "@#$"})
     void testGetStatisticsReturns400ExceptionResponseIfSellCurrencyIsNot3UpperCasedCharacters(String sellCurrency)
             throws Exception {
         // Given
@@ -80,7 +81,7 @@ public class ExchangeControllerRestTemplateTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = { "LONG", "SH", " ", "123", "@#$" })
+    @ValueSource(strings = {"LONG", "SH", " ", "123", "@#$"})
     void testGetStatisticsReturns400ExceptionResponseIfBuyCurrencyIsNot3UpperCasedCharacters(String buyCurrency)
             throws Exception {
 

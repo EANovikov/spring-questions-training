@@ -11,7 +11,7 @@ public class Application {
         ConfigurableApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
         context.registerShutdownHook();
         SmartHomeController smartHomeController = context.getBean(SmartHomeController.class);
-        smartHomeController.switchOn(24);
+        smartHomeController.switchOn(22);
     }
 
 // Manual device usage: no Spring needed

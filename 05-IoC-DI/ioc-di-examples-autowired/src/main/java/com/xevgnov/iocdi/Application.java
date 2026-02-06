@@ -29,7 +29,7 @@ public class Application {
         double temperature = 32.0;
         temperatureService.print(temperature);
         Temperature convertedTemperature = temperatureService.convert(temperature);
-        printService.print(convertedTemperature.getValue(), convertedTemperature.getMode());
+        printService.print(convertedTemperature.value(), convertedTemperature.mode());
         return args -> System.out.println(temperatureService + " work is completed");
     }
 

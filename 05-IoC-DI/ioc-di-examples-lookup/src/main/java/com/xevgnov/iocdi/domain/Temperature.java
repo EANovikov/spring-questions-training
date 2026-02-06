@@ -1,11 +1,5 @@
 package com.xevgnov.iocdi.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+public record Temperature(double value, TemperatureMode mode) {
 
-@Data
-@AllArgsConstructor
-public class Temperature {
-    private double value;
-    private TemperatureMode mode;
 }

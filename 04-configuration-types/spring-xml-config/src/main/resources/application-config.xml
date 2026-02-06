@@ -14,7 +14,7 @@
 
     <bean id="dateService" class="com.xevgnov.service.DateServiceImpl"/>
 
-    <bean id="dateTimeService" class="com.xevgnov.service.DateTimeServiceImpl">
+    <bean id="dateTimeService" class="com.xevgnov.service.DateTimeServiceImplV1">
         <constructor-arg ref="dateService"/>
         <constructor-arg ref="timeService"/>
     </bean>

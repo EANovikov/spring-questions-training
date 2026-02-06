@@ -1,19 +1,19 @@
 package com.xevgnov.spring.testing.integration.slice.repository;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import java.util.Optional;
-
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.orm.jpa.JpaSystemException;
-
 import com.xevgnov.spring.testing.entity.EcxcangeRecord;
 import com.xevgnov.spring.testing.entity.ExchangeRecordId;
 import com.xevgnov.spring.testing.repository.ExchangeRecordsRepository;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
+import org.springframework.orm.jpa.JpaSystemException;
 
-@DataJpaTest(properties={"spring.jpa.hibernate.ddl-auto=create-drop"})
+import java.util.Optional;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+@DataJpaTest(properties = {"spring.jpa.hibernate.ddl-auto=create-drop"})
 public class ExchangeRecordsRepositoryTest {
 
     @Autowired

@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.xevgnov</groupId>
-	<artifactId>ioc-di-clean</artifactId>
+	<artifactId>ioc-di-examples-autowired-to-specific-constructor</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ioc-di</name>
 	<description>Demo project for Spring Boot</description>

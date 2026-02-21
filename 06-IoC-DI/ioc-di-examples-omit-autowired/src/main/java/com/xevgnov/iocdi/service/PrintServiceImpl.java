@@ -1,7 +1,9 @@
 package com.xevgnov.iocdi.service;
 
 import com.xevgnov.iocdi.domain.TemperatureMode;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PrintServiceImpl implements PrintService {
 
     @Override

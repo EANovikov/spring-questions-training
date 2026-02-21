@@ -5,7 +5,7 @@ import com.xevgnov.iocdi.domain.TemperatureMode;
 
 public class FahrenheitTemperatureService implements TemperatureService {
 
-    private PrintService printService;
+    private final PrintService printService;
 
     public FahrenheitTemperatureService(PrintService printService) {
         this.printService = printService;
@@ -21,16 +21,4 @@ public class FahrenheitTemperatureService implements TemperatureService {
         printService.print(temperature, TemperatureMode.FARENHEIT);
     }
 
-    // Uncomment to see a lookup injection
-    // @Override
-    // public void print(double temperature) {
-    // // using getPrintService method annotaded with @Lookup annotation
-    //     PrintService printService = getPrintService();
-    //     printService.print(temperature, TemperatureMode.FARENHEIT);
-    // }
-
-    // @Lookup
-    // private PrintService getPrintService(){
-    //     return null;
-    // }
 }

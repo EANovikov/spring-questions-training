@@ -9,9 +9,8 @@ import com.xevgnov.iocdi.domain.TemperatureMode;
 @Service
 public class CelsiusTemperatureService implements TemperatureService {
 
-    private PrintService printService;
+    private final PrintService printService;
 
-    // Constructor injection - injecting PrintServiceImpl 
     public CelsiusTemperatureService(PrintService printService) {
         this.printService = printService;
     }
@@ -26,9 +25,4 @@ public class CelsiusTemperatureService implements TemperatureService {
         printService.print(temperature, TemperatureMode.CELSIUS);
     }
 
-    // Method / setter injection - injecting PrintServiceImpl
-//    @Autowired
-//    public void setPrintService(PrintService printService) {
-//        this.printService = printService;
-//    }
 }

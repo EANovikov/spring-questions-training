@@ -1,9 +1,6 @@
 package com.xevgnov.iocdi;
 
-import com.xevgnov.iocdi.service.CelsiusTemperatureService;
-import com.xevgnov.iocdi.service.PrintService;
-import com.xevgnov.iocdi.service.PrintServiceImpl;
-import com.xevgnov.iocdi.service.TemperatureService;
+import com.xevgnov.iocdi.service.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -22,8 +19,8 @@ public class ApplicationConfig {
     }
 
     // 2) printService injected via printService method invocation
-//    @Bean
-//    public TemperatureService celsiusTemperatureService(){
-//        return new CelsiusTemperatureService(printService());
-//    }
+    @Bean
+    public TemperatureService fahrenheitTemperatureService(){
+        return new FahrenheitTemperatureService(printService());
+    }
 }

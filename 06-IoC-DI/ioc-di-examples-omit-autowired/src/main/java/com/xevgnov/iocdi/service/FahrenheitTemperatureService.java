@@ -10,12 +10,12 @@ import com.xevgnov.iocdi.domain.TemperatureMode;
 
 @Service
 public class FahrenheitTemperatureService implements TemperatureService {
-    
-    // Field injection - injecting whole context
-    // Usually we need to inject one or several specific beans, i.e. @Autowired private PrintService printService
-    // However Springs allows to inject the whole context, so we can get any bean from it
-    @Autowired 
-    private ApplicationContext context;
+
+    private final PrintService printService;
+
+    public FahrenheitTemperatureService(PrintService printService) {
+        this.printService = printService;
+    }
 
     @Override
     public Temperature convert(double temperature) {
@@ -24,21 +24,7 @@ public class FahrenheitTemperatureService implements TemperatureService {
 
     @Override
     public void print(double temperature) {
-        // fetching PrintServiceImpl from IoC container
-        PrintService printService = context.getBean(PrintService.class);
         printService.print(temperature, TemperatureMode.FARENHEIT);
     }
 
-    // Uncomment to see a lookup injection
-    // @Override
-    // public void print(double temperature) {
-    // // using getPrintService method annotaded with @Lookup annotation
-    //     PrintService printService = getPrintService();
-    //     printService.print(temperature, TemperatureMode.FARENHEIT);
-    // }
-
-    // @Lookup
-    // private PrintService getPrintService(){
-    //     return null;
-    // }
 }

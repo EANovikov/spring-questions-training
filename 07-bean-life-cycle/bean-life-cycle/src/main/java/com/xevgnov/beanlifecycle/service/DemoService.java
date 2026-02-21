@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DemoService implements InitializingBean, DisposableBean {
 
-    private InnerDemoService innerDemoService;
+    private final InnerDemoService innerDemoService;
 
     public DemoService(InnerDemoService innerDemoService) {
         log.info("DemoService: call constructor");

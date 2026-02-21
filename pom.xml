@@ -42,7 +42,7 @@
         <module>05-configuration-types/spring-java-config</module>
         <module>05-configuration-types/spring-mixed-config</module>
         <module>05-configuration-types/spring-xml-config</module>
-        <module>06-IoC-DI/ioc-di-clean</module>
+        <module>06-IoC-DI/ioc-di-examples-autowired-to-specific-constructor</module>
         <module>06-IoC-DI/ioc-di-examples-autowired</module>
         <module>06-IoC-DI/ioc-di-examples-configuration</module>
         <module>06-IoC-DI/ioc-di-examples-inject-context</module>
@@ -53,13 +53,13 @@
         <module>08-autowire-injection-types/autowire-mixed</module>
         <module>08-autowire-injection-types/autowire-field</module>
         <module>08-autowire-injection-types/autowire-method</module>
-        <module>09-autowire-circular-dependency/circular-dependency-problem</module>
-        <module>09-autowire-circular-dependency/solution-one</module>
-        <module>09-autowire-circular-dependency/solution-two</module>
-        <module>09-autowire-circular-dependency/solution-three</module>
-        <module>10-autowire-not-required/not-required-injection-problem</module>
-        <module>10-autowire-not-required/not-required-injection-autowired-required</module>
-        <module>10-autowire-not-required/not-required-injection-autowired-optional</module>
+        <module>09-autowire-not-required/not-required-injection-problem</module>
+        <module>09-autowire-not-required/not-required-injection-autowired-required</module>
+        <module>09-autowire-not-required/not-required-injection-autowired-optional</module>
+        <module>10-autowire-circular-dependency/circular-dependency-problem</module>
+        <module>10-autowire-circular-dependency/solution-one</module>
+        <module>10-autowire-circular-dependency/solution-two</module>
+        <module>10-autowire-circular-dependency/solution-three</module>
         <module>11-no-unique-bean-definition/no-unique-bean</module>
         <module>11-no-unique-bean-definition/use-bean-name</module>
         <module>11-no-unique-bean-definition/use-profiles</module>

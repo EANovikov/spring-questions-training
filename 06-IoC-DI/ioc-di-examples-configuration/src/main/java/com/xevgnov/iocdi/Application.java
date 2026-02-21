@@ -37,7 +37,7 @@ public class Application {
 	// 3) since we are using @SpringBootApplication annotation on Application class,
 	// Application is a Configuration class
 	// FahrenheitTemperatureService bean can be declared here
-	    @Bean
+	    @Bean("fahrenheitTemperatureServiceV2")
 	    public TemperatureService fahrenheitTemperatureService(PrintService printService){
 	        return new FahrenheitTemperatureService(printService);
 	    }

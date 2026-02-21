@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class RateCalculatorServiceImpl implements RateCalculatorService {
 
-    private List<Integer> rates = new ArrayList<>();
+    private final List<Integer> rates = new ArrayList<>();
 
     @Override
     public void addToRate(int mark) {

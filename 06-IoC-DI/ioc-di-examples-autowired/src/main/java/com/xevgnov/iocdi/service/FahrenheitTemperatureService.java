@@ -10,7 +10,8 @@ import com.xevgnov.iocdi.domain.TemperatureMode;
 
 @Service
 public class FahrenheitTemperatureService implements TemperatureService {
-    
+
+    // Field injection - injecting PrintServiceImpl
     @Autowired
     private PrintService printService;
 

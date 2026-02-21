@@ -1,6 +1,7 @@
 package com.xevgnov.iocdi.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Lookup;
 import org.springframework.stereotype.Service;
 
 import com.xevgnov.iocdi.domain.Temperature;
@@ -9,13 +10,6 @@ import com.xevgnov.iocdi.domain.TemperatureMode;
 @Service
 public class CelsiusTemperatureService implements TemperatureService {
 
-    private PrintService printService;
-
-    // Constructor injection - injecting PrintServiceImpl 
-    public CelsiusTemperatureService(PrintService printService) {
-        this.printService = printService;
-    }
-
     @Override
     public Temperature convert(double temperature) {
         return new Temperature(temperature * 1.8 + 32.0, TemperatureMode.FARENHEIT);
@@ -23,12 +17,13 @@ public class CelsiusTemperatureService implements TemperatureService {
 
     @Override
     public void print(double temperature) {
+        PrintService printService = getPrintService();
         printService.print(temperature, TemperatureMode.CELSIUS);
     }
 
-    // Method / setter injection - injecting PrintServiceImpl
-//    @Autowired
-//    public void setPrintService(PrintService printService) {
-//        this.printService = printService;
-//    }
+    @Lookup
+    PrintService getPrintService() {
+        return null;
+    }
+
 }

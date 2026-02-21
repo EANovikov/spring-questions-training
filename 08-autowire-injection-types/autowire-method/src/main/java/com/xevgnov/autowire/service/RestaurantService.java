@@ -54,4 +54,10 @@ public class RestaurantService {
         this.clientService = clientService;
     }
 
+    //it is also possible to inject multiple dependencies in one method, but it is not recommended as it can make the code less readable
+    @Autowired
+    private void initClientServiceAndDeliveryService(ClientService clientService, DeliveryService deliveryService) {
+        this.clientService = clientService;
+        this.deliveryService = deliveryService;
+    }
 }

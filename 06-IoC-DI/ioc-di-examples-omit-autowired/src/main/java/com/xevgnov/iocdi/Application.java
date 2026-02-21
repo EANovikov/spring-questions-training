@@ -21,12 +21,6 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
-	// Bean CommandLineRunner is added to IoC container
-	// It has dependency to another bean implementing TemperatureService interface.
-	// We must specify either we inject celsiusTemperatureService or
-	// fahrenheitTemperatureService
-	// 2nd dependency is PrintServiceImpl, it is injected via method arguments
-
 	@Bean
 	CommandLineRunner commandLineRunner(
 			@Qualifier("celsiusTemperatureService")
@@ -40,26 +34,4 @@ public class Application {
 		return args -> System.out.println(temperatureService + " work is completed");
 	}
 
-	// Injecting printService bean by calling it directly - method invocation inside configuration file
-	/*
-	 * @Bean
-	 * CommandLineRunner commandLineRunner(
-	 * 
-	 * @Qualifier("celsiusTemperatureService")
-	 * TemperatureService temperatureService) {
-	 * double temperature = 32.0;
-	 * temperatureService.print(temperature);
-	 * Temperature convertedTemperature = temperatureService.convert(temperature);
-	 * //Dependency injection via method invocation
-	 * printService().print(convertedTemperature.getValue(),
-	 * convertedTemperature.getMode());
-	 * return args -> System.out.println(temperatureService + " work is completed");
-	 * }
-	 */
-
-	//printService can be declared here or in ApplicationConfig
-	@Bean
-	PrintService printService() {
-		return new PrintServiceImpl();
-	}
 }

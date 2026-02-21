@@ -34,7 +34,7 @@ public class Application {
 //    }
 
 
-    // 3) ClassPathXmlApplicationContext
+    // 3) FileSystemXmlApplicationContext
 //    public static void main(String[] args) {
 //        //Important: do not point to src/main/resources/application-config.xml file
 //        //copy application-config.xml and paste it some external place like C:/Users/<username>
